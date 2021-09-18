@@ -3,6 +3,8 @@ import {
   Card,
   CardActions,
   CardContent,
+  Chip,
+  Stack,
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
@@ -44,6 +46,11 @@ export default function PledgeCard({ isDescriptionShown }) {
               voluptate Lorem.
             </Typography>
           )}
+
+          <Stack direction="row" sx={{ mt: 1 }}>
+            <Chip label="Education" size="small" sx={{ mr: 1 }} />
+            <Chip label="Finance" size="small" />
+          </Stack>
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between', px: 2, pt: 0 }}>
           <Button size="small">Open Link</Button>
