@@ -25,10 +25,13 @@ export default function Home() {
           enough to wait and watch.
         </Typography>
 
-        <Stack alignItems="center" sx={{ mt: 4 }}>
+        <Stack alignItems="center" sx={{ mt: 8 }}>
           <Button variant="contained" size="large">
             Make a Pledge Today
           </Button>
+          <Typography color="textSecondary" sx={{ mt: 1 }}>
+            “The future depends on what you do today.” - Gandhi
+          </Typography>
         </Stack>
 
         <Typography variant="h5" component="div" sx={{ mt: 20, mb: 3 }}>
