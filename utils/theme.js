@@ -1,6 +1,14 @@
 import { createTheme } from '@mui/material';
 
 export default createTheme({
+  palette: {
+    primary: {
+      main: '#FF9933',
+    },
+    secondary: {
+      main: '#138808',
+    },
+  },
   typography: {
     fontFamily: '"Lato", "Roboto", "Helvetica", "Arial", sans-serif',
     h1: {

@@ -4,7 +4,7 @@ import TextTransition, { presets } from 'react-text-transition';
 import logoLarge from 'assets/logo-large.jpeg';
 import Image from 'next/image';
 
-const titles = ['#Saubhagya', '#100bhagya', '#India100'];
+const titles = ['#Saubhagya', '#100bhagya', '#India100', '#India100bhagya'];
 
 export default function Home() {
   const [index, setIndex] = useState(0);
@@ -20,8 +20,9 @@ export default function Home() {
   return (
     <Container>
       <Typography
-        variant="h3"
+        variant="h4"
         textAlign="center"
+        color={index % 2 === 0 ? 'primary' : 'secondary'}
         sx={{
           mt: 4,
           mb: 4,
