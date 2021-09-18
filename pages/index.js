@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Navigation />
 
-      <Container sx={{ pt: 20 }}>
+      <Container sx={{ pt: 20, pb: 8 }}>
         <Typography variant="h3" component="div" textAlign="center">
           Made a Pledge for{' '}
           <Typography variant="h3" component="span" color="primary">
@@ -34,7 +34,11 @@ export default function Home() {
         <Typography variant="h5" component="div" sx={{ mt: 20, mb: 3 }}>
           What pledges did people make?
         </Typography>
-        <PledgeCard />
+        <PledgeCard isDescriptionShown />
+        <Stack direction="row" spacing={4} mt={4}>
+          <PledgeCard />
+          <PledgeCard />
+        </Stack>
       </Container>
     </>
   );

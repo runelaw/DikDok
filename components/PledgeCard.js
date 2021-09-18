@@ -8,7 +8,7 @@ import {
 import { Box } from '@mui/system';
 import { MdArrowUpward } from 'react-icons/md';
 
-export default function PledgeCard() {
+export default function PledgeCard({ isDescriptionShown }) {
   return (
     <Card sx={{ display: 'flex' }}>
       <Button
@@ -37,13 +37,13 @@ export default function PledgeCard() {
             aliquip esse.
           </Typography>
 
-          <Typography>
-            Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
-            cupidatat quis in exercitation Lorem consectetur mollit id officia
-            voluptate Lorem. Aliquip nulla aliqua ut ea fugiat. Ut dolore duis
-            esse voluptate irure aute amet officia commodo laborum labore nulla
-            nisi ullamco.
-          </Typography>
+          {isDescriptionShown && (
+            <Typography>
+              Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
+              cupidatat quis in exercitation Lorem consectetur mollit id officia
+              voluptate Lorem.
+            </Typography>
+          )}
         </CardContent>
         <CardActions>
           <Button size="small">Share</Button>
