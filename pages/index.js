@@ -1,13 +1,13 @@
-import { Button, Container, Typography, Stack } from '@mui/material';
-import { Box } from '@mui/system';
+import { Button, Container, Stack, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
+import PledgeCard from 'components/PledgeCard';
 
 export default function Home() {
   return (
     <>
       <Navigation />
 
-      <Container sx={{ pt: 16 }}>
+      <Container sx={{ pt: 20 }}>
         <Typography variant="h3" component="div" textAlign="center">
           Made a Pledge for{' '}
           <Typography variant="h3" component="span" color="primary">
@@ -30,6 +30,11 @@ export default function Home() {
             Make a Pledge Today
           </Button>
         </Stack>
+
+        <Typography variant="h5" component="div" sx={{ mt: 20, mb: 3 }}>
+          What pledges did people make?
+        </Typography>
+        <PledgeCard />
       </Container>
     </>
   );
