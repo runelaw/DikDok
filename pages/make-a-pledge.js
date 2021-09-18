@@ -1,11 +1,15 @@
 import { Button, Container, Stack, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
 import PledgeCard from 'components/PledgeCard';
+import Head from 'next/head';
 
 export default function Home() {
   return (
     <>
       <Navigation />
+      <Head>
+        <title>100bhagya - Made a Pledge for #India100</title>
+      </Head>
 
       <Container sx={{ pt: 20, pb: 8 }}>
         <Typography variant="h3" component="div" textAlign="center">
