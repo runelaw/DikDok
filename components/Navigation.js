@@ -1,4 +1,11 @@
-import { AppBar, Button, Container, Toolbar, Typography } from '@mui/material';
+import {
+  AppBar,
+  Button,
+  Container,
+  Stack,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import logo from 'assets/logo-large.jpeg';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +19,7 @@ export default function Navigation() {
       sx={{ borderBottom: '1px solid', borderColor: 'grey.400' }}
     >
       <Container>
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" sx={{ justifyContent: 'space-between' }}>
           <Link href="/" passHref>
             <Button
               component="a"
@@ -23,7 +30,12 @@ export default function Navigation() {
             </Button>
           </Link>
 
-          <Button>Login</Button>
+          <Stack direction="row">
+            <Button variant="outlined" sx={{ mr: 2 }}>
+              Make a Pledge
+            </Button>
+            <Button>Login</Button>
+          </Stack>
         </Toolbar>
       </Container>
     </AppBar>

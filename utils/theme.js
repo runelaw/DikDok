@@ -26,4 +26,17 @@ export default createTheme({
     fontWeightMedium: 700,
     fontWeightBold: 700,
   },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        disableElevation: true,
+        disableRipple: true,
+      },
+      styleOverrides: {
+        root: {
+          textTransform: 'initial',
+        },
+      },
+    },
+  },
 });
