@@ -27,12 +27,12 @@ export default function PledgeCard({ isDescriptionShown }) {
       </Button>
 
       <Box>
-        <CardContent>
+        <CardContent sx={{ py: 1 }}>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             John Doe
           </Typography>
 
-          <Typography variant="h6">
+          <Typography variant="h6" sx={{ fontSize: '1.1rem' }}>
             Irure aute culpa id velit irure duis occaecat eiusmod consectetur
             aliquip esse.
           </Typography>
@@ -45,7 +45,7 @@ export default function PledgeCard({ isDescriptionShown }) {
             </Typography>
           )}
         </CardContent>
-        <CardActions sx={{ justifyContent: 'space-between' }}>
+        <CardActions sx={{ justifyContent: 'space-between', px: 2, pt: 0 }}>
           <Button size="small">Open Link</Button>
           <Button size="small">Share</Button>
         </CardActions>
