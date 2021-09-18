@@ -32,17 +32,24 @@ export default function Home() {
         <TextTransition text={titles[index]} springConfig={presets.wobbly} />
       </Typography>
 
-      <Stack
-        direction="row"
-        alignItems="center"
-        sx={{
-          height: 600,
-          overflow: 'hidden',
-          borderRadius: 4,
-        }}
-      >
-        <Image src={logoLarge} alt="Logo" />
-      </Stack>
+      <Image
+        src={logoLarge}
+        alt="Logo"
+        height={550}
+        objectFit="cover"
+        objectPosition="center"
+      />
+
+      <Typography variant="h5" component="p" sx={{ mt: 4, fontWeight: 400 }}>
+        India celebrated 75th Independence Day on Aug 15, 2021.
+      </Typography>
+      <Typography variant="h5" component="p" sx={{ mt: 1, fontWeight: 400 }}>
+        In 25 years, we celebrate India at 100! The next 25 years of our active
+        lives coincide with the 25 years to India100.
+      </Typography>
+      <Typography variant="h5" component="p" sx={{ mt: 1 }}>
+        How will we contribute?
+      </Typography>
     </Container>
   );
 }
