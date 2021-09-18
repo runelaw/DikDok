@@ -1,7 +1,6 @@
 import { Button, Container, Stack, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
 import PledgeCard from 'components/PledgeCard';
-import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -27,11 +26,9 @@ export default function Home() {
         </Typography>
 
         <Stack alignItems="center" sx={{ mt: 8 }}>
-          <Link href="/make-a-pledge" passHref>
-            <Button component="a" variant="contained" size="large">
-              Make a Pledge Today
-            </Button>
-          </Link>
+          <Button variant="contained" size="large">
+            Make a Pledge Today
+          </Button>
           <Typography color="textSecondary" sx={{ mt: 1 }}>
             “The future depends on what you do today.” - Gandhi
           </Typography>

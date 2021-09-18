@@ -1,11 +1,4 @@
-import {
-  AppBar,
-  Button,
-  Container,
-  Stack,
-  Toolbar,
-  Typography,
-} from '@mui/material';
+import { AppBar, Button, Container, Stack, Toolbar } from '@mui/material';
 import logo from 'assets/logo-large.jpeg';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,9 +24,11 @@ export default function Navigation() {
           </Link>
 
           <Stack direction="row">
-            <Button variant="outlined" sx={{ mr: 2 }}>
-              Make a Pledge
-            </Button>
+            <Link href="/make-a-pledge" passHref>
+              <Button component="a" variant="outlined" sx={{ mr: 2 }}>
+                Make a Pledge
+              </Button>
+            </Link>
             <Button>Login</Button>
           </Stack>
         </Toolbar>
