@@ -39,6 +39,29 @@ export default function Home() {
           <PledgeCard />
           <PledgeCard />
         </Stack>
+
+        <Typography variant="h5" component="div" sx={{ mt: 12, mb: 1 }}>
+          Our Vision
+        </Typography>
+        <Typography variant="h6" component="p" sx={{ fontWeight: 400 }}>
+          India celebrated 75th Independence Day on Aug 15, 2021.
+        </Typography>
+        <Typography
+          variant="h6"
+          component="p"
+          sx={{ fontWeight: 400, mt: 0.25 }}
+        >
+          In 25 years, we celebrate India at 100! The next 25 years of our
+          active lives coincide with the 25 years to India100.
+        </Typography>
+        <Typography
+          variant="h6"
+          component="p"
+          color="primary"
+          sx={{ mt: 0.25 }}
+        >
+          How will we contribute?
+        </Typography>
       </Container>
     </>
   );
