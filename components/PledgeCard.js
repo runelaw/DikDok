@@ -45,7 +45,8 @@ export default function PledgeCard({ isDescriptionShown }) {
             </Typography>
           )}
         </CardContent>
-        <CardActions>
+        <CardActions sx={{ justifyContent: 'space-between' }}>
+          <Button size="small">Open Link</Button>
           <Button size="small">Share</Button>
         </CardActions>
       </Box>
