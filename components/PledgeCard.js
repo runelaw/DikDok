@@ -12,7 +12,7 @@ import { Box } from '@mui/system';
 import { MdArrowUpward } from 'react-icons/md';
 import { MdShare, MdOpenInNew } from 'react-icons/md';
 
-export default function PledgeCard({ isDescriptionShown, title, description }) {
+export default function PledgeCard({ title, description, tags = [] }) {
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
       <Button
@@ -59,15 +59,19 @@ export default function PledgeCard({ isDescriptionShown, title, description }) {
           {title}
         </Typography>
 
-        {isDescriptionShown && (
-          <Typography sx={{ display: { xs: 'none', md: 'block' } }}>
-            {description}
-          </Typography>
-        )}
+        <Typography sx={{ display: { xs: 'none', md: 'block' } }}>
+          {description}
+        </Typography>
 
         <Stack direction="row" sx={{ mt: 1 }}>
-          <Chip label="Education" size="small" sx={{ mr: 1 }} />
-          <Chip label="Finance" size="small" />
+          {tags.map((it, index) => (
+            <Chip
+              key={it}
+              label={it}
+              size="small"
+              sx={{ mr: index !== tags.length - 1 ? 1 : 0 }}
+            />
+          ))}
         </Stack>
       </CardContent>
     </Card>

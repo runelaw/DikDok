@@ -132,38 +132,30 @@ export default function Home() {
           component="div"
           sx={{ mt: { xs: 8, md: 12 }, mb: 3 }}
         >
-          Top Ideas
+          Top Initiatives
         </Typography>
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={4}>
           <PledgeCard
-            title="Irure aute culpa id velit irure duis occaecat eiusmod consectetur."
-            description="Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
-            cupidatat quis in exercitation Lorem consectetur mollit id officia
-            voluptate Lorem."
-            isDescriptionShown
+            title="To promote education among the underprivileged."
+            description="Their development program includes Education, health, livelihood for children and women, provision to be equally affected by lack of resources."
+            tags={['Education', 'Child Welfare']}
           />
           <PledgeCard
-            title="Irure aute culpa id velit irure duis occaecat eiusmod consectetur."
-            description="Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
-            cupidatat quis in exercitation Lorem consectetur mollit id officia
-            voluptate Lorem."
-            isDescriptionShown
+            title="Supports education for underprivileged girls in India.."
+            description="Project Nani Kali educated girls and women to influence India in the long run positively."
+            tags={['Education', 'Women']}
           />
         </Stack>
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} mt={4}>
           <PledgeCard
-            title="Irure aute culpa id velit irure duis occaecat eiusmod consectetur."
-            description="Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
-            cupidatat quis in exercitation Lorem consectetur mollit id officia
-            voluptate Lorem."
-            isDescriptionShown
+            title="Online donation platform for NGOs."
+            description="As a web portal, it helps raise funds and contributions from individuals in India and around the world and then distributes these donations to trusted NGOs."
+            tags={['Donation', 'NGO']}
           />
           <PledgeCard
-            title="Irure aute culpa id velit irure duis occaecat eiusmod consectetur."
-            description="Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
-            cupidatat quis in exercitation Lorem consectetur mollit id officia
-            voluptate Lorem."
-            isDescriptionShown
+            title="Improve standard of living for Elderly."
+            description="HelpAge is taking action against universal, pension, healthcare, Elder Abuse at the national, state and social levels with the central and state governments and advocates for the needy."
+            tags={['Elders', 'Healthcare']}
           />
         </Stack>
       </Container>

@@ -31,7 +31,7 @@ export default function Navigation() {
           <Stack direction="row">
             <Link href="/make-a-pledge" passHref>
               <Button component="a" variant="outlined" sx={{ mr: { md: 2 } }}>
-                Ideas
+                Initiatives
               </Button>
             </Link>
 
