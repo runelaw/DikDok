@@ -3,9 +3,9 @@ import {
   Card,
   CardActions,
   CardContent,
+  Stack,
   Chip,
   IconButton,
-  Stack,
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
@@ -14,10 +14,11 @@ import { MdShare, MdOpenInNew } from 'react-icons/md';
 
 export default function PledgeCard({ isDescriptionShown, title, description }) {
   return (
-    <Card sx={{ display: 'flex' }}>
+    <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
       <Button
         sx={{
           flexDirection: 'column',
+          justifyContent: 'space-between',
           width: 150,
           borderRadius: 0,
           borderRight: '1px solid',
@@ -29,10 +30,25 @@ export default function PledgeCard({ isDescriptionShown, title, description }) {
           },
         }}
       >
-        <MdArrowUpward size={20} />
-        <Box component="span" sx={{ mt: 2 }}>
-          40 Votes
-        </Box>
+        <Stack sx={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <MdArrowUpward size={20} />
+          <Box component="span" sx={{ mt: 0.5 }}>
+            40 Votes
+          </Box>
+        </Stack>
+
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ alignItems: 'flex-start', px: 2, py: 0 }}
+        >
+          <IconButton component="span" size="small">
+            <MdShare />
+          </IconButton>
+          <IconButton component="span" size="small">
+            <MdOpenInNew />
+          </IconButton>
+        </Stack>
       </Button>
 
       <CardContent sx={{ pt: 1, pb: 1.5 }}>
@@ -54,15 +70,6 @@ export default function PledgeCard({ isDescriptionShown, title, description }) {
           <Chip label="Finance" size="small" />
         </Stack>
       </CardContent>
-
-      <CardActions sx={{ alignItems: 'flex-start', px: 2, pt: 1 }}>
-        <IconButton size="small">
-          <MdShare />
-        </IconButton>
-        <IconButton size="small">
-          <MdOpenInNew />
-        </IconButton>
-      </CardActions>
     </Card>
   );
 }
