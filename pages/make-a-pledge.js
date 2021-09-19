@@ -29,7 +29,7 @@ export default function Home() {
         </Typography>
 
         <Stack alignItems="center" sx={{ mt: 4 }}>
-          <Stack spacing={2} sx={{ width: 700 }}>
+          <Stack spacing={2} sx={{ maxWidth: 700, width: '100%' }}>
             <TextField label="Title" size="small" sx={{ bgcolor: 'white' }} />
             <TextField label="Link" size="small" sx={{ bgcolor: 'white' }} />
             <TextField
