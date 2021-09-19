@@ -6,6 +6,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import india from 'assets/india.png';
+import hundred from 'assets/100.png';
 
 export default function Home() {
   return (
@@ -31,8 +32,22 @@ export default function Home() {
           <Image src={india} alt="India" />
         </Box>
 
-        <Box sx={{ position: 'absolute', top: 24 * 8, left: 0, width: '100%' }}>
-          <Typography variant="h3" component="div" textAlign="center">
+        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
+          <Stack sx={{ alignItems: 'center', mt: 20 }}>
+            <Image
+              src={hundred}
+              alt="Hundred"
+              width={hundred.width / 7}
+              height={hundred.height / 7}
+            />
+          </Stack>
+
+          <Typography
+            variant="h3"
+            component="div"
+            textAlign="center"
+            sx={{ mt: -2 }}
+          >
             Made a Pledge for{' '}
             <Typography variant="h3" component="span" color="primary">
               #India100
