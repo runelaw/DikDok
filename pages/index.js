@@ -18,7 +18,14 @@ export default function Home() {
       </Head>
 
       <Container sx={{ pb: 8, position: 'relative' }}>
-        <Stack sx={{ alignItems: 'center', width: '100%', overflow: 'hidden' }}>
+        <Stack
+          sx={{
+            alignItems: 'center',
+            width: '100%',
+            overflow: 'hidden',
+            height: { xs: '75vh' },
+          }}
+        >
           <Box
             sx={{
               width: {
@@ -96,11 +103,7 @@ export default function Home() {
           </Stack>
         </Box>
 
-        <Typography
-          variant="h5"
-          component="div"
-          sx={{ mt: { xs: 36, md: 8 }, mb: 3 }}
-        >
+        <Typography variant="h5" component="div" sx={{ mt: 8, mb: 3 }}>
           What pledges did people make?
         </Typography>
         <PledgeCard isDescriptionShown />
