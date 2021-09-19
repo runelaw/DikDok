@@ -104,7 +104,7 @@ export default function Home() {
         </Box>
 
         <Typography variant="h5" component="div" sx={{ mt: 8, mb: 3 }}>
-          What pledges did people make?
+          Ideas
         </Typography>
         <PledgeCard isDescriptionShown />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} mt={4}>
