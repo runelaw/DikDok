@@ -107,15 +107,16 @@ export default function Home() {
           What is 100bhagya (India@100)?
         </Typography>
         <Typography variant="h6" component="p" sx={{ fontWeight: 400 }}>
-          India celebrated 75th Independence Day on Aug 15, 2021.
+          India celebrated its 75th Independence Day on Aug 15, 2021. In 25
+          years, we celebrate India at 100!
         </Typography>
         <Typography
           variant="h6"
           component="p"
           sx={{ fontWeight: 400, mt: 0.25 }}
         >
-          In 25 years, we celebrate India at 100! The next 25 years of our
-          active lives coincide with the 25 years to India100.
+          The next 25 years of our active lives coincide with the 25 years to
+          India at 100.
         </Typography>
         <Typography
           variant="h6"
@@ -131,7 +132,7 @@ export default function Home() {
           component="div"
           sx={{ mt: { xs: 8, md: 12 }, mb: 3 }}
         >
-          Ideas
+          Top Ideas
         </Typography>
         <PledgeCard isDescriptionShown />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} mt={4}>

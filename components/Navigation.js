@@ -31,9 +31,16 @@ export default function Navigation() {
           <Stack direction="row">
             <Link href="/make-a-pledge" passHref>
               <Button component="a" variant="outlined" sx={{ mr: { md: 2 } }}>
-                Make a Pledge
+                Ideas
               </Button>
             </Link>
+
+            <Link href="/make-a-pledge" passHref>
+              <Button component="a" variant="outlined" sx={{ mr: { md: 2 } }}>
+                Thought Space
+              </Button>
+            </Link>
+
             <Button sx={{ display: { xs: 'none', md: 'flex' } }}>Login</Button>
           </Stack>
         </Toolbar>
