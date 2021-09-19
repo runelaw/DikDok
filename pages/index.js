@@ -103,21 +103,8 @@ export default function Home() {
           </Stack>
         </Box>
 
-        <Typography variant="h5" component="div" sx={{ mt: 8, mb: 3 }}>
-          Ideas
-        </Typography>
-        <PledgeCard isDescriptionShown />
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} mt={4}>
-          <PledgeCard />
-          <PledgeCard />
-        </Stack>
-
-        <Typography
-          variant="h5"
-          component="div"
-          sx={{ mt: { xs: 8, md: 12 }, mb: 1 }}
-        >
-          Our Vision
+        <Typography variant="h5" component="div" sx={{ mt: 8, mb: 1 }}>
+          What is 100bhagya (India@100)?
         </Typography>
         <Typography variant="h6" component="p" sx={{ fontWeight: 400 }}>
           India celebrated 75th Independence Day on Aug 15, 2021.
@@ -138,6 +125,19 @@ export default function Home() {
         >
           How will we contribute?
         </Typography>
+
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{ mt: { xs: 8, md: 12 }, mb: 3 }}
+        >
+          Ideas
+        </Typography>
+        <PledgeCard isDescriptionShown />
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} mt={4}>
+          <PledgeCard />
+          <PledgeCard />
+        </Stack>
       </Container>
     </>
   );
