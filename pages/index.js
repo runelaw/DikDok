@@ -14,7 +14,7 @@ export default function Home() {
       <Navigation />
 
       <Head>
-        <title>100bhagya - Made a Pledge for #India100</title>
+        <title>100bhagya - Make a Pledge for #India100</title>
       </Head>
 
       <Container sx={{ pb: 8, position: 'relative' }}>
@@ -48,7 +48,7 @@ export default function Home() {
             textAlign="center"
             sx={{ mt: -2 }}
           >
-            Made a Pledge for{' '}
+            Make a Pledge for{' '}
             <Typography variant="h3" component="span" color="primary">
               #India100
             </Typography>

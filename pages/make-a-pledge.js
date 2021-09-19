@@ -14,12 +14,12 @@ export default function Home() {
     <>
       <Navigation />
       <Head>
-        <title>100bhagya - Made a Pledge for #India100</title>
+        <title>100bhagya - Make a Pledge for #India100</title>
       </Head>
 
       <Container sx={{ pt: 4, pb: 8 }}>
         <Typography variant="h6" component="div" textAlign="center">
-          Made a Pledge for{' '}
+          Make a Pledge for{' '}
           <Typography variant="h6" component="span" color="primary">
             #India100
           </Typography>
