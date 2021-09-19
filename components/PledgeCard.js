@@ -23,6 +23,10 @@ export default function PledgeCard({ isDescriptionShown }) {
           borderRight: '1px solid',
           borderColor: 'grey.300',
           flexShrink: 0,
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
         }}
       >
         <MdArrowUpward size={20} />
@@ -32,12 +36,15 @@ export default function PledgeCard({ isDescriptionShown }) {
       </Button>
 
       <CardContent sx={{ pt: 1, pb: 1.5 }}>
-        <Typography variant="h6" sx={{ fontSize: '1.1rem' }}>
+        <Typography
+          variant="h6"
+          sx={{ fontSize: { xs: '1rem', md: '1.1rem' } }}
+        >
           Irure aute culpa id velit irure duis occaecat eiusmod consectetur.
         </Typography>
 
         {isDescriptionShown && (
-          <Typography>
+          <Typography sx={{ display: { xs: 'none', md: 'block' } }}>
             Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
             cupidatat quis in exercitation Lorem consectetur mollit id officia
             voluptate Lorem.

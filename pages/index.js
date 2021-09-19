@@ -18,28 +18,45 @@ export default function Home() {
       </Head>
 
       <Container sx={{ pb: 8, position: 'relative' }}>
-        <Box
-          sx={{
-            '& img': {
-              '-webkit-filter':
-                'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
-              filter:
-                'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
-              opacity: 1,
-            },
-          }}
-        >
-          <Image src={india} alt="India" />
-        </Box>
+        <Stack sx={{ alignItems: 'center', width: '100%', overflow: 'hidden' }}>
+          <Box
+            sx={{
+              width: {
+                xs: '250%',
+                sm: '150%',
+                md: '100%',
+              },
+
+              '& img': {
+                '-webkit-filter':
+                  'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
+                filter:
+                  'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
+                opacity: 1,
+              },
+            }}
+          >
+            <Image src={india} alt="India" layout="responsive" />
+          </Box>
+        </Stack>
 
         <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
-          <Stack sx={{ alignItems: 'center', mt: 20 }}>
-            <Image
-              src={hundred}
-              alt="Hundred"
-              width={hundred.width / 7}
-              height={hundred.height / 7}
-            />
+          <Stack
+            sx={{
+              alignItems: 'center',
+              mt: 20,
+            }}
+          >
+            <Box
+              sx={{
+                maxWidth: hundred.width / 7,
+                maxHeight: hundred.height / 7,
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <Image src={hundred} alt="Hundred" layout="responsive" />
+            </Box>
           </Stack>
 
           <Typography
@@ -70,22 +87,33 @@ export default function Home() {
                 Make a Pledge Today
               </Button>
             </Link>
-            <Typography color="textSecondary" sx={{ mt: 1 }}>
+            <Typography
+              color="textSecondary"
+              sx={{ mt: 1, textAlign: 'center' }}
+            >
               “The future depends on what you do today.” - Gandhi
             </Typography>
           </Stack>
         </Box>
 
-        <Typography variant="h5" component="div" sx={{ mt: 8, mb: 3 }}>
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{ mt: { xs: 36, md: 8 }, mb: 3 }}
+        >
           What pledges did people make?
         </Typography>
         <PledgeCard isDescriptionShown />
-        <Stack direction="row" spacing={4} mt={4}>
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} mt={4}>
           <PledgeCard />
           <PledgeCard />
         </Stack>
 
-        <Typography variant="h5" component="div" sx={{ mt: 12, mb: 1 }}>
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{ mt: { xs: 8, md: 12 }, mb: 1 }}
+        >
           Our Vision
         </Typography>
         <Typography variant="h6" component="p" sx={{ fontWeight: 400 }}>
