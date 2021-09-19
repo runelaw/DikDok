@@ -1,13 +1,12 @@
 import {
   Button,
   Container,
+  MenuItem,
   Stack,
   TextField,
   Typography,
-  MenuItem,
 } from '@mui/material';
 import Navigation from 'components/Navigation';
-import PledgeCard from 'components/PledgeCard';
 import Head from 'next/head';
 
 export default function Home() {
