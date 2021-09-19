@@ -134,10 +134,16 @@ export default function Home() {
         >
           Top Ideas
         </Typography>
-        <PledgeCard isDescriptionShown />
+        <PledgeCard
+          title="Irure aute culpa id velit irure duis occaecat eiusmod consectetur."
+          description="Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
+            cupidatat quis in exercitation Lorem consectetur mollit id officia
+            voluptate Lorem."
+          isDescriptionShown
+        />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} mt={4}>
-          <PledgeCard />
-          <PledgeCard />
+          <PledgeCard title="Irure aute culpa id velit irure duis occaecat eiusmod consectetur." />
+          <PledgeCard title="Irure aute culpa id velit irure duis occaecat eiusmod consectetur." />
         </Stack>
       </Container>
     </>

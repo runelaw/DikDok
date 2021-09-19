@@ -12,7 +12,7 @@ import { Box } from '@mui/system';
 import { MdArrowUpward } from 'react-icons/md';
 import { MdShare, MdOpenInNew } from 'react-icons/md';
 
-export default function PledgeCard({ isDescriptionShown }) {
+export default function PledgeCard({ isDescriptionShown, title, description }) {
   return (
     <Card sx={{ display: 'flex' }}>
       <Button
@@ -40,14 +40,12 @@ export default function PledgeCard({ isDescriptionShown }) {
           variant="h6"
           sx={{ fontSize: { xs: '1rem', md: '1.1rem' } }}
         >
-          Irure aute culpa id velit irure duis occaecat eiusmod consectetur.
+          {title}
         </Typography>
 
         {isDescriptionShown && (
           <Typography sx={{ display: { xs: 'none', md: 'block' } }}>
-            Ipsum minim amet voluptate laborum. Eiusmod esse occaecat ut
-            cupidatat quis in exercitation Lorem consectetur mollit id officia
-            voluptate Lorem.
+            {description}
           </Typography>
         )}
 
