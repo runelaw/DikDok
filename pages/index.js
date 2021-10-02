@@ -105,6 +105,12 @@ export default function Home() {
 
           <Box sx={{ mt: 4 }}>
             <FlipCounter />
+            <Typography
+              color="textSecondary"
+              sx={{ mt: 1, textAlign: 'center' }}
+            >
+              Time is running out.
+            </Typography>
           </Box>
         </Box>
 
