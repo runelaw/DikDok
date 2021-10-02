@@ -24,15 +24,23 @@ export default function FlipCounter() {
         'minutes',
         'seconds',
       ]);
-      const yearTicker = Tick.DOM.create(yearRef.current, { value: years });
-      const monthTicker = Tick.DOM.create(monthRef.current, { value: months });
-      const dayTicker = Tick.DOM.create(dayRef.current, { value: days });
-      const hourTicker = Tick.DOM.create(hourRef.current, { value: hours });
+      const yearTicker = Tick.DOM.create(yearRef.current, {
+        value: `${years}Y `,
+      });
+      const monthTicker = Tick.DOM.create(monthRef.current, {
+        value: `${months}M `,
+      });
+      const dayTicker = Tick.DOM.create(dayRef.current, {
+        value: `${days}D`,
+      });
+      const hourTicker = Tick.DOM.create(hourRef.current, {
+        value: `${hours}:`,
+      });
       const minuteTicker = Tick.DOM.create(minuteRef.current, {
-        value: minutes,
+        value: `${minutes}:`,
       });
       const secondTicker = Tick.DOM.create(secondRef.current, {
-        value: Math.floor(seconds),
+        value: `${Math.floor(seconds)}`,
       });
 
       interval = setInterval(() => {
@@ -46,12 +54,12 @@ export default function FlipCounter() {
             'seconds',
           ]);
 
-        yearTicker.value = years;
-        monthTicker.value = months;
-        dayTicker.value = days;
-        hourTicker.value = hours;
-        minuteTicker.value = minutes;
-        secondTicker.value = Math.floor(seconds);
+        yearTicker.value = `${years}Y `;
+        monthTicker.value = `${months}M `;
+        dayTicker.value = `${days}D`;
+        hourTicker.value = `${hours}:`;
+        minuteTicker.value = `${minutes}:`;
+        secondTicker.value = `${Math.floor(seconds)}`;
       }, 1000);
     });
 
@@ -75,20 +83,22 @@ export default function FlipCounter() {
   }, []);
 
   return (
-    <Stack direction="row" justifyContent="center" sx={{ fontSize: '3rem' }}>
-      <Counter ref={yearRef} name="Year" />
-      <Typography>Y</Typography>
-      <Counter ref={monthRef} name="Month" />
-      <Typography>M</Typography>
-      <Counter ref={dayRef} name="Day" />
-      <Typography>D</Typography>
-      <Counter ref={hourRef} name="Hour" />
-      <Typography>H</Typography>
-      <Counter ref={minuteRef} name="Minute" />
-      <Typography>M</Typography>
-      <Counter ref={secondRef} name="Second" />
-      <Typography>S</Typography>
-    </Stack>
+    <>
+      <Stack direction="row" justifyContent="center" sx={{ fontSize: '3rem' }}>
+        <Counter ref={yearRef} name="Year" />
+        <Counter ref={monthRef} name="Month" />
+        <Counter ref={dayRef} name="Day" />
+      </Stack>
+      <Stack
+        direction="row"
+        justifyContent="center"
+        sx={{ fontSize: '3rem', mt: 2 }}
+      >
+        <Counter ref={hourRef} name="Hour" />
+        <Counter ref={minuteRef} name="Minute" />
+        <Counter ref={secondRef} name="Second" />
+      </Stack>
+    </>
   );
 }
 

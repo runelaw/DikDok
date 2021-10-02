@@ -108,7 +108,7 @@ export default function Home() {
           </Box>
         </Box>
 
-        <Typography variant="h5" component="div" sx={{ mt: 8, mb: 1 }}>
+        <Typography variant="h5" component="div" sx={{ mt: 16, mb: 1 }}>
           What is 100bhagya (India@100)?
         </Typography>
         <Typography variant="h6" component="p" sx={{ fontWeight: 400 }}>
