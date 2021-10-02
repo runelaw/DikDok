@@ -1,12 +1,13 @@
 import { Button, Container, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import hundred from 'assets/100.png';
+import india from 'assets/india.png';
+import FlipCounter from 'components/FlipCounter';
 import Navigation from 'components/Navigation';
 import PledgeCard from 'components/PledgeCard';
 import Head from 'next/head';
-import Link from 'next/link';
 import Image from 'next/image';
-import india from 'assets/india.png';
-import hundred from 'assets/100.png';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -101,6 +102,10 @@ export default function Home() {
               “The future depends on what you do today.” - Gandhi
             </Typography>
           </Stack>
+
+          <Box sx={{ mt: 4 }}>
+            <FlipCounter />
+          </Box>
         </Box>
 
         <Typography variant="h5" component="div" sx={{ mt: 8, mb: 1 }}>
