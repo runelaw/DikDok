@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback } from 'react';
 import { loggedIn, useAuth, useLogin } from 'store/auth';
+import ProfileButton from './ProfileButton';
 
 export default function Navigation() {
   const login = useLogin();
@@ -45,6 +46,8 @@ export default function Navigation() {
                 Thought Space
               </Button>
             </Link>
+
+            {isLoggedIn === loggedIn.true && <ProfileButton />}
 
             {isLoggedIn === loggedIn.false && (
               <Button
