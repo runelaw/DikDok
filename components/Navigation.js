@@ -46,7 +46,7 @@ export default function Navigation() {
               </Button>
             </Link>
 
-            {isLoggedIn !== loggedIn.true && (
+            {isLoggedIn === loggedIn.false && (
               <Button
                 variant="contained"
                 sx={{ display: { xs: 'none', md: 'flex' } }}

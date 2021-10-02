@@ -1,5 +1,9 @@
 import { getApps, initializeApp } from 'firebase/app';
-import { browserPopupRedirectResolver, initializeAuth } from 'firebase/auth';
+import {
+  browserPopupRedirectResolver,
+  indexedDBLocalPersistence,
+  initializeAuth,
+} from 'firebase/auth';
 import { initializeFirestore } from 'firebase/firestore';
 import { useEffect } from 'react';
 import create from 'zustand';
@@ -34,6 +38,7 @@ export function useInitializeFirebase() {
     firebase = initializeApp(firebaseConfig);
     firestore = initializeFirestore(firebase, {});
     firebaseAuth = initializeAuth(firebase, {
+      persistence: indexedDBLocalPersistence,
       popupRedirectResolver: browserPopupRedirectResolver,
     });
 
