@@ -34,13 +34,13 @@ export default function FlipCounter() {
         value: `${days}D`,
       });
       const hourTicker = Tick.DOM.create(hourRef.current, {
-        value: `${hours}:`,
+        value: doubleDigit(hours) + ':',
       });
       const minuteTicker = Tick.DOM.create(minuteRef.current, {
-        value: `${minutes}:`,
+        value: doubleDigit(minutes) + ':',
       });
       const secondTicker = Tick.DOM.create(secondRef.current, {
-        value: `${Math.floor(seconds)}`,
+        value: doubleDigit(Math.floor(seconds)),
       });
 
       interval = setInterval(() => {
@@ -57,9 +57,9 @@ export default function FlipCounter() {
         yearTicker.value = `${years}Y `;
         monthTicker.value = `${months}M `;
         dayTicker.value = `${days}D`;
-        hourTicker.value = `${hours}:`;
-        minuteTicker.value = `${minutes}:`;
-        secondTicker.value = `${Math.floor(seconds)}`;
+        hourTicker.value = doubleDigit(hours) + ':';
+        minuteTicker.value = doubleDigit(minutes) + ':';
+        secondTicker.value = doubleDigit(Math.floor(seconds));
       }, 1000);
     });
 
@@ -111,3 +111,11 @@ const Counter = forwardRef(function Counter({ name }, ref) {
     </div>
   );
 });
+
+function doubleDigit(num) {
+  const text = `0${num}`;
+  if (text.length === 2) {
+    return text;
+  }
+  return text.substring(1);
+}
