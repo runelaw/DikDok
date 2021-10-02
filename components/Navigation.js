@@ -2,8 +2,11 @@ import { AppBar, Button, Container, Stack, Toolbar } from '@mui/material';
 import logo from 'assets/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLogin } from 'store/auth';
 
 export default function Navigation() {
+  const login = useLogin();
+
   return (
     <AppBar
       position="sticky"
@@ -41,7 +44,13 @@ export default function Navigation() {
               </Button>
             </Link>
 
-            <Button sx={{ display: { xs: 'none', md: 'flex' } }}>Login</Button>
+            <Button
+              variant="contained"
+              sx={{ display: { xs: 'none', md: 'flex' } }}
+              onClick={login}
+            >
+              Sign in with Google
+            </Button>
           </Stack>
         </Toolbar>
       </Container>

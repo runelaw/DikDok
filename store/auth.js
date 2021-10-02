@@ -4,7 +4,6 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
-import { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
 import create from 'zustand';
 import { firebaseAuth, useFirebaseInitialized } from './firebase';
@@ -61,8 +60,6 @@ export function useInitializeAuthStore() {
  * Sign in the app with google.
  */
 export function useLogin() {
-  const { push } = useRouter();
-
   return useCallback(async () => {
     const provider = new GoogleAuthProvider();
     provider.addScope('profile');
