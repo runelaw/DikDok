@@ -2,10 +2,12 @@ import { AppBar, Button, Container, Stack, Toolbar } from '@mui/material';
 import logo from 'assets/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLogin } from 'store/auth';
+import { useCallback } from 'react';
+import { loggedIn, useAuth, useLogin } from 'store/auth';
 
 export default function Navigation() {
   const login = useLogin();
+  const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
 
   return (
     <AppBar
@@ -44,13 +46,15 @@ export default function Navigation() {
               </Button>
             </Link>
 
-            <Button
-              variant="contained"
-              sx={{ display: { xs: 'none', md: 'flex' } }}
-              onClick={login}
-            >
-              Sign in with Google
-            </Button>
+            {isLoggedIn !== loggedIn.true && (
+              <Button
+                variant="contained"
+                sx={{ display: { xs: 'none', md: 'flex' } }}
+                onClick={login}
+              >
+                Sign in with Google
+              </Button>
+            )}
           </Stack>
         </Toolbar>
       </Container>
