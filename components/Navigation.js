@@ -12,7 +12,7 @@ export default function Navigation({ position = 'sticky' }) {
 
   return (
     <AppBar position={position} color="transparent" elevation={0}>
-      <Container>
+      <Container sx={{ px: 0 }}>
         <Toolbar variant="dense" sx={{ justifyContent: 'space-between' }}>
           <Link href="/" passHref>
             <Button
@@ -35,7 +35,7 @@ export default function Navigation({ position = 'sticky' }) {
                 component="a"
                 variant="contained"
                 color="inherit"
-                sx={{ mr: { md: 2 } }}
+                sx={{ mr: 2 }}
               >
                 Initiatives
               </Button>
@@ -46,7 +46,7 @@ export default function Navigation({ position = 'sticky' }) {
                 component="a"
                 variant="contained"
                 color="inherit"
-                sx={{ mr: { md: 2 } }}
+                sx={{ mr: 2, display: { xs: 'none', sm: 'flex' } }}
               >
                 Thought Space
               </Button>
