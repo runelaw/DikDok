@@ -6,17 +6,12 @@ import { useCallback } from 'react';
 import { loggedIn, useAuth, useLogin } from 'store/auth';
 import ProfileButton from './ProfileButton';
 
-export default function Navigation() {
+export default function Navigation({ position = 'sticky' }) {
   const login = useLogin();
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
 
   return (
-    <AppBar
-      position="sticky"
-      color="inherit"
-      elevation={0}
-      sx={{ borderBottom: '1px solid', borderColor: 'grey.400' }}
-    >
+    <AppBar position={position} color="transparent" elevation={0}>
       <Container>
         <Toolbar variant="dense" sx={{ justifyContent: 'space-between' }}>
           <Link href="/" passHref>
@@ -34,15 +29,25 @@ export default function Navigation() {
             </Button>
           </Link>
 
-          <Stack direction="row">
+          <Stack direction="row" alignItems="center">
             <Link href="/make-a-pledge" passHref>
-              <Button component="a" variant="outlined" sx={{ mr: { md: 2 } }}>
+              <Button
+                component="a"
+                variant="contained"
+                color="inherit"
+                sx={{ mr: { md: 2 } }}
+              >
                 Initiatives
               </Button>
             </Link>
 
             <Link href="/make-a-pledge" passHref>
-              <Button component="a" variant="outlined" sx={{ mr: { md: 2 } }}>
+              <Button
+                component="a"
+                variant="contained"
+                color="inherit"
+                sx={{ mr: { md: 2 } }}
+              >
                 Thought Space
               </Button>
             </Link>

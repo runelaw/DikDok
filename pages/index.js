@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from '@mui/material';
+import { Container, Stack, Box, Typography } from '@mui/material';
 import HomeMainSection from 'components/HomeMainSection';
 import Navigation from 'components/Navigation';
 import PledgeCard from 'components/PledgeCard';
@@ -7,7 +7,7 @@ import Head from 'next/head';
 export default function Home() {
   return (
     <>
-      <Navigation />
+      <Navigation position="fixed" />
 
       <Head>
         <title>100bhagya - Make a Pledge for #India100</title>

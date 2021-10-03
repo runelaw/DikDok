@@ -12,7 +12,7 @@ export default function HomeMainSection() {
       <Image src={indiaLandscape} alt="India Landscape" />
 
       <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
-        <Container sx={{}}>
+        <Container sx={{ pt: 4 }}>
           <Stack
             sx={{
               alignItems: 'center',
