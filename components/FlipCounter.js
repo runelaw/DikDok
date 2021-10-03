@@ -84,7 +84,11 @@ export default function FlipCounter() {
 
   return (
     <>
-      <Stack direction="row" justifyContent="center" sx={{ fontSize: '3rem' }}>
+      <Stack
+        direction="row"
+        justifyContent="center"
+        sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '3rem' } }}
+      >
         <Counter ref={yearRef} name="Year" />
         <Counter ref={monthRef} name="Month" />
         <Counter ref={dayRef} name="Day" />
@@ -92,7 +96,7 @@ export default function FlipCounter() {
       <Stack
         direction="row"
         justifyContent="center"
-        sx={{ fontSize: '3rem', mt: 2 }}
+        sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' }, mt: 2 }}
       >
         <Counter ref={hourRef} name="Hour" />
         <Counter ref={minuteRef} name="Minute" />
