@@ -9,8 +9,12 @@ import {
 import Navigation from 'components/Navigation';
 import UserCard from 'components/UserCard';
 import Head from 'next/head';
+import { useCallback } from 'react';
+import { loggedIn, useAuth } from 'store/auth';
 
-export default function Home() {
+export default function MakeAPledge() {
+  const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
+
   return (
     <>
       <Navigation />
@@ -62,7 +66,11 @@ export default function Home() {
               <MenuItem value="manufacturing">Manufacturing</MenuItem>
             </TextField>
 
-            <Button variant="contained" sx={{ mt: 2 }}>
+            <Button
+              variant="contained"
+              sx={{ mt: 2 }}
+              disabled={isLoggedIn !== loggedIn.true}
+            >
               Make a Pledge
             </Button>
           </Stack>
