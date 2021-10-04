@@ -1,7 +1,7 @@
 import { Button, Container, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import hundred from 'assets/100.png';
-import indiaLandscape from 'assets/india-landscape.png';
+import india from 'assets/india.png';
 import FlipCounter from 'components/FlipCounter';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,15 +12,23 @@ export default function HomeMainSection() {
       <Box
         sx={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
+          top: '50%',
+          left: '50%',
+          width: '90%',
+          height: '90%',
           zIndex: -100,
+          transform: 'translate(-50%, -50%)',
+          '& img': {
+            '-webkit-filter':
+              'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
+            filter:
+              'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
+            opacity: 1,
+          },
         }}
       >
         <Image
-          src={indiaLandscape}
+          src={india}
           alt="India Landscape"
           layout="fill"
           objectFit="cover"
