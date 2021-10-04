@@ -13,6 +13,7 @@ import Head from 'next/head';
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { loggedIn, useAuth } from 'store/auth';
+import { useCreatePledge } from 'store/pledge';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 
@@ -44,6 +45,7 @@ export default function MakeAPledge() {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       title: '',
@@ -54,9 +56,17 @@ export default function MakeAPledge() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = useCallback((state) => {
-    console.log(state);
-  }, []);
+  const createPledge = useCreatePledge();
+  const onSubmit = useCallback(
+    async (state) => {
+      await createPledge(state);
+      reset();
+
+      // TODO: Show that the pledge has been created and is awaiting approval.
+      // It will be shown in the 'My Pledges' section of the user profile.
+    },
+    [createPledge, reset]
+  );
 
   return (
     <>
