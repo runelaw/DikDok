@@ -1,16 +1,14 @@
 import {
   Button,
   Card,
-  CardActions,
   CardContent,
-  Stack,
   Chip,
   IconButton,
+  Stack,
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import { MdArrowUpward } from 'react-icons/md';
-import { MdShare, MdOpenInNew } from 'react-icons/md';
+import { MdArrowUpward, MdOpenInNew, MdShare } from 'react-icons/md';
 
 export default function PledgeCard({ title, description, tags = [] }) {
   return (
