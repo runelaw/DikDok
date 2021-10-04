@@ -10,13 +10,13 @@ import Navigation from 'components/Navigation';
 import UserCard from 'components/UserCard';
 import Head from 'next/head';
 import { useCallback } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { loggedIn, useAuth } from 'store/auth';
 import materialRegister from 'utils/materialRegister';
 
 export default function MakeAPledge() {
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, control } = useForm({
     defaultValues: {
       title: '',
       link: '',
@@ -75,18 +75,24 @@ export default function MakeAPledge() {
               size="small"
               sx={{ bgcolor: 'white', mt: 2 }}
             />
-            <TextField
-              {...materialRegister(register, 'tag')}
-              label="Tag"
-              size="small"
-              sx={{ bgcolor: 'white', mt: 2 }}
-              select
-            >
-              <MenuItem value="education">Education</MenuItem>
-              <MenuItem value="agriculture">Agriculture</MenuItem>
-              <MenuItem value="finance">Finance</MenuItem>
-              <MenuItem value="manufacturing">Manufacturing</MenuItem>
-            </TextField>
+            <Controller
+              name="tag"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Tag"
+                  size="small"
+                  sx={{ bgcolor: 'white', mt: 2 }}
+                  select
+                >
+                  <MenuItem value="education">Education</MenuItem>
+                  <MenuItem value="agriculture">Agriculture</MenuItem>
+                  <MenuItem value="finance">Finance</MenuItem>
+                  <MenuItem value="manufacturing">Manufacturing</MenuItem>
+                </TextField>
+              )}
+            />
 
             <Button
               type="submit"
