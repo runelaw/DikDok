@@ -82,14 +82,14 @@ export default function HomeMainSection() {
               Make a Pledge Today
             </Button>
           </Link>
-          <Typography color="white" sx={{ mt: 1, textAlign: 'center' }}>
+          <Typography color="textSecondary" sx={{ mt: 1, textAlign: 'center' }}>
             “The future depends on what you do today.” - Gandhi
           </Typography>
         </Stack>
 
         <Box sx={{ mt: 4 }}>
           <FlipCounter />
-          <Typography color="white" sx={{ mt: 1, textAlign: 'center' }}>
+          <Typography color="textSecondary" sx={{ mt: 1, textAlign: 'center' }}>
             Time is running out.
           </Typography>
         </Box>
