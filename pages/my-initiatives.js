@@ -4,6 +4,7 @@ import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import { useCallback, useEffect } from 'react';
 import { loggedIn, useAuth } from 'store/auth';
+import { usePledges } from 'store/pledge';
 
 export default function MyInitiatives() {
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
@@ -14,6 +15,8 @@ export default function MyInitiatives() {
       push('/');
     }
   }, [isLoggedIn, push]);
+
+  const { data: pledges } = usePledges();
 
   const seo = (
     <Head>
@@ -35,6 +38,8 @@ export default function MyInitiatives() {
         <Typography variant="h5" textAlign="center">
           My Initiatives
         </Typography>
+
+        {JSON.stringify(pledges)}
       </Container>
     </>
   );

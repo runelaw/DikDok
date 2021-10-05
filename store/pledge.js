@@ -1,6 +1,15 @@
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
 import { useCallback } from 'react';
+import { useQuery } from 'react-query';
 import { useAuth } from './auth';
+import { firestore } from './firebase';
 
 /**
  * Hook to create a pledge.
@@ -12,7 +21,7 @@ export function useCreatePledge() {
       return;
     }
 
-    await addDoc(collection('pledges'), {
+    await addDoc(collection(firestore, 'pledges'), {
       ...state,
       uid: user.uid,
       // The pledge will need to be approved by the admin.
@@ -21,4 +30,23 @@ export function useCreatePledge() {
       updatedAt: serverTimestamp(),
     });
   }, []);
+}
+
+/**
+ * Lists all the pledges created by the user.
+ */
+export function usePledges() {
+  const uid = useAuth(useCallback((state) => state.user?.uid, []));
+
+  return useQuery(
+    useCallback(
+      () =>
+        getDocs(
+          query(collection(firestore, 'pledges'), where('uid', '==', uid))
+        ).then((result) =>
+          result.docs.map((it) => ({ id: it.id, ...it.data() }))
+        ),
+      [uid]
+    )
+  );
 }
