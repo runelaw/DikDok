@@ -12,6 +12,7 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@hookform/resolvers": "^2.8.1",
+    "@mui/lab": "^5.0.0-alpha.49",
     "@mui/material": "^5.0.0",
     "@pqina/flip": "^1.7.7",
     "firebase": "^9.1.1",

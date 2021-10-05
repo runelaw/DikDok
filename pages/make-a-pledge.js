@@ -13,12 +13,13 @@ import Navigation from 'components/Navigation';
 import UserCard from 'components/UserCard';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { loggedIn, useAuth } from 'store/auth';
 import { pledgeTags, useCreatePledge } from 'store/pledge';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
+import { LoadingButton } from '@mui/lab';
 
 const urlRegex =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
@@ -61,11 +62,17 @@ export default function MakeAPledge() {
     resolver: zodResolver(schema),
   });
 
+  const [loading, setLoading] = useState(false);
   const createPledge = useCreatePledge();
   const onSubmit = useCallback(
     async (state) => {
-      await createPledge(state);
-      reset();
+      setLoading(true);
+      try {
+        await createPledge(state);
+        reset();
+      } finally {
+        setLoading(false);
+      }
 
       // TODO: Show that the pledge has been created and is awaiting approval.
       // It will be shown in the 'My Pledges' section of the user profile.
@@ -170,14 +177,15 @@ export default function MakeAPledge() {
               )}
             />
 
-            <Button
+            <LoadingButton
               type="submit"
               variant="contained"
               sx={{ mt: 2 }}
+              loading={loading}
               disabled={isLoggedIn !== loggedIn.true}
             >
               Make a Pledge
-            </Button>
+            </LoadingButton>
           </Stack>
         </Stack>
       </Container>
