@@ -10,6 +10,7 @@ import {
 import Navigation from 'components/Navigation';
 import UserCard from 'components/UserCard';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { loggedIn, useAuth } from 'store/auth';
@@ -92,7 +93,13 @@ export default function MakeAPledge() {
               “The future depends on what you do today.” - Gandhi
             </Typography>
 
-            <UserCard />
+            <UserCard>
+              <Link href="/my-initiatives" passHref>
+                <Button variant="outlined" component="a">
+                  My Initiatives
+                </Button>
+              </Link>
+            </UserCard>
 
             <TextField
               {...materialRegister(register, 'title')}

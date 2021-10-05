@@ -1,9 +1,9 @@
-import { Avatar, Button, Paper, Typography } from '@mui/material';
+import { Avatar, Button, Paper, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useCallback } from 'react';
 import { loggedIn, useAuth, useLogin } from 'store/auth';
 
-export default function UserCard() {
+export default function UserCard({ children }) {
   const user = useAuth(useCallback((state) => state.user, []));
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
   const login = useLogin();
@@ -11,14 +11,26 @@ export default function UserCard() {
   return (
     <>
       {user && (
-        <Paper sx={{ display: 'flex', alignItems: 'center', px: 2, py: 1 }}>
-          <Avatar src={user.photoURL} alt="User Profile" />
-          <Box sx={{ ml: 3 }}>
-            <Typography variant="subtitle2">{user.name}</Typography>
-            <Typography variant="body2" color="textSecondary">
-              {user.email}
-            </Typography>
-          </Box>
+        <Paper
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            px: 2,
+            py: 1,
+          }}
+        >
+          <Stack direction="row">
+            <Avatar src={user.photoURL} alt="User Profile" />
+            <Box sx={{ ml: 3 }}>
+              <Typography variant="subtitle2">{user.name}</Typography>
+              <Typography variant="body2" color="textSecondary">
+                {user.email}
+              </Typography>
+            </Box>
+          </Stack>
+
+          {children}
         </Paper>
       )}
 
