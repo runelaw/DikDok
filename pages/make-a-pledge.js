@@ -1,12 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
+  Chip,
   Container,
   MenuItem,
   Stack,
   TextField,
   Typography,
 } from '@mui/material';
+import { Box } from '@mui/system';
 import Navigation from 'components/Navigation';
 import UserCard from 'components/UserCard';
 import Head from 'next/head';
@@ -36,7 +38,9 @@ const schema = z.object({
     .string()
     .min(1, { message: 'Cannot be empty' })
     .max(140, { message: 'Cannot be more than 140 characters' }),
-  tag: z.string().min(1, { message: 'Cannot be empty' }),
+  tags: z
+    .array(z.string().min(1, { message: 'Cannot be empty' }))
+    .min(1, { message: 'Cannot be empty' }),
 });
 
 export default function MakeAPledge() {
@@ -52,7 +56,7 @@ export default function MakeAPledge() {
       title: '',
       link: '',
       description: '',
-      tag: '',
+      tags: [],
     },
     resolver: zodResolver(schema),
   });
@@ -130,15 +134,29 @@ export default function MakeAPledge() {
               required
             />
             <Controller
-              name="tag"
+              name="tags"
               control={control}
               render={({ field, fieldState }) => (
                 <TextField
                   {...field}
-                  label="Tag"
+                  label="Tags"
                   size="small"
                   sx={{ bgcolor: 'white', mt: 2 }}
                   select
+                  SelectProps={{
+                    multiple: true,
+                    renderValue: (selected) => (
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip
+                            key={value}
+                            label={pledgeTags[value]}
+                            size="small"
+                          />
+                        ))}
+                      </Box>
+                    ),
+                  }}
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
                   required
