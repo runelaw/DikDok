@@ -6,7 +6,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useAuth } from './auth';
 import { firestore } from './firebase';
@@ -38,15 +38,27 @@ export function useCreatePledge() {
 export function usePledges() {
   const uid = useAuth(useCallback((state) => state.user?.uid, []));
 
-  return useQuery(
+  const { refetch, ...rest } = useQuery(
+    'get-user-pledges',
     useCallback(
       () =>
-        getDocs(
-          query(collection(firestore, 'pledges'), where('uid', '==', uid))
-        ).then((result) =>
-          result.docs.map((it) => ({ id: it.id, ...it.data() }))
-        ),
+        uid
+          ? getDocs(
+              query(collection(firestore, 'pledges'), where('uid', '==', uid))
+            ).then((result) =>
+              result.docs.map((it) => ({ id: it.id, ...it.data() }))
+            )
+          : null,
       [uid]
     )
   );
+
+  // Refetch if uid changes.
+  useEffect(() => {
+    if (uid) {
+      refetch();
+    }
+  }, [refetch, uid]);
+
+  return rest;
 }
