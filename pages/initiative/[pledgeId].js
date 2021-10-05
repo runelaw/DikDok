@@ -25,6 +25,7 @@ export default function Initiative() {
         <Typography variant="h5" textAlign="center">
           {data.title}
         </Typography>
+        <Typography>{data.description}</Typography>
       </Container>
     </>
   );
