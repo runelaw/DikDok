@@ -5,7 +5,7 @@ import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import { useCallback, useEffect } from 'react';
 import { loggedIn, useAuth } from 'store/auth';
-import { usePledges } from 'store/pledge';
+import { useMyPledges } from 'store/pledge';
 
 export default function MyInitiatives() {
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
@@ -17,7 +17,7 @@ export default function MyInitiatives() {
     }
   }, [isLoggedIn, push]);
 
-  const { data: pledges } = usePledges();
+  const { data: pledges } = useMyPledges();
 
   const seo = (
     <Head>

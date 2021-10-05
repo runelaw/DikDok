@@ -1,7 +1,7 @@
-import { Container, Stack, Box, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import HomeMainSection from 'components/HomeMainSection';
 import Navigation from 'components/Navigation';
-import PledgeCard from 'components/PledgeCard';
+import TopPledges from 'components/TopPledges';
 import Head from 'next/head';
 
 export default function Home() {
@@ -39,37 +39,7 @@ export default function Home() {
           How will we contribute?
         </Typography>
 
-        <Typography
-          variant="h5"
-          component="div"
-          sx={{ mt: { xs: 8, md: 12 }, mb: 3 }}
-        >
-          Top Initiatives
-        </Typography>
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={4}>
-          <PledgeCard
-            title="To promote education among the underprivileged."
-            description="Their development program includes Education, health, livelihood for children and women, provision to be equally affected by lack of resources."
-            tags={['Education', 'Child Welfare']}
-          />
-          <PledgeCard
-            title="Supports education for underprivileged girls in India.."
-            description="Project Nani Kali educated girls and women to influence India in the long run positively."
-            tags={['Education', 'Women']}
-          />
-        </Stack>
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} mt={4}>
-          <PledgeCard
-            title="Online donation platform for NGOs."
-            description="As a web portal, it helps raise funds and contributions from individuals in India and around the world and then distributes these donations to trusted NGOs."
-            tags={['Donation', 'NGO']}
-          />
-          <PledgeCard
-            title="Improve standard of living for Elderly."
-            description="HelpAge is taking action against universal, pension, healthcare, Elder Abuse at the national, state and social levels with the central and state governments and advocates for the needy."
-            tags={['Elders', 'Healthcare']}
-          />
-        </Stack>
+        <TopPledges />
       </Container>
     </>
   );

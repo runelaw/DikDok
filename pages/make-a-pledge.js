@@ -16,7 +16,7 @@ import Link from 'next/link';
 import { useCallback, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { loggedIn, useAuth } from 'store/auth';
-import { pledgeTags, useCreatePledge, usePledges } from 'store/pledge';
+import { pledgeTags, useCreatePledge, useMyPledges } from 'store/pledge';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 import { LoadingButton } from '@mui/lab';
@@ -63,7 +63,7 @@ export default function MakeAPledge() {
   });
 
   const [loading, setLoading] = useState(false);
-  const { data: pledges, refetch } = usePledges();
+  const { data: pledges, refetch } = useMyPledges();
 
   const createPledge = useCreatePledge();
   const onSubmit = useCallback(

@@ -1,9 +1,11 @@
 import {
   addDoc,
   collection,
-  serverTimestamp,
   getDocs,
+  limit,
+  orderBy,
   query,
+  serverTimestamp,
   where,
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
@@ -35,7 +37,7 @@ export function useCreatePledge() {
 /**
  * Lists all the pledges created by the user.
  */
-export function usePledges() {
+export function useMyPledges() {
   const uid = useAuth(useCallback((state) => state.user?.uid, []));
 
   const { refetch, ...rest } = useQuery(
@@ -61,6 +63,28 @@ export function usePledges() {
   }, [refetch, uid]);
 
   return { ...rest, refetch };
+}
+
+/**
+ * Get the top pledges.
+ */
+export function useTopPledges() {
+  return useQuery(
+    'get-pledges',
+    useCallback(
+      () =>
+        getDocs(
+          query(
+            collection(firestore, 'pledges'),
+            orderBy('createdAt', 'desc'),
+            limit(4)
+          )
+        ).then((result) =>
+          result.docs.map((it) => ({ id: it.id, ...it.data() }))
+        ),
+      []
+    )
+  );
 }
 
 /**
