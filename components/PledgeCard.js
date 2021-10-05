@@ -9,8 +9,9 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { MdArrowUpward, MdOpenInNew, MdShare } from 'react-icons/md';
+import { pledgeTags } from 'store/pledge';
 
-export default function PledgeCard({ title, description, tags = [] }) {
+export default function PledgeCard({ title, description, tag }) {
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
       <Button
@@ -61,16 +62,7 @@ export default function PledgeCard({ title, description, tags = [] }) {
           {description}
         </Typography>
 
-        <Stack direction="row" sx={{ mt: 1 }}>
-          {tags.map((it, index) => (
-            <Chip
-              key={it}
-              label={it}
-              size="small"
-              sx={{ mr: index !== tags.length - 1 ? 1 : 0 }}
-            />
-          ))}
-        </Stack>
+        <Chip label={pledgeTags[tag]} size="small" sx={{ mt: 1 }} />
       </CardContent>
     </Card>
   );

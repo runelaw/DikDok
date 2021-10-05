@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { loggedIn, useAuth } from 'store/auth';
-import { useCreatePledge } from 'store/pledge';
+import { pledgeTags, useCreatePledge } from 'store/pledge';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 
@@ -143,10 +143,11 @@ export default function MakeAPledge() {
                   helperText={fieldState.error?.message}
                   required
                 >
-                  <MenuItem value="education">Education</MenuItem>
-                  <MenuItem value="agriculture">Agriculture</MenuItem>
-                  <MenuItem value="finance">Finance</MenuItem>
-                  <MenuItem value="manufacturing">Manufacturing</MenuItem>
+                  {Object.keys(pledgeTags).map((key) => (
+                    <MenuItem key={key} value={key}>
+                      {pledgeTags[key]}
+                    </MenuItem>
+                  ))}
                 </TextField>
               )}
             />

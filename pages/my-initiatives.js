@@ -1,5 +1,6 @@
-import { Container, Typography } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
+import PledgeCard from 'components/PledgeCard';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import { useCallback, useEffect } from 'react';
@@ -39,7 +40,16 @@ export default function MyInitiatives() {
           My Initiatives
         </Typography>
 
-        {JSON.stringify(pledges)}
+        <Stack spacing={2} sx={{ mt: 4 }}>
+          {(pledges || []).map((it) => (
+            <PledgeCard
+              key={it.id}
+              title={it.title}
+              description={it.description}
+              tag={it.tag}
+            />
+          ))}
+        </Stack>
       </Container>
     </>
   );

@@ -62,3 +62,13 @@ export function usePledges() {
 
   return rest;
 }
+
+/**
+ * All the tags that are used in pledges.
+ */
+export const pledgeTags = {
+  education: 'Education',
+  agriculture: 'Agriculture',
+  finance: 'Finance',
+  manufacturing: 'Manufacturing',
+};
