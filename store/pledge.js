@@ -60,7 +60,7 @@ export function usePledges() {
     }
   }, [refetch, uid]);
 
-  return rest;
+  return { ...rest, refetch };
 }
 
 /**

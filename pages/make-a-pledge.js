@@ -16,7 +16,7 @@ import Link from 'next/link';
 import { useCallback, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { loggedIn, useAuth } from 'store/auth';
-import { pledgeTags, useCreatePledge } from 'store/pledge';
+import { pledgeTags, useCreatePledge, usePledges } from 'store/pledge';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 import { LoadingButton } from '@mui/lab';
@@ -63,6 +63,8 @@ export default function MakeAPledge() {
   });
 
   const [loading, setLoading] = useState(false);
+  const { data: pledges, refetch } = usePledges();
+
   const createPledge = useCreatePledge();
   const onSubmit = useCallback(
     async (state) => {
@@ -72,12 +74,13 @@ export default function MakeAPledge() {
         reset();
       } finally {
         setLoading(false);
+        refetch();
       }
 
       // TODO: Show that the pledge has been created and is awaiting approval.
       // It will be shown in the 'My Pledges' section of the user profile.
     },
-    [createPledge, reset]
+    [createPledge, refetch, reset]
   );
 
   return (
@@ -105,11 +108,13 @@ export default function MakeAPledge() {
             </Typography>
 
             <UserCard>
-              <Link href="/my-initiatives" passHref>
-                <Button variant="outlined" component="a">
-                  My Initiatives
-                </Button>
-              </Link>
+              {pledges?.length > 0 && (
+                <Link href="/my-initiatives" passHref>
+                  <Button variant="outlined" component="a">
+                    My Initiatives
+                  </Button>
+                </Link>
+              )}
             </UserCard>
 
             <TextField
