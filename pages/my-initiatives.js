@@ -46,7 +46,7 @@ export default function MyInitiatives() {
               key={it.id}
               title={it.title}
               description={it.description}
-              tag={it.tag}
+              tags={it.tags}
             />
           ))}
         </Stack>
