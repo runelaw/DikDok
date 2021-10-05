@@ -19,6 +19,7 @@ export default function TopPledges() {
         {(pledges ?? []).map((it) => (
           <Grid key={it.id} item xs={12} md={6}>
             <PledgeCard
+              pledgeId={it.id}
               title={it.title}
               description={it.description}
               tags={it.tags}

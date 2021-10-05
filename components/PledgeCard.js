@@ -8,10 +8,18 @@ import {
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import { MdArrowUpward, MdOpenInNew, MdShare } from 'react-icons/md';
 import { pledgeTags } from 'store/pledge';
 
-export default function PledgeCard({ title, description, tags }) {
+export default function PledgeCard({ pledgeId, title, description, tags }) {
+  const { push } = useRouter();
+  const onClick = useCallback(
+    () => push(`/initiative/${pledgeId}`),
+    [pledgeId, push]
+  );
+
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
       <Button
@@ -50,7 +58,10 @@ export default function PledgeCard({ title, description, tags }) {
         </Stack>
       </Button>
 
-      <CardContent sx={{ pt: 1, pb: 1.5 }}>
+      <CardContent
+        sx={{ pt: 1, pb: 1.5, cursor: 'pointer', flex: 1 }}
+        onClick={onClick}
+      >
         <Typography
           variant="h6"
           sx={{ fontSize: { xs: '1rem', md: '1.1rem' } }}

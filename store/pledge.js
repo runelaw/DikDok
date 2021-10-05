@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  doc,
+  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -83,6 +85,23 @@ export function useTopPledges() {
           result.docs.map((it) => ({ id: it.id, ...it.data() }))
         ),
       []
+    )
+  );
+}
+
+/**
+ * Get the pledge by its id.
+ */
+export function usePledgeById(pledgeId) {
+  return useQuery(
+    `get-pledge-${pledgeId}`,
+    useCallback(
+      () =>
+        getDoc(doc(firestore, 'pledges', pledgeId)).then((result) => ({
+          id: result.id,
+          ...result.data(),
+        })),
+      [pledgeId]
     )
   );
 }
