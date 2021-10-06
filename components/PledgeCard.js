@@ -13,7 +13,13 @@ import { useCallback } from 'react';
 import { MdArrowUpward, MdOpenInNew, MdShare } from 'react-icons/md';
 import { pledgeTags } from 'store/pledge';
 
-export default function PledgeCard({ pledgeId, title, description, tags }) {
+export default function PledgeCard({
+  pledgeId,
+  title,
+  description,
+  link,
+  tags,
+}) {
   const { push } = useRouter();
   const onClick = useCallback(
     () => push(`/initiative/${pledgeId}`),
@@ -52,9 +58,17 @@ export default function PledgeCard({ pledgeId, title, description, tags }) {
           <IconButton component="span" size="small">
             <MdShare />
           </IconButton>
-          <IconButton component="span" size="small">
-            <MdOpenInNew />
-          </IconButton>
+          {link && (
+            <IconButton
+              component="a"
+              size="small"
+              href={link}
+              target="_blank"
+              rel="noreferrer nofollow"
+            >
+              <MdOpenInNew />
+            </IconButton>
+          )}
         </Stack>
       </Button>
 

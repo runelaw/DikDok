@@ -23,6 +23,7 @@ export default function TopPledges() {
               title={it.title}
               description={it.description}
               tags={it.tags}
+              link={it.link}
             />
           </Grid>
         ))}
