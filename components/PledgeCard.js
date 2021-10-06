@@ -10,8 +10,9 @@ import {
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
-import { MdArrowUpward, MdOpenInNew, MdShare } from 'react-icons/md';
+import { MdArrowUpward, MdOpenInNew } from 'react-icons/md';
 import { pledgeTags } from 'store/pledge';
+import ShareCardPopover from './ShareCardPopover';
 
 export default function PledgeCard({
   pledgeId,
@@ -55,9 +56,7 @@ export default function PledgeCard({
           spacing={1}
           sx={{ alignItems: 'flex-start', px: 2, py: 0 }}
         >
-          <IconButton component="span" size="small">
-            <MdShare />
-          </IconButton>
+          <ShareCardPopover />
           {link && (
             <IconButton
               component="a"
