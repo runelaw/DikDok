@@ -56,7 +56,7 @@ export default function PledgeCard({
           spacing={1}
           sx={{ alignItems: 'flex-start', px: 2, py: 0 }}
         >
-          <ShareCardPopover />
+          <ShareCardPopover pledgeId={pledgeId} title={title} />
           {link && (
             <IconButton
               component="a"

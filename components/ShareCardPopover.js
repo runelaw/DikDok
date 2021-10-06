@@ -23,7 +23,9 @@ import {
   WhatsappShareButton,
 } from 'react-share';
 
-export default function ShareCardPopover() {
+export default function ShareCardPopover({ pledgeId, title }) {
+  const link = `https://www.100bhagya.com/initiative/${pledgeId}`;
+
   return (
     <PopupState variant="popover" popupId="share-card-popover">
       {(popupState) => (
@@ -55,32 +57,29 @@ export default function ShareCardPopover() {
               <Stack direction="row" spacing={1}>
                 <EmailShareButton
                   style={{ height: 32, width: 32 }}
-                  url="https://google.com"
+                  subject={title}
+                  url={link}
                 >
                   <EmailIcon size={32} round />
                 </EmailShareButton>
                 <FacebookShareButton
                   style={{ height: 32, width: 32 }}
-                  url="https://google.com"
-                  quote="Google"
+                  quote={title}
+                  url={link}
                 >
                   <FacebookIcon size={32} round />
                 </FacebookShareButton>
                 <LinkedinShareButton
                   style={{ height: 32, width: 32 }}
-                  url="https://google.com"
+                  title={title}
+                  url={link}
                 >
                   <LinkedinIcon size={32} round />
                 </LinkedinShareButton>
-                <PinterestShareButton
-                  style={{ height: 32, width: 32 }}
-                  url="https://google.com"
-                >
-                  <PinterestIcon size={32} round />
-                </PinterestShareButton>
                 <PocketShareButton
                   style={{ height: 32, width: 32 }}
-                  url="https://google.com"
+                  title={title}
+                  url={link}
                 >
                   <PocketIcon size={32} round />
                 </PocketShareButton>
@@ -88,25 +87,29 @@ export default function ShareCardPopover() {
               <Stack direction="row" spacing={1} sx={{ mt: 1 }}>
                 <RedditShareButton
                   style={{ height: 32, width: 32 }}
-                  url="https://google.com"
+                  title={title}
+                  url={link}
                 >
                   <RedditIcon size={32} round />
                 </RedditShareButton>
                 <TelegramShareButton
                   style={{ height: 32, width: 32 }}
-                  url="https://google.com"
+                  title={title}
+                  url={link}
                 >
                   <TelegramIcon size={32} round />
                 </TelegramShareButton>
                 <TwitterShareButton
                   style={{ height: 32, width: 32 }}
-                  url="https://google.com"
+                  title={title}
+                  url={link}
                 >
                   <TwitterIcon size={32} round />
                 </TwitterShareButton>
                 <WhatsappShareButton
                   style={{ height: 32, width: 32 }}
-                  url="https://google.com"
+                  title={title}
+                  url={link}
                 >
                   <WhatsappIcon size={32} round />
                 </WhatsappShareButton>
