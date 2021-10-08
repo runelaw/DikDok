@@ -11,7 +11,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { useAuth } from './auth';
 import { firestore } from './firebase';
 
@@ -72,7 +72,7 @@ export function useMyIdeas() {
  */
 export function useTopIdeas() {
   return useQuery(
-    'get-ideas',
+    'get-top-ideas',
     useCallback(
       () =>
         getDocs(
@@ -131,34 +131,54 @@ export function useAllIdeas() {
  * Hook to promote an idea.
  */
 export function usePromoteIdea() {
-  return useCallback(async (ideaId) => {
-    const user = useAuth.getState().user;
-    if (!user) {
-      return;
-    }
+  const client = useQueryClient();
 
-    // Add the user id to the idea as their promoters.
-    await updateDoc(doc(firestore, 'ideas', ideaId), {
-      promoters: arrayUnion(user.uid),
-    });
-  }, []);
+  return useCallback(
+    async (ideaId) => {
+      const user = useAuth.getState().user;
+      if (!user) {
+        return;
+      }
+
+      // Add the user id to the idea as their promoters.
+      await updateDoc(doc(firestore, 'ideas', ideaId), {
+        promoters: arrayUnion(user.uid),
+      });
+
+      client.invalidateQueries('get-user-ideas');
+      client.invalidateQueries('get-top-ideas');
+      client.invalidateQueries(`get-idea-${ideaId}`);
+      client.invalidateQueries('get-all-ideas');
+    },
+    [client]
+  );
 }
 
 /**
  * Hook to unpromote an idea.
  */
 export function useUnpromoteIdea() {
-  return useCallback(async (ideaId) => {
-    const user = useAuth.getState().user;
-    if (!user) {
-      return;
-    }
+  const client = useQueryClient();
 
-    // Remove the user id from the idea.
-    await updateDoc(doc(firestore, 'ideas', ideaId), {
-      promoters: arrayRemove(user.uid),
-    });
-  }, []);
+  return useCallback(
+    async (ideaId) => {
+      const user = useAuth.getState().user;
+      if (!user) {
+        return;
+      }
+
+      // Remove the user id from the idea.
+      await updateDoc(doc(firestore, 'ideas', ideaId), {
+        promoters: arrayRemove(user.uid),
+      });
+
+      client.invalidateQueries('get-user-ideas');
+      client.invalidateQueries('get-top-ideas');
+      client.invalidateQueries(`get-idea-${ideaId}`);
+      client.invalidateQueries('get-all-ideas');
+    },
+    [client]
+  );
 }
 
 /**

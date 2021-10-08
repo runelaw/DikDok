@@ -14,7 +14,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { useAuth } from './auth';
 import { firestore } from './firebase';
 
@@ -75,7 +75,7 @@ export function useMyPledges() {
  */
 export function useTopPledges() {
   return useQuery(
-    'get-pledges',
+    'get-top-pledges',
     useCallback(
       () =>
         getDocs(
@@ -134,34 +134,54 @@ export function useAllPledges() {
  * Hook to promote a pledge.
  */
 export function usePromotePledge() {
-  return useCallback(async (pledgeId) => {
-    const user = useAuth.getState().user;
-    if (!user) {
-      return;
-    }
+  const client = useQueryClient();
 
-    // Add the user id to the pledge as their promoters.
-    await updateDoc(doc(firestore, 'pledges', pledgeId), {
-      promoters: arrayUnion(user.uid),
-    });
-  }, []);
+  return useCallback(
+    async (pledgeId) => {
+      const user = useAuth.getState().user;
+      if (!user) {
+        return;
+      }
+
+      // Add the user id to the pledge as their promoters.
+      await updateDoc(doc(firestore, 'pledges', pledgeId), {
+        promoters: arrayUnion(user.uid),
+      });
+
+      client.invalidateQueries('get-user-pledges');
+      client.invalidateQueries('get-top-pledges');
+      client.invalidateQueries(`get-pledge-${pledgeId}`);
+      client.invalidateQueries('get-all-pledges');
+    },
+    [client]
+  );
 }
 
 /**
  * Hook to unpromote a pledge.
  */
 export function useUnpromotePledge() {
-  return useCallback(async (pledgeId) => {
-    const user = useAuth.getState().user;
-    if (!user) {
-      return;
-    }
+  const client = useQueryClient();
 
-    // Remove the user id from the pledge.
-    await updateDoc(doc(firestore, 'pledges', pledgeId), {
-      promoters: arrayRemove(user.uid),
-    });
-  }, []);
+  return useCallback(
+    async (pledgeId) => {
+      const user = useAuth.getState().user;
+      if (!user) {
+        return;
+      }
+
+      // Remove the user id from the pledge.
+      await updateDoc(doc(firestore, 'pledges', pledgeId), {
+        promoters: arrayRemove(user.uid),
+      });
+
+      client.invalidateQueries('get-user-pledges');
+      client.invalidateQueries('get-top-pledges');
+      client.invalidateQueries(`get-pledge-${pledgeId}`);
+      client.invalidateQueries('get-all-pledges');
+    },
+    [client]
+  );
 }
 
 /**
