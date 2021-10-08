@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardContent,
   Chip,
@@ -11,8 +10,9 @@ import { Box } from '@mui/system';
 import TimeAgo from 'javascript-time-ago';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
-import { MdArrowUpward, MdOpenInNew } from 'react-icons/md';
+import { MdOpenInNew } from 'react-icons/md';
 import { pledgeTags } from 'store/pledge';
+import PromoteButton from './PromoteButton';
 import ShareCardPopover from './ShareCardPopover';
 
 const timeAgo = new TimeAgo('en-US');
@@ -35,14 +35,15 @@ export default function PostCard({
 
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
-      <Button
+      <Box
         sx={{
           flexDirection: 'column',
           justifyContent: 'space-between',
+          alignItems: 'center',
           width: 150,
           borderRadius: 0,
           borderRight: '1px solid',
-          borderColor: 'grey.300',
+          borderColor: '#DADADA',
           flexShrink: 0,
           display: {
             xs: 'none',
@@ -51,10 +52,7 @@ export default function PostCard({
         }}
       >
         <Stack sx={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <MdArrowUpward size={20} />
-          <Box component="span" sx={{ mt: 0.5 }}>
-            40 Votes
-          </Box>
+          <PromoteButton />
         </Stack>
 
         <Stack
@@ -75,7 +73,7 @@ export default function PostCard({
             </IconButton>
           )}
         </Stack>
-      </Button>
+      </Box>
 
       <CardContent
         sx={{ pt: 1, pb: '8px !important', cursor: 'pointer', flex: 1 }}
