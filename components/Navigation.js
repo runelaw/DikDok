@@ -41,14 +41,14 @@ export default function Navigation({ position = 'sticky' }) {
               </Button>
             </Link>
 
-            <Link href="/make-a-pledge" passHref>
+            <Link href="/ideas" passHref>
               <Button
                 component="a"
                 variant="contained"
                 color="inherit"
                 sx={{ mr: 2, display: { xs: 'none', sm: 'flex' } }}
               >
-                Thought Space
+                Ideas
               </Button>
             </Link>
 
