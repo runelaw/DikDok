@@ -30,13 +30,13 @@ export default function Ideas() {
           justifyContent="center"
           sx={{ mt: 2 }}
         >
-          <Link href="/my-initiatives" passHref>
+          <Link href="/my-ideas" passHref>
             <Button component="a" variant="contained">
               My Ideas
             </Button>
           </Link>
 
-          <Link href="/make-a-pledge" passHref>
+          <Link href="/share-an-idea" passHref>
             <Button variant="contained">Share a new idea</Button>
           </Link>
         </Stack>
