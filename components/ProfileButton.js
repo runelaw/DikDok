@@ -1,10 +1,11 @@
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
 import PopupState, { bindMenu, bindTrigger } from 'material-ui-popup-state';
 import { useCallback } from 'react';
-import { logout, useAuth } from 'store/auth';
+import { useAuth, useLogout } from 'store/auth';
 
 export default function ProfileButton() {
   const user = useAuth(useCallback((state) => state.user, []));
+  const logout = useLogout();
 
   return (
     <PopupState variant="popover" popupId="profile-popup-menu">

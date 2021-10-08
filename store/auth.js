@@ -5,6 +5,7 @@ import {
   signOut,
 } from 'firebase/auth';
 import { useCallback, useEffect } from 'react';
+import { useQueryClient } from 'react-query';
 import create from 'zustand';
 import { firebaseAuth, useFirebaseInitialized } from './firebase';
 
@@ -79,6 +80,11 @@ export function useLogin() {
 /**
  * Hook to logout from the app.
  */
-export async function logout() {
-  await signOut(firebaseAuth);
+export function useLogout() {
+  const client = useQueryClient();
+  return useCallback(async () => {
+    await signOut(firebaseAuth);
+    // Remove all the data out.
+    client.invalidateQueries();
+  }, [client]);
 }
