@@ -1,5 +1,7 @@
 import {
   addDoc,
+  arrayRemove,
+  arrayUnion,
   collection,
   doc,
   getDoc,
@@ -8,6 +10,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
@@ -125,6 +128,40 @@ export function useAllPledges() {
       []
     )
   );
+}
+
+/**
+ * Hook to promote a pledge.
+ */
+export function usePromotePledge() {
+  return useCallback(async (pledgeId) => {
+    const user = useAuth.getState().user;
+    if (!user) {
+      return;
+    }
+
+    // Add the user id to the pledge as their promoters.
+    await updateDoc(doc(firestore, 'pledges', pledgeId), {
+      promoters: arrayUnion(user.uid),
+    });
+  }, []);
+}
+
+/**
+ * Hook to unpromote a pledge.
+ */
+export function useUnpromotePledge() {
+  return useCallback(async (pledgeId) => {
+    const user = useAuth.getState().user;
+    if (!user) {
+      return;
+    }
+
+    // Remove the user id from the pledge.
+    await updateDoc(doc(firestore, 'pledges', pledgeId), {
+      promoters: arrayRemove(user.uid),
+    });
+  }, []);
 }
 
 /**

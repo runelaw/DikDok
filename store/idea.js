@@ -128,6 +128,40 @@ export function useAllIdeas() {
 }
 
 /**
+ * Hook to promote an idea.
+ */
+export function usePromoteIdea() {
+  return useCallback(async (ideaId) => {
+    const user = useAuth.getState().user;
+    if (!user) {
+      return;
+    }
+
+    // Add the user id to the idea as their promoters.
+    await updateDoc(doc(firestore, 'ideas', ideaId), {
+      promoters: arrayUnion(user.uid),
+    });
+  }, []);
+}
+
+/**
+ * Hook to unpromote an idea.
+ */
+export function useUnpromoteIdea() {
+  return useCallback(async (ideaId) => {
+    const user = useAuth.getState().user;
+    if (!user) {
+      return;
+    }
+
+    // Remove the user id from the idea.
+    await updateDoc(doc(firestore, 'ideas', ideaId), {
+      promoters: arrayRemove(user.uid),
+    });
+  }, []);
+}
+
+/**
  * All the tags that are used in ideas.
  */
 export const ideaTags = {
