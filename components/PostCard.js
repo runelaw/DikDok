@@ -18,6 +18,7 @@ import ShareCardPopover from './ShareCardPopover';
 const timeAgo = new TimeAgo('en-US');
 
 export default function PostCard({
+  type,
   postId,
   title,
   description,
@@ -27,11 +28,10 @@ export default function PostCard({
 }) {
   const { push } = useRouter();
   const onClick = useCallback(
-    () => push(`/initiative/${postId}`),
-    [postId, push]
+    () =>
+      push(type === 'initiative' ? `/initiative/${postId}` : `/idea/${postId}`),
+    [postId, push, type]
   );
-
-  console.log({ createdAt });
 
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>

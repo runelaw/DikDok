@@ -47,6 +47,7 @@ export default function MyInitiatives() {
           {(pledges || []).map((it) => (
             <PostCard
               key={it.id}
+              type="initiative"
               postId={it.id}
               title={it.title}
               description={it.description}

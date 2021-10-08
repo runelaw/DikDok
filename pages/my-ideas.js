@@ -47,6 +47,7 @@ export default function MyIdeas() {
           {(ideas || []).map((it) => (
             <PostCard
               key={it.id}
+              type="idea"
               postId={it.id}
               title={it.title}
               description={it.description}
