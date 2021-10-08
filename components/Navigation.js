@@ -30,7 +30,7 @@ export default function Navigation({ position = 'sticky' }) {
           </Link>
 
           <Stack direction="row" alignItems="center">
-            <Link href="/make-a-pledge" passHref>
+            <Link href="/initiatives" passHref>
               <Button
                 component="a"
                 variant="contained"

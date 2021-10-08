@@ -107,6 +107,27 @@ export function usePledgeById(pledgeId) {
 }
 
 /**
+ * Get all the pledges.
+ */
+export function useAllPledges() {
+  return useQuery(
+    'get-all-pledges',
+    useCallback(
+      () =>
+        getDocs(
+          query(collection(firestore, 'pledges'), orderBy('createdAt', 'desc'))
+        ).then((result) =>
+          result.docs.map((it) => ({
+            id: it.id,
+            ...it.data(),
+          }))
+        ),
+      []
+    )
+  );
+}
+
+/**
  * All the tags that are used in pledges.
  */
 export const pledgeTags = {
