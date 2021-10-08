@@ -3,9 +3,14 @@ import Navigation from 'components/Navigation';
 import PostCard from 'components/PostCard';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useCallback } from 'react';
+import { loggedIn, useAuth } from 'store/auth';
 import { useAllPledges } from 'store/pledge';
 
 export default function Initiatives() {
+  const isLoggedIn = useAuth(
+    useCallback((state) => state.isLoggedIn === loggedIn.true, [])
+  );
   const { data: pledges } = useAllPledges();
 
   return (
@@ -30,11 +35,13 @@ export default function Initiatives() {
           justifyContent="center"
           sx={{ mt: 2 }}
         >
-          <Link href="/my-initiatives" passHref>
-            <Button component="a" variant="contained">
-              My Initiatives
-            </Button>
-          </Link>
+          {isLoggedIn && (
+            <Link href="/my-initiatives" passHref>
+              <Button component="a" variant="contained">
+                My Initiatives
+              </Button>
+            </Link>
+          )}
 
           <Link href="/make-a-pledge" passHref>
             <Button variant="contained">Make a Pledge</Button>
