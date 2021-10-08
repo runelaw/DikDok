@@ -39,6 +39,9 @@ export default function MyInitiatives() {
         <Typography variant="h5" textAlign="center">
           My Initiatives
         </Typography>
+        <Typography color="textSecondary" textAlign="center">
+          The initiatives that I have pledged to.
+        </Typography>
 
         <Stack spacing={2} sx={{ mt: 4 }}>
           {(pledges || []).map((it) => (

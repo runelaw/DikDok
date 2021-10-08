@@ -39,6 +39,9 @@ export default function MyIdeas() {
         <Typography variant="h5" textAlign="center">
           My Ideas
         </Typography>
+        <Typography color="textSecondary" textAlign="center">
+          The ideas that I have shared with the world.
+        </Typography>
 
         <Stack spacing={2} sx={{ mt: 4 }}>
           {(ideas || []).map((it) => (
