@@ -43,16 +43,7 @@ export default function Ideas() {
 
         <Stack spacing={2} sx={{ mt: 4 }}>
           {(pledges ?? []).map((it) => (
-            <PostCard
-              key={it.id}
-              type="idea"
-              title={it.title}
-              description={it.description}
-              link={it.link}
-              tags={it.tags}
-              postId={it.id}
-              createdAt={it.createdAt}
-            />
+            <PostCard key={it.id} type="idea" post={it} />
           ))}
         </Stack>
       </Container>

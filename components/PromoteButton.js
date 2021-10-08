@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { MdThumbUp } from 'react-icons/md';
 
-export default function PromoteButton() {
+export default function PromoteButton({ count, isPromoted }) {
   return (
     <Button
       sx={{
@@ -11,10 +11,11 @@ export default function PromoteButton() {
         width: 120,
         p: 0,
       }}
+      color={isPromoted ? 'primary' : 'inherit'}
     >
       <MdThumbUp size={20} />
       <Box component="span" sx={{ mt: 0.5 }}>
-        40 Promoters
+        {count} Promoters
       </Box>
     </Button>
   );

@@ -45,16 +45,7 @@ export default function MyInitiatives() {
 
         <Stack spacing={2} sx={{ mt: 4 }}>
           {(pledges || []).map((it) => (
-            <PostCard
-              key={it.id}
-              type="initiative"
-              postId={it.id}
-              title={it.title}
-              description={it.description}
-              tags={it.tags}
-              link={it.link}
-              createdAt={it.createdAt}
-            />
+            <PostCard key={it.id} type="initiative" post={it} />
           ))}
         </Stack>
       </Container>

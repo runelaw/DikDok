@@ -11,27 +11,23 @@ import TimeAgo from 'javascript-time-ago';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { MdOpenInNew } from 'react-icons/md';
+import { useAuth } from 'store/auth';
 import { pledgeTags } from 'store/pledge';
 import PromoteButton from './PromoteButton';
 import ShareCardPopover from './ShareCardPopover';
 
 const timeAgo = new TimeAgo('en-US');
 
-export default function PostCard({
-  type,
-  postId,
-  title,
-  description,
-  link,
-  tags,
-  createdAt,
-}) {
+export default function PostCard({ type, post }) {
   const { push } = useRouter();
   const onClick = useCallback(
     () =>
-      push(type === 'initiative' ? `/initiative/${postId}` : `/idea/${postId}`),
-    [postId, push, type]
+      push(
+        type === 'initiative' ? `/initiative/${post.id}` : `/idea/${post.id}`
+      ),
+    [post.id, push, type]
   );
+  const userId = useAuth(useCallback((state) => state.user?.uid, []));
 
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
@@ -52,7 +48,12 @@ export default function PostCard({
         }}
       >
         <Stack sx={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <PromoteButton />
+          <PromoteButton
+            count={post.promoters?.length ?? 0}
+            isPromoted={
+              userId ? (post.promoters ?? []).includes(userId) : false
+            }
+          />
         </Stack>
 
         <Stack
@@ -60,12 +61,12 @@ export default function PostCard({
           spacing={1}
           sx={{ alignItems: 'flex-start', px: 2, py: 0 }}
         >
-          <ShareCardPopover pledgeId={postId} title={title} />
-          {link && (
+          <ShareCardPopover pledgeId={post.id} title={post.title} />
+          {post.link && (
             <IconButton
               component="a"
               size="small"
-              href={link}
+              href={post.link}
               target="_blank"
               rel="noreferrer nofollow"
             >
@@ -83,20 +84,20 @@ export default function PostCard({
           variant="h6"
           sx={{ fontSize: { xs: '1rem', md: '1.1rem' } }}
         >
-          {title}
+          {post.title}
         </Typography>
 
         <Typography sx={{ display: { xs: 'none', md: 'block' } }}>
-          {description}
+          {post.description}
         </Typography>
 
         <Stack direction="row" sx={{ mt: 1 }}>
-          {tags.map((it, index) => (
+          {post.tags.map((it, index) => (
             <Chip
               key={it}
               label={pledgeTags[it]}
               size="small"
-              sx={{ mr: index !== tags.length - 1 ? 1 : 0 }}
+              sx={{ mr: index !== post.tags.length - 1 ? 1 : 0 }}
             />
           ))}
         </Stack>
@@ -107,7 +108,7 @@ export default function PostCard({
           color="textSecondary"
           sx={{ mt: 2 }}
         >
-          Posted {timeAgo.format(createdAt.toDate())}
+          Posted {timeAgo.format(post.createdAt.toDate())}
         </Typography>
       </CardContent>
     </Card>

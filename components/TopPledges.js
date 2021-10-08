@@ -18,15 +18,7 @@ export default function TopPledges() {
       <Grid container spacing={2}>
         {(pledges ?? []).map((it) => (
           <Grid key={it.id} item xs={12} md={6}>
-            <PostCard
-              type="initiative"
-              postId={it.id}
-              title={it.title}
-              description={it.description}
-              tags={it.tags}
-              link={it.link}
-              createdAt={it.createdAt}
-            />
+            <PostCard type="initiative" post={it} />
           </Grid>
         ))}
       </Grid>

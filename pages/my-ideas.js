@@ -45,16 +45,7 @@ export default function MyIdeas() {
 
         <Stack spacing={2} sx={{ mt: 4 }}>
           {(ideas || []).map((it) => (
-            <PostCard
-              key={it.id}
-              type="idea"
-              postId={it.id}
-              title={it.title}
-              description={it.description}
-              tags={it.tags}
-              link={it.link}
-              createdAt={it.createdAt}
-            />
+            <PostCard key={it.id} type="idea" post={it} />
           ))}
         </Stack>
       </Container>
