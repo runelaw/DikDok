@@ -3,10 +3,10 @@ import Navigation from 'components/Navigation';
 import PostCard from 'components/PostCard';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useAllPledges } from 'store/pledge';
+import { useAllIdeas } from 'store/idea';
 
 export default function Ideas() {
-  const { data: pledges } = useAllPledges();
+  const { data: pledges } = useAllIdeas();
 
   return (
     <>
