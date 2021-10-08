@@ -1,6 +1,6 @@
 import { Button, Container, Stack, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
-import PledgeCard from 'components/PledgeCard';
+import PostCard from 'components/PostCard';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useAllPledges } from 'store/pledge';
@@ -43,13 +43,13 @@ export default function Initiatives() {
 
         <Stack spacing={2} sx={{ mt: 4 }}>
           {(pledges ?? []).map((it) => (
-            <PledgeCard
+            <PostCard
               key={it.id}
               title={it.title}
               description={it.description}
               link={it.link}
               tags={it.tags}
-              pledgeId={it.id}
+              postId={it.id}
             />
           ))}
         </Stack>

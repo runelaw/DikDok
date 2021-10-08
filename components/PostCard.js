@@ -14,17 +14,11 @@ import { MdArrowUpward, MdOpenInNew } from 'react-icons/md';
 import { pledgeTags } from 'store/pledge';
 import ShareCardPopover from './ShareCardPopover';
 
-export default function PledgeCard({
-  pledgeId,
-  title,
-  description,
-  link,
-  tags,
-}) {
+export default function PostCard({ postId, title, description, link, tags }) {
   const { push } = useRouter();
   const onClick = useCallback(
-    () => push(`/initiative/${pledgeId}`),
-    [pledgeId, push]
+    () => push(`/initiative/${postId}`),
+    [postId, push]
   );
 
   return (
@@ -56,7 +50,7 @@ export default function PledgeCard({
           spacing={1}
           sx={{ alignItems: 'flex-start', px: 2, py: 0 }}
         >
-          <ShareCardPopover pledgeId={pledgeId} title={title} />
+          <ShareCardPopover pledgeId={postId} title={title} />
           {link && (
             <IconButton
               component="a"

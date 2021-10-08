@@ -1,6 +1,6 @@
 import { Container, Stack, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
-import PledgeCard from 'components/PledgeCard';
+import PostCard from 'components/PostCard';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
@@ -42,9 +42,9 @@ export default function MyInitiatives() {
 
         <Stack spacing={2} sx={{ mt: 4 }}>
           {(pledges || []).map((it) => (
-            <PledgeCard
+            <PostCard
               key={it.id}
-              pledgeId={it.id}
+              postId={it.id}
               title={it.title}
               description={it.description}
               tags={it.tags}

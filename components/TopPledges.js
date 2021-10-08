@@ -1,5 +1,5 @@
 import { Stack, Typography, Grid } from '@mui/material';
-import PledgeCard from 'components/PledgeCard';
+import PostCard from 'components/PostCard';
 import { useTopPledges } from 'store/pledge';
 
 export default function TopPledges() {
@@ -18,8 +18,8 @@ export default function TopPledges() {
       <Grid container spacing={2}>
         {(pledges ?? []).map((it) => (
           <Grid key={it.id} item xs={12} md={6}>
-            <PledgeCard
-              pledgeId={it.id}
+            <PostCard
+              postId={it.id}
               title={it.title}
               description={it.description}
               tags={it.tags}
