@@ -52,6 +52,7 @@ export default function MyIdeas() {
               description={it.description}
               tags={it.tags}
               link={it.link}
+              createdAt={it.createdAt}
             />
           ))}
         </Stack>

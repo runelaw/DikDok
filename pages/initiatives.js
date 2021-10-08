@@ -50,6 +50,7 @@ export default function Initiatives() {
               link={it.link}
               tags={it.tags}
               postId={it.id}
+              createdAt={it.createdAt}
             />
           ))}
         </Stack>

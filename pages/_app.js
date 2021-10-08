@@ -5,6 +5,10 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useAuth, useInitializeAuthStore } from 'store/auth';
 import { useInitializeFirebase } from 'store/firebase';
 import theme from 'utils/theme';
+import en from 'javascript-time-ago/locale/en.json';
+import TimeAgo from 'javascript-time-ago';
+
+TimeAgo.addDefaultLocale(en);
 
 export default function MyApp({ Component, pageProps }) {
   useInitializeFirebase();

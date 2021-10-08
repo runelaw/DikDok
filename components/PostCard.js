@@ -8,18 +8,30 @@ import {
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import TimeAgo from 'javascript-time-ago';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { MdArrowUpward, MdOpenInNew } from 'react-icons/md';
 import { pledgeTags } from 'store/pledge';
 import ShareCardPopover from './ShareCardPopover';
 
-export default function PostCard({ postId, title, description, link, tags }) {
+const timeAgo = new TimeAgo('en-US');
+
+export default function PostCard({
+  postId,
+  title,
+  description,
+  link,
+  tags,
+  createdAt,
+}) {
   const { push } = useRouter();
   const onClick = useCallback(
     () => push(`/initiative/${postId}`),
     [postId, push]
   );
+
+  console.log({ createdAt });
 
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
@@ -66,7 +78,7 @@ export default function PostCard({ postId, title, description, link, tags }) {
       </Button>
 
       <CardContent
-        sx={{ pt: 1, pb: 1.5, cursor: 'pointer', flex: 1 }}
+        sx={{ pt: 1, pb: '8px !important', cursor: 'pointer', flex: 1 }}
         onClick={onClick}
       >
         <Typography
@@ -90,6 +102,15 @@ export default function PostCard({ postId, title, description, link, tags }) {
             />
           ))}
         </Stack>
+
+        <Typography
+          variant="caption"
+          component="p"
+          color="textSecondary"
+          sx={{ mt: 2 }}
+        >
+          Posted {timeAgo.format(createdAt.toDate())}
+        </Typography>
       </CardContent>
     </Card>
   );

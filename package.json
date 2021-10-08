@@ -16,6 +16,7 @@
     "@mui/material": "^5.0.0",
     "@pqina/flip": "^1.7.7",
     "firebase": "^9.1.1",
+    "javascript-time-ago": "^2.3.9",
     "luxon": "^2.0.2",
     "material-ui-popup-state": "^2.0.0-beta.1",
     "next": "11.1.2",

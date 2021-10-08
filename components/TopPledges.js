@@ -24,6 +24,7 @@ export default function TopPledges() {
               description={it.description}
               tags={it.tags}
               link={it.link}
+              createdAt={it.createdAt}
             />
           </Grid>
         ))}
