@@ -13,6 +13,7 @@ import { useCallback } from 'react';
 import { MdOpenInNew } from 'react-icons/md';
 import { useAuth } from 'store/auth';
 import { pledgeTags } from 'store/pledge';
+import { postKind } from 'utils/constant';
 import PromoteButton from './PromoteButton';
 import ShareCardPopover from './ShareCardPopover';
 
@@ -23,7 +24,9 @@ export default function PostCard({ type, post }) {
   const onClick = useCallback(
     () =>
       push(
-        type === 'initiative' ? `/initiative/${post.id}` : `/idea/${post.id}`
+        type === postKind.initiative
+          ? `/initiative/${post.id}`
+          : `/idea/${post.id}`
       ),
     [post.id, push, type]
   );
@@ -49,6 +52,8 @@ export default function PostCard({ type, post }) {
       >
         <Stack sx={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <PromoteButton
+            postId={post.id}
+            type={type}
             count={post.promoters?.length ?? 0}
             isPromoted={
               userId ? (post.promoters ?? []).includes(userId) : false
