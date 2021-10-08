@@ -1,34 +1,26 @@
 import { CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { useCallback, useMemo } from 'react';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en.json';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { useAuth, useInitializeAuthStore } from 'store/auth';
+import { useInitializeAuthStore } from 'store/auth';
 import { useInitializeFirebase } from 'store/firebase';
 import theme from 'utils/theme';
-import en from 'javascript-time-ago/locale/en.json';
-import TimeAgo from 'javascript-time-ago';
+
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // Do not automatically keep on refetching the same data.
+      staleTime: Infinity,
+    },
+  },
+});
 
 TimeAgo.addDefaultLocale(en);
 
 export default function MyApp({ Component, pageProps }) {
   useInitializeFirebase();
   useInitializeAuthStore();
-
-  const uid = useAuth(useCallback((state) => state.user?.uid, []));
-  const queryClient = useMemo(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            // Do not automatically keep on refetching the same data.
-            staleTime: Infinity,
-          },
-        },
-      }),
-    // When the user changes, reset the query cache in the client.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [uid]
-  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -40,7 +32,7 @@ export default function MyApp({ Component, pageProps }) {
         }`}
       />
 
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={client}>
         <Component {...pageProps} />
       </QueryClientProvider>
     </ThemeProvider>
