@@ -1,7 +1,8 @@
-import { Container, Stack, Typography } from '@mui/material';
+import { Button, Container, Stack, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
 import PledgeCard from 'components/PledgeCard';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useAllPledges } from 'store/pledge';
 
 export default function Initiatives() {
@@ -23,7 +24,24 @@ export default function Initiatives() {
           Latest initiatives that everybody has pledged to.
         </Typography>
 
-        <Stack spacing={2} sx={{ mt: 2 }}>
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          sx={{ mt: 2 }}
+        >
+          <Link href="/my-initiatives" passHref>
+            <Button component="a" variant="contained">
+              My Initiatives
+            </Button>
+          </Link>
+
+          <Link href="/make-a-pledge" passHref>
+            <Button variant="contained">Make a Pledge</Button>
+          </Link>
+        </Stack>
+
+        <Stack spacing={2} sx={{ mt: 4 }}>
           {(pledges ?? []).map((it) => (
             <PledgeCard
               key={it.id}
