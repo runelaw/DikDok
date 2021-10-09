@@ -139,7 +139,7 @@ export default function ShareAnIdea() {
               {...materialRegister(register, 'description')}
               label="Description"
               multiline
-              minRows={8}
+              minRows={2}
               size="small"
               sx={{ bgcolor: 'white', mt: 2 }}
               error={!!errors.description}
