@@ -107,7 +107,7 @@ export function useInitializeUser() {
     }
 
     await setDoc(doc(firestore, 'users', user.uid), {
-      name: user.displayName || null,
+      name: user.name || null,
       photoURL: user.photoURL,
     });
   }, []);
