@@ -83,7 +83,7 @@ export default function Initiative() {
             <Grid item md={6}>
               <Typography
                 variant="h6"
-                component="p"
+                component="div"
                 color="primary"
                 sx={{
                   display: 'flex',
