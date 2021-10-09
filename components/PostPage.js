@@ -29,9 +29,9 @@ export default function PostPage({ post, type }) {
       <Navigation />
 
       <Container sx={{ pt: 8, pb: 8 }}>
-        <Paper sx={{ px: 4, py: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item md={6}>
+        <Paper>
+          <Grid container>
+            <Grid item xs={12} md={6} sx={{ px: 4, py: 3 }}>
               <Typography
                 variant="caption"
                 component="p"
@@ -85,7 +85,22 @@ export default function PostPage({ post, type }) {
               )}
             </Grid>
 
-            <Grid item md={6}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                borderTop: {
+                  xs: '1px solid #DADADA',
+                  md: '0',
+                },
+                borderLeft: {
+                  md: '1px solid #DADADA',
+                },
+                px: 4,
+                py: 3,
+              }}
+            >
               <Typography
                 variant="h6"
                 component="div"
