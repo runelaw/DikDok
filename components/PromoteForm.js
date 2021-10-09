@@ -119,7 +119,7 @@ function Form({ type, postId }) {
         {...materialRegister(register, 'name')}
       />
       <LoadingButton type="submit" variant="contained" loading={loading}>
-        Pledge Now
+        Promote Now
       </LoadingButton>
     </Stack>
   );
