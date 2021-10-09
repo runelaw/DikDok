@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import Navigation from 'components/Navigation';
-import PledgeForm from 'components/PledgeForm';
+import PromoteForm from 'components/PromoteForm';
 import TimeAgo from 'javascript-time-ago';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -92,7 +92,7 @@ export default function Initiative() {
                 </Box>
               </Typography>
 
-              <PledgeForm />
+              <PromoteForm />
             </Grid>
           </Grid>
         </Paper>

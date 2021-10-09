@@ -3,11 +3,11 @@ import logo from 'assets/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback } from 'react';
-import { loggedIn, useAuth, useLogin } from 'store/auth';
+import { loggedIn, useAuth } from 'store/auth';
 import ProfileButton from './ProfileButton';
+import SignInWithGoogle from './SignInWithGoogle';
 
 export default function Navigation({ position = 'sticky' }) {
-  const login = useLogin();
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
 
   return (
@@ -53,16 +53,7 @@ export default function Navigation({ position = 'sticky' }) {
             </Link>
 
             {isLoggedIn === loggedIn.true && <ProfileButton />}
-
-            {isLoggedIn === loggedIn.false && (
-              <Button
-                variant="contained"
-                sx={{ display: { xs: 'none', md: 'flex' } }}
-                onClick={login}
-              >
-                Sign in with Google
-              </Button>
-            )}
+            {isLoggedIn === loggedIn.false && <SignInWithGoogle />}
           </Stack>
         </Toolbar>
       </Container>

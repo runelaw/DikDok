@@ -1,8 +1,9 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useCallback } from 'react';
 import { loggedIn, useAuth } from 'store/auth';
+import SignInWithGoogle from './SignInWithGoogle';
 
-export default function PledgeForm() {
+export default function PromoteForm() {
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
   const user = useAuth(useCallback((state) => state.user, []));
 
@@ -12,8 +13,18 @@ export default function PledgeForm() {
   }
 
   if (isLoggedIn === loggedIn.false) {
-    // TODO: Show not logged in button.
-    return null;
+    return (
+      <Stack
+        justifyContent="center"
+        alignItems="center"
+        sx={{ height: '100%' }}
+      >
+        <Typography textAlign="center" color="textSecondary" sx={{ mb: 1 }}>
+          You cannot promote if you are not signed in.
+        </Typography>
+        <SignInWithGoogle />
+      </Stack>
+    );
   }
 
   return (
