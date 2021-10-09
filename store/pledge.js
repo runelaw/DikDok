@@ -13,7 +13,7 @@ import {
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
-import { useAuth, useInitializeUser } from './auth';
+import { useAuth, useInitializeUser, useUpdateUser } from './auth';
 import { firestore } from './firebase';
 
 /**
@@ -139,16 +139,17 @@ export function useAllPledges() {
  */
 export function usePromotePledge() {
   const client = useQueryClient();
+  const updateUser = useUpdateUser();
 
   return useCallback(
-    async (ideaId) => {
+    async ({ pledgeId, name }) => {
       const user = useAuth.getState().user;
       if (!user) {
         return;
       }
 
       const promoted = await getDoc(
-        doc(firestore, 'pledges', ideaId, 'promoters', user.uid)
+        doc(firestore, 'pledges', pledgeId, 'promoters', user.uid)
       );
 
       if (promoted.exists()) {
@@ -156,15 +157,17 @@ export function usePromotePledge() {
         return;
       }
 
-      await runTransaction(firestore, (transaction) => {
-        transaction.update(doc(firestore, 'pledges', ideaId), {
+      await runTransaction(firestore, async (transaction) => {
+        transaction.update(doc(firestore, 'pledges', pledgeId), {
           promoterCount: increment(1),
         });
 
         transaction.set(
-          doc(firestore, 'pledges', ideaId, 'promoters', user.uid),
+          doc(firestore, 'pledges', pledgeId, 'promoters', user.uid),
           { createdAt: serverTimestamp() }
         );
+
+        await updateUser(name, transaction);
       });
 
       client.invalidateQueries('get-user-pledges');
@@ -172,7 +175,7 @@ export function usePromotePledge() {
       client.invalidateQueries(`get-pledge-${pledgeId}`);
       client.invalidateQueries('get-all-pledges');
     },
-    [client]
+    [client, updateUser]
   );
 }
 

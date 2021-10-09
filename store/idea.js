@@ -5,7 +5,6 @@ import {
   getDoc,
   getDocs,
   increment,
-  setDoc,
   limit,
   orderBy,
   query,
@@ -15,7 +14,7 @@ import {
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
-import { useAuth, useInitializeUser } from './auth';
+import { useAuth, useInitializeUser, useUpdateUser } from './auth';
 import { firestore } from './firebase';
 
 /**
@@ -141,9 +140,10 @@ export function useAllIdeas() {
  */
 export function usePromoteIdea() {
   const client = useQueryClient();
+  const updateUser = useUpdateUser();
 
   return useCallback(
-    async (ideaId) => {
+    async ({ ideaId, name }) => {
       const user = useAuth.getState().user;
       if (!user) {
         return;
@@ -158,7 +158,7 @@ export function usePromoteIdea() {
         return;
       }
 
-      await runTransaction(firestore, (transaction) => {
+      await runTransaction(firestore, async (transaction) => {
         transaction.update(doc(firestore, 'ideas', ideaId), {
           promoterCount: increment(1),
         });
@@ -167,6 +167,8 @@ export function usePromoteIdea() {
           doc(firestore, 'ideas', ideaId, 'promoters', user.uid),
           { createdAt: serverTimestamp() }
         );
+
+        await updateUser(name, transaction);
       });
 
       client.invalidateQueries('get-user-ideas');
@@ -174,7 +176,7 @@ export function usePromoteIdea() {
       client.invalidateQueries(`get-idea-${ideaId}`);
       client.invalidateQueries('get-all-ideas');
     },
-    [client]
+    [client, updateUser]
   );
 }
 

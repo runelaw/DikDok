@@ -3,6 +3,7 @@ import {
   onAuthStateChanged,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
@@ -128,4 +129,29 @@ export function useUserById(userId) {
       [userId]
     )
   );
+}
+
+/**
+ * Update the name of the user.
+ */
+export function useUpdateUser() {
+  return useCallback(async (name, transaction) => {
+    const user = useAuth.getState().user;
+    if (!user) {
+      return;
+    }
+
+    if (user.name === name) {
+      // No changes to be done.
+      return;
+    }
+
+    transaction.set(doc(firestore, 'users', user.uid), {
+      name,
+      photoURL: user.photoURL,
+    });
+
+    // Also update it with the auth so that the latest is available everywhere.
+    await updateProfile(firebaseAuth.currentUser, { displayName: name });
+  }, []);
 }
