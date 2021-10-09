@@ -1,19 +1,22 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoadingButton } from '@mui/lab';
-import { Button, Stack, TextField, Typography } from '@mui/material';
+import { Avatar, Button, Stack, TextField, Typography } from '@mui/material';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAsyncFn } from 'react-use';
 import { loggedIn, useAuth } from 'store/auth';
 import { usePromoteIdea } from 'store/idea';
 import { usePromotePledge } from 'store/pledge';
+import { useCheckIfPromoted } from 'store/shared';
 import { postKind } from 'utils/constant';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 import SignInWithGoogle from './SignInWithGoogle';
+import { MdCheck } from 'react-icons/md';
 
 export default function PromoteForm({ type, postId }) {
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
+  const { data: isPromoted } = useCheckIfPromoted(postId, type);
 
   if (isLoggedIn === loggedIn.loading) {
     // Show a loading spinner.
@@ -31,6 +34,23 @@ export default function PromoteForm({ type, postId }) {
           You cannot promote if you are not signed in.
         </Typography>
         <SignInWithGoogle />
+      </Stack>
+    );
+  }
+
+  if (isPromoted) {
+    return (
+      <Stack
+        justifyContent="center"
+        alignItems="center"
+        sx={{ height: '100%' }}
+      >
+        <Typography textAlign="center" color="textSecondary" sx={{ mb: 1 }}>
+          You have already promoted this post.
+        </Typography>
+        <Avatar sx={{ bgcolor: 'primary.main' }}>
+          <MdCheck />
+        </Avatar>
       </Stack>
     );
   }

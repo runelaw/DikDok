@@ -174,6 +174,7 @@ export function usePromotePledge() {
       client.invalidateQueries('get-user-pledges');
       client.invalidateQueries('get-top-pledges');
       client.invalidateQueries(`get-pledge-${pledgeId}`);
+      client.invalidateQueries(`get-if-promoted-pledges-${pledgeId}`);
       client.invalidateQueries('get-all-pledges');
     },
     [client, updateUser]

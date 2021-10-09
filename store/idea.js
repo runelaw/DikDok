@@ -174,6 +174,7 @@ export function usePromoteIdea() {
       client.invalidateQueries('get-user-ideas');
       client.invalidateQueries('get-top-ideas');
       client.invalidateQueries(`get-idea-${ideaId}`);
+      client.invalidateQueries(`get-if-promoted-ideas-${ideaId}`);
       client.invalidateQueries('get-all-ideas');
     },
     [client, updateUser]
