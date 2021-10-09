@@ -58,6 +58,20 @@ export default function Initiative() {
                 {data.description}
               </Typography>
 
+              {data.link && (
+                <Typography
+                  variant="body1"
+                  component="a"
+                  href={data.link}
+                  target="_blank"
+                  rel="noreferrer nofollow"
+                  color="primary"
+                  sx={{ mt: 1, fontWeight: 400 }}
+                >
+                  {data.link}
+                </Typography>
+              )}
+
               <Stack direction="row" sx={{ mt: 1 }}>
                 {/* TODO: Use common tags between ideas and pledges. */}
                 {data.tags.map((it, index) => (
