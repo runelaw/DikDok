@@ -49,7 +49,7 @@ export default function PostCard({ type, post, isWide }) {
         }}
       >
         <Stack sx={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <PromoteButton count={post.promoters?.length ?? 0} />
+          <PromoteButton count={post.promoterCount ?? 0} />
         </Stack>
 
         <Stack

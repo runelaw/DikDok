@@ -71,7 +71,7 @@ export default function Initiative() {
               >
                 <MdThumbUp size={20} />{' '}
                 <Box sx={{ ml: 1 }}>
-                  {data.promoters?.length ?? 0} promoters until now
+                  {post.promoterCount ?? 0} promoters until now
                 </Box>
               </Typography>
 
