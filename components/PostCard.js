@@ -13,7 +13,7 @@ import { useCallback } from 'react';
 import { MdOpenInNew } from 'react-icons/md';
 import { pledgeTags } from 'store/pledge';
 import { postKind } from 'utils/constant';
-import PromoteButton from './PromoteButton';
+import PromoteStat from './PromoteStat';
 import ShareCardPopover from './ShareCardPopover';
 
 const timeAgo = new TimeAgo('en-US');
@@ -49,7 +49,7 @@ export default function PostCard({ type, post, isWide }) {
         }}
       >
         <Stack sx={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <PromoteButton count={post.promoterCount ?? 0} />
+          <PromoteStat count={post.promoterCount ?? 0} />
         </Stack>
 
         <Stack

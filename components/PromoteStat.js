@@ -2,7 +2,7 @@ import { Stack } from '@mui/material';
 import { Box } from '@mui/system';
 import { MdThumbUp } from 'react-icons/md';
 
-export default function PromoteButton({ count }) {
+export default function PromoteStat({ count }) {
   return (
     <Stack
       justifyContent="center"
