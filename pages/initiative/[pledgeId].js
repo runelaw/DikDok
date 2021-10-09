@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from '@mui/material';
+import { Container, Grid, Paper, Stack, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -22,10 +22,28 @@ export default function Initiative() {
       <Navigation />
 
       <Container sx={{ pt: 8, pb: 8 }}>
-        <Typography variant="h5" textAlign="center">
-          {data.title}
-        </Typography>
-        <Typography>{data.description}</Typography>
+        <Paper sx={{ px: 4, py: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item md={6}>
+              <Typography variant="h5">{data.title}</Typography>
+              <Typography sx={{ mt: 1 }}>{data.description}</Typography>
+
+              <Typography
+                component="p"
+                variant="caption"
+                color="textSecondary"
+                sx={{ mt: 2 }}
+              >
+                Posted by
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Sharad Chand
+              </Typography>
+            </Grid>
+
+            <Grid item md={6}></Grid>
+          </Grid>
+        </Paper>
       </Container>
     </>
   );
