@@ -4,10 +4,11 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
 import { useQueryClient } from 'react-query';
 import create from 'zustand';
-import { firebaseAuth, useFirebaseInitialized } from './firebase';
+import { firebaseAuth, firestore, useFirebaseInitialized } from './firebase';
 
 export const loggedIn = {
   loading: 'loading',
@@ -87,4 +88,27 @@ export function useLogout() {
     // Remove all the data out.
     client.invalidateQueries();
   }, [client]);
+}
+
+/**
+ * Initializes the logged in user info in firestore.
+ */
+export function useInitializeUser() {
+  return useCallback(async () => {
+    const user = useAuth.getState().user;
+    if (!user) {
+      return;
+    }
+
+    const storedUser = await getDoc(doc(firestore, 'users', user.uid));
+    if (storedUser.exists()) {
+      // The user is already initialized.
+      return;
+    }
+
+    await setDoc(doc(firestore, 'users', user.uid), {
+      name: user.displayName,
+      photoURL: user.photoURL,
+    });
+  }, []);
 }

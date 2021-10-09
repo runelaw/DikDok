@@ -13,28 +13,34 @@ import {
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
-import { useAuth } from './auth';
+import { useAuth, useInitializeUser } from './auth';
 import { firestore } from './firebase';
 
 /**
  * Hook to create a pledge.
  */
 export function useCreatePledge() {
-  return useCallback(async (state) => {
-    const user = useAuth.getState().user;
-    if (!user) {
-      return;
-    }
+  const initializeUser = useInitializeUser();
 
-    await addDoc(collection(firestore, 'pledges'), {
-      ...state,
-      uid: user.uid,
-      // The pledge will need to be approved by the admin.
-      isApproved: false,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    });
-  }, []);
+  return useCallback(
+    async (state) => {
+      const user = useAuth.getState().user;
+      if (!user) {
+        return;
+      }
+
+      await initializeUser();
+      await addDoc(collection(firestore, 'pledges'), {
+        ...state,
+        uid: user.uid,
+        // The pledge will need to be approved by the admin.
+        isApproved: false,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+    },
+    [initializeUser]
+  );
 }
 
 /**
