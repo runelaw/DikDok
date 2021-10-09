@@ -50,7 +50,7 @@ export default function Initiatives() {
 
         <Stack spacing={2} sx={{ mt: 4 }}>
           {(pledges ?? []).map((it) => (
-            <PostCard key={it.id} type="initiative" post={it} />
+            <PostCard key={it.id} type="initiative" post={it} isWide />
           ))}
         </Stack>
       </Container>

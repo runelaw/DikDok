@@ -11,7 +11,6 @@ import TimeAgo from 'javascript-time-ago';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { MdOpenInNew } from 'react-icons/md';
-import { useAuth } from 'store/auth';
 import { pledgeTags } from 'store/pledge';
 import { postKind } from 'utils/constant';
 import PromoteButton from './PromoteButton';
@@ -19,7 +18,7 @@ import ShareCardPopover from './ShareCardPopover';
 
 const timeAgo = new TimeAgo('en-US');
 
-export default function PostCard({ type, post }) {
+export default function PostCard({ type, post, isWide }) {
   const { push } = useRouter();
   const onClick = useCallback(
     () =>
@@ -30,7 +29,6 @@ export default function PostCard({ type, post }) {
       ),
     [post.id, push, type]
   );
-  const userId = useAuth(useCallback((state) => state.user?.uid, []));
 
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
@@ -85,7 +83,14 @@ export default function PostCard({ type, post }) {
           {post.title}
         </Typography>
 
-        <Typography sx={{ display: { xs: 'none', md: 'block' } }}>
+        <Typography
+          sx={{
+            display: { xs: 'none', md: 'block' },
+            height: isWide ? '1.5rem' : '3rem',
+            lineHeight: '1.5rem',
+            overflow: 'hidden',
+          }}
+        >
           {post.description}
         </Typography>
 
@@ -104,7 +109,7 @@ export default function PostCard({ type, post }) {
           variant="caption"
           component="p"
           color="textSecondary"
-          sx={{ mt: 2 }}
+          sx={{ mt: 1 }}
         >
           Posted {timeAgo.format(post.createdAt.toDate())}
         </Typography>
