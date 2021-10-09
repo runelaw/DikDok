@@ -1,11 +1,13 @@
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
 import PopupState, { bindMenu, bindTrigger } from 'material-ui-popup-state';
+import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { useAuth, useLogout } from 'store/auth';
 
 export default function ProfileButton() {
   const user = useAuth(useCallback((state) => state.user, []));
   const logout = useLogout();
+  const { push } = useRouter();
 
   return (
     <PopupState variant="popover" popupId="profile-popup-menu">
@@ -20,6 +22,24 @@ export default function ProfileButton() {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             <MenuItem disabled>{user?.email}</MenuItem>
+            <MenuItem
+              onClick={() => {
+                push('/initiatives');
+                popupState.close();
+              }}
+              sx={{ display: { md: 'none' } }}
+            >
+              Initiatives
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                push('/ideas');
+                popupState.close();
+              }}
+              sx={{ display: { md: 'none' } }}
+            >
+              Ideas
+            </MenuItem>
             <MenuItem
               onClick={() => {
                 logout();
