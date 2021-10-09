@@ -1,16 +1,15 @@
 import {
   addDoc,
-  arrayRemove,
-  arrayUnion,
   collection,
   doc,
   getDoc,
   getDocs,
+  increment,
   limit,
   orderBy,
   query,
+  runTransaction,
   serverTimestamp,
-  updateDoc,
   where,
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
@@ -143,36 +142,24 @@ export function usePromoteIdea() {
         return;
       }
 
-      // Add the user id to the idea as their promoters.
-      await updateDoc(doc(firestore, 'ideas', ideaId), {
-        promoters: arrayUnion(user.uid),
-      });
+      const promoted = await getDoc(
+        doc(firestore, 'ideas', ideaId, 'promoters', user.uid)
+      );
 
-      client.invalidateQueries('get-user-ideas');
-      client.invalidateQueries('get-top-ideas');
-      client.invalidateQueries(`get-idea-${ideaId}`);
-      client.invalidateQueries('get-all-ideas');
-    },
-    [client]
-  );
-}
-
-/**
- * Hook to unpromote an idea.
- */
-export function useUnpromoteIdea() {
-  const client = useQueryClient();
-
-  return useCallback(
-    async (ideaId) => {
-      const user = useAuth.getState().user;
-      if (!user) {
+      if (promoted.exists()) {
+        // Nothing to promote.
         return;
       }
 
-      // Remove the user id from the idea.
-      await updateDoc(doc(firestore, 'ideas', ideaId), {
-        promoters: arrayRemove(user.uid),
+      await runTransaction(firestore, (transaction) => {
+        transaction.update(doc(firestore, 'ideas', ideaId), {
+          promoterCount: increment(1),
+        });
+
+        transaction.set(
+          doc(firestore, 'ideas', ideaId, 'promoters', user.uid),
+          { createdAt: serverTimestamp() }
+        );
       });
 
       client.invalidateQueries('get-user-ideas');

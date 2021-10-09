@@ -1,16 +1,14 @@
 import {
   addDoc,
-  arrayRemove,
-  arrayUnion,
   collection,
   doc,
   getDoc,
   getDocs,
+  increment,
   limit,
   orderBy,
   query,
   serverTimestamp,
-  updateDoc,
   where,
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
@@ -137,42 +135,30 @@ export function usePromotePledge() {
   const client = useQueryClient();
 
   return useCallback(
-    async (pledgeId) => {
+    async (ideaId) => {
       const user = useAuth.getState().user;
       if (!user) {
         return;
       }
 
-      // Add the user id to the pledge as their promoters.
-      await updateDoc(doc(firestore, 'pledges', pledgeId), {
-        promoters: arrayUnion(user.uid),
-      });
+      const promoted = await getDoc(
+        doc(firestore, 'pledges', ideaId, 'promoters', user.uid)
+      );
 
-      client.invalidateQueries('get-user-pledges');
-      client.invalidateQueries('get-top-pledges');
-      client.invalidateQueries(`get-pledge-${pledgeId}`);
-      client.invalidateQueries('get-all-pledges');
-    },
-    [client]
-  );
-}
-
-/**
- * Hook to unpromote a pledge.
- */
-export function useUnpromotePledge() {
-  const client = useQueryClient();
-
-  return useCallback(
-    async (pledgeId) => {
-      const user = useAuth.getState().user;
-      if (!user) {
+      if (promoted.exists()) {
+        // Nothing to promote.
         return;
       }
 
-      // Remove the user id from the pledge.
-      await updateDoc(doc(firestore, 'pledges', pledgeId), {
-        promoters: arrayRemove(user.uid),
+      await runTransaction(firestore, (transaction) => {
+        transaction.update(doc(firestore, 'pledges', ideaId), {
+          promoterCount: increment(1),
+        });
+
+        transaction.set(
+          doc(firestore, 'pledges', ideaId, 'promoters', user.uid),
+          { createdAt: serverTimestamp() }
+        );
       });
 
       client.invalidateQueries('get-user-pledges');
