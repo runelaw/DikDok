@@ -9,10 +9,13 @@ import {
 } from '@mui/material';
 import Navigation from 'components/Navigation';
 import PledgeForm from 'components/PledgeForm';
+import TimeAgo from 'javascript-time-ago';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { MdThumbUp } from 'react-icons/md';
 import { pledgeTags, usePledgeById } from 'store/pledge';
+
+const timeAgo = new TimeAgo('en-US');
 
 export default function Initiative() {
   const { query } = useRouter();
@@ -35,6 +38,14 @@ export default function Initiative() {
         <Paper sx={{ px: 4, py: 3 }}>
           <Grid container spacing={2}>
             <Grid item md={6}>
+              <Typography
+                variant="caption"
+                component="p"
+                color="textSecondary"
+                sx={{ mt: 1 }}
+              >
+                Posted {timeAgo.format(data.createdAt.toDate())}
+              </Typography>
               <Typography variant="h4">{data.title}</Typography>
               <Typography
                 variant="h6"
