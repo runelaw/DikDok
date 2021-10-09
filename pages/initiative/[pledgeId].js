@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import { MdThumbUp } from 'react-icons/md';
 import { useUserById } from 'store/auth';
 import { pledgeTags, usePledgeById } from 'store/pledge';
+import { postKind } from 'utils/constant';
 
 const timeAgo = new TimeAgo('en-US');
 
@@ -96,7 +97,7 @@ export default function Initiative() {
                 </Box>
               </Typography>
 
-              <PromoteForm />
+              <PromoteForm type={postKind.initiative} postId={pledgeId} />
             </Grid>
           </Grid>
         </Paper>

@@ -1,13 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAsyncFn } from 'react-use';
 import { loggedIn, useAuth } from 'store/auth';
+import { usePromoteIdea } from 'store/idea';
+import { usePromotePledge } from 'store/pledge';
+import { postKind } from 'utils/constant';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 import SignInWithGoogle from './SignInWithGoogle';
 
-export default function PromoteForm() {
+export default function PromoteForm({ type, postId }) {
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
 
   if (isLoggedIn === loggedIn.loading) {
@@ -30,14 +35,14 @@ export default function PromoteForm() {
     );
   }
 
-  return <Form />;
+  return <Form type={type} postId={postId} />;
 }
 
 const schema = z.object({
   name: z.string().min(1, { message: 'Cannot be empty' }),
 });
 
-function Form() {
+function Form({ type, postId }) {
   const user = useAuth(useCallback((state) => state.user, []));
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -46,9 +51,20 @@ function Form() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = useCallback((state) => {
-    console.log(state);
-  }, []);
+  const promotePledge = usePromotePledge();
+  const promoteIdea = usePromoteIdea();
+  const [{ loading }, onSubmit] = useAsyncFn(
+    async (state) => {
+      switch (type) {
+        case postKind.initiative:
+          await promotePledge({ pledgeId: postId, name: state.name });
+          return;
+        case postKind.idea:
+          await promoteIdea({ ideaId: postId, name: state.name });
+      }
+    },
+    [postId, promoteIdea, promotePledge, type]
+  );
 
   return (
     <Stack
@@ -71,9 +87,9 @@ function Form() {
         size="small"
         {...materialRegister(register, 'name')}
       />
-      <Button type="submit" variant="contained">
+      <LoadingButton type="submit" variant="contained" loading={loading}>
         Pledge Now
-      </Button>
+      </LoadingButton>
     </Stack>
   );
 }
