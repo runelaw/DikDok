@@ -35,7 +35,7 @@ export default function Navigation({ position = 'sticky' }) {
                 component="a"
                 variant="contained"
                 color="inherit"
-                sx={{ mr: 2 }}
+                sx={{ mr: 2, display: { xs: 'none', sm: 'flex' } }}
               >
                 Initiatives
               </Button>

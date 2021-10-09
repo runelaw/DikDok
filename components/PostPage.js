@@ -98,7 +98,8 @@ export default function PostPage({ post, type }) {
                   md: '1px solid #DADADA',
                 },
                 px: 4,
-                py: 3,
+                pt: 3,
+                pb: 5,
               }}
             >
               <Typography

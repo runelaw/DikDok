@@ -14,8 +14,12 @@ export default function UserCard({ children }) {
         <Paper
           sx={{
             display: 'flex',
+            flexDirection: {
+              xs: 'column',
+              md: 'row',
+            },
             justifyContent: 'space-between',
-            alignItems: 'center',
+            alignItems: { xs: 'flex-start', md: 'center' },
             px: 2,
             py: 1,
           }}
@@ -30,7 +34,7 @@ export default function UserCard({ children }) {
             </Box>
           </Stack>
 
-          {children}
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>{children}</Box>
         </Paper>
       )}
 
@@ -38,13 +42,19 @@ export default function UserCard({ children }) {
         <Paper
           sx={{
             display: 'flex',
+            flexDirection: {
+              xs: 'column',
+              md: 'row',
+            },
             justifyContent: 'space-between',
             alignItems: 'center',
             px: 2,
             py: 2,
           }}
         >
-          <Typography>You need to be signed in to make a pledge.</Typography>
+          <Typography sx={{ mb: { xs: 1, md: 0 } }}>
+            You need to be signed in to make a pledge.
+          </Typography>
           <Button variant="contained" onClick={login}>
             Sign in with Google
           </Button>
