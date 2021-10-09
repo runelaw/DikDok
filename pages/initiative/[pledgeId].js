@@ -97,7 +97,11 @@ export default function Initiative() {
                 </Box>
               </Typography>
 
-              <PromoteForm type={postKind.initiative} postId={pledgeId} />
+              <PromoteForm
+                type={postKind.initiative}
+                postId={pledgeId}
+                title={data.title}
+              />
             </Grid>
           </Grid>
         </Paper>

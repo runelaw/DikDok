@@ -9,8 +9,6 @@ import {
   FacebookShareButton,
   LinkedinIcon,
   LinkedinShareButton,
-  PinterestIcon,
-  PinterestShareButton,
   PocketIcon,
   PocketShareButton,
   RedditIcon,
@@ -23,18 +21,19 @@ import {
   WhatsappShareButton,
 } from 'react-share';
 
-export default function ShareCardPopover({ pledgeId, title }) {
-  const link = `https://www.100bhagya.com/initiative/${pledgeId}`;
+export default function ShareCardPopover({
+  type,
+  postId,
+  title,
+  size = 'small',
+}) {
+  const link = `https://www.100bhagya.com/${type}/${postId}`;
 
   return (
     <PopupState variant="popover" popupId="share-card-popover">
       {(popupState) => (
         <>
-          <IconButton
-            component="span"
-            size="small"
-            {...bindTrigger(popupState)}
-          >
+          <IconButton component="span" size={size} {...bindTrigger(popupState)}>
             <MdShare />
           </IconButton>
           <Popover

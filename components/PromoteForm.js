@@ -13,8 +13,9 @@ import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 import SignInWithGoogle from './SignInWithGoogle';
 import { MdCheck } from 'react-icons/md';
+import ShareCardPopover from './ShareCardPopover';
 
-export default function PromoteForm({ type, postId }) {
+export default function PromoteForm({ type, postId, title }) {
   const isLoggedIn = useAuth(useCallback((state) => state.isLoggedIn, []));
   const { data: isPromoted } = useCheckIfPromoted(postId, type);
 
@@ -46,11 +47,21 @@ export default function PromoteForm({ type, postId }) {
         sx={{ height: '100%' }}
       >
         <Typography textAlign="center" color="textSecondary" sx={{ mb: 1 }}>
-          You have already promoted this post.
+          You have promoted this post.
         </Typography>
         <Avatar sx={{ bgcolor: 'primary.main' }}>
           <MdCheck />
         </Avatar>
+
+        <Typography textAlign="center" color="textSecondary" sx={{ mt: 3 }}>
+          Share Now
+        </Typography>
+        <ShareCardPopover
+          type={type}
+          postId={postId}
+          title={title}
+          size="normal"
+        />
       </Stack>
     );
   }
