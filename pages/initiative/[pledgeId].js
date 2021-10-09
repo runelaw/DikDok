@@ -84,7 +84,11 @@ export default function Initiative() {
                 variant="h6"
                 component="p"
                 color="primary"
-                sx={{ display: 'flex', alignItems: 'center' }}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
               >
                 <MdThumbUp size={20} />{' '}
                 <Box sx={{ ml: 1 }}>
