@@ -1,7 +1,9 @@
-import { Container, Grid, Paper, Stack, Typography } from '@mui/material';
+import { Box, Container, Grid, Paper, Typography } from '@mui/material';
 import Navigation from 'components/Navigation';
+import PledgeForm from 'components/PledgeForm';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { MdThumbUp } from 'react-icons/md';
 import { usePledgeById } from 'store/pledge';
 
 export default function Initiative() {
@@ -41,7 +43,21 @@ export default function Initiative() {
               </Typography>
             </Grid>
 
-            <Grid item md={6}></Grid>
+            <Grid item md={6}>
+              <Typography
+                variant="h6"
+                component="p"
+                color="primary"
+                sx={{ display: 'flex', alignItems: 'center' }}
+              >
+                <MdThumbUp size={20} />{' '}
+                <Box sx={{ ml: 1 }}>
+                  {data.promoters?.length ?? 0} promoters until now
+                </Box>
+              </Typography>
+
+              <PledgeForm />
+            </Grid>
           </Grid>
         </Paper>
       </Container>
