@@ -1,8 +1,7 @@
-import { Container, Typography } from '@mui/material';
-import Navigation from 'components/Navigation';
-import Head from 'next/head';
+import PostPage from 'components/PostPage';
 import { useRouter } from 'next/router';
 import { useIdeaById } from 'store/idea';
+import { postKind } from 'utils/constant';
 
 export default function Initiative() {
   const { query } = useRouter();
@@ -13,20 +12,5 @@ export default function Initiative() {
     return null;
   }
 
-  return (
-    <>
-      <Head>
-        <title>100bhagya - {data.title}</title>
-      </Head>
-
-      <Navigation />
-
-      <Container sx={{ pt: 8, pb: 8 }}>
-        <Typography variant="h5" textAlign="center">
-          {data.title}
-        </Typography>
-        <Typography>{data.description}</Typography>
-      </Container>
-    </>
-  );
+  return <PostPage type={postKind.idea} post={data} />;
 }
