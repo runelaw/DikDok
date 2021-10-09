@@ -51,14 +51,7 @@ export default function PostCard({ type, post }) {
         }}
       >
         <Stack sx={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <PromoteButton
-            postId={post.id}
-            type={type}
-            count={post.promoters?.length ?? 0}
-            isPromoted={
-              userId ? (post.promoters ?? []).includes(userId) : false
-            }
-          />
+          <PromoteButton count={post.promoters?.length ?? 0} />
         </Stack>
 
         <Stack
