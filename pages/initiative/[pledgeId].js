@@ -1,10 +1,18 @@
-import { Box, Container, Grid, Paper, Typography } from '@mui/material';
+import {
+  Box,
+  Chip,
+  Container,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material';
 import Navigation from 'components/Navigation';
 import PledgeForm from 'components/PledgeForm';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { MdThumbUp } from 'react-icons/md';
-import { usePledgeById } from 'store/pledge';
+import { pledgeTags, usePledgeById } from 'store/pledge';
 
 export default function Initiative() {
   const { query } = useRouter();
@@ -35,6 +43,18 @@ export default function Initiative() {
               >
                 {data.description}
               </Typography>
+
+              <Stack direction="row" sx={{ mt: 1 }}>
+                {/* TODO: Use common tags between ideas and pledges. */}
+                {data.tags.map((it, index) => (
+                  <Chip
+                    key={it}
+                    label={pledgeTags[it]}
+                    size="small"
+                    sx={{ mr: index !== data.tags.length - 1 ? 1 : 0 }}
+                  />
+                ))}
+              </Stack>
 
               <Typography component="p" variant="caption" sx={{ mt: 2 }}>
                 Posted by
