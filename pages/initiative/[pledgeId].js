@@ -13,6 +13,7 @@ import TimeAgo from 'javascript-time-ago';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { MdThumbUp } from 'react-icons/md';
+import { useUserById } from 'store/auth';
 import { pledgeTags, usePledgeById } from 'store/pledge';
 
 const timeAgo = new TimeAgo('en-US');
@@ -21,6 +22,7 @@ export default function Initiative() {
   const { query } = useRouter();
   const pledgeId = query.pledgeId;
   const { data, error } = usePledgeById(pledgeId);
+  const { data: user } = useUserById(data?.uid);
 
   if (error || !data) {
     return null;
@@ -67,10 +69,14 @@ export default function Initiative() {
                 ))}
               </Stack>
 
-              <Typography component="p" variant="caption" sx={{ mt: 2 }}>
-                Posted by
-              </Typography>
-              <Typography variant="body2">Sharad Chand</Typography>
+              {user?.name && (
+                <>
+                  <Typography component="p" variant="caption" sx={{ mt: 2 }}>
+                    Posted by
+                  </Typography>
+                  <Typography variant="body2">{user?.name}</Typography>
+                </>
+              )}
             </Grid>
 
             <Grid item md={6}>

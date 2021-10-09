@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
-import { useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import create from 'zustand';
 import { firebaseAuth, firestore, useFirebaseInitialized } from './firebase';
 
@@ -111,4 +111,21 @@ export function useInitializeUser() {
       photoURL: user.photoURL,
     });
   }, []);
+}
+
+/**
+ * Gets the user by its ID to show information on initiatives and ideas.
+ */
+export function useUserById(userId) {
+  return useQuery(
+    `get-user-by-id-${userId}`,
+    useCallback(
+      () =>
+        getDoc(doc(firestore, 'users', userId)).then((result) => ({
+          id: result.id,
+          ...result.data(),
+        })),
+      [userId]
+    )
+  );
 }
