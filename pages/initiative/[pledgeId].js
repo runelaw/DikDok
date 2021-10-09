@@ -27,20 +27,19 @@ export default function Initiative() {
         <Paper sx={{ px: 4, py: 3 }}>
           <Grid container spacing={2}>
             <Grid item md={6}>
-              <Typography variant="h5">{data.title}</Typography>
-              <Typography sx={{ mt: 1 }}>{data.description}</Typography>
-
+              <Typography variant="h4">{data.title}</Typography>
               <Typography
+                variant="h6"
                 component="p"
-                variant="caption"
-                color="textSecondary"
-                sx={{ mt: 2 }}
+                sx={{ mt: 1, fontWeight: 400 }}
               >
+                {data.description}
+              </Typography>
+
+              <Typography component="p" variant="caption" sx={{ mt: 2 }}>
                 Posted by
               </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Sharad Chand
-              </Typography>
+              <Typography variant="body2">Sharad Chand</Typography>
             </Grid>
 
             <Grid item md={6}>
