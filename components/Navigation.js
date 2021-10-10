@@ -1,4 +1,4 @@
-import { AppBar, Button, Container, Stack, Toolbar } from '@mui/material';
+import { AppBar, Button, Container, Stack, Toolbar, Box } from '@mui/material';
 import logo from 'assets/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -42,7 +42,17 @@ export default function Navigation({ position = 'sticky' }) {
             </Link>
 
             {isLoggedIn === loggedIn.true && <ProfileButton />}
-            {isLoggedIn === loggedIn.false && <SignInWithGoogle />}
+            {isLoggedIn === loggedIn.false && (
+              <>
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  <SignInWithGoogle />
+                </Box>
+
+                <Box sx={{ display: { md: 'none' } }}>
+                  <SignInWithGoogle>Sign In</SignInWithGoogle>
+                </Box>
+              </>
+            )}
           </Stack>
         </Toolbar>
       </Container>
