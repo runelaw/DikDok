@@ -12,23 +12,14 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { MdOpenInNew } from 'react-icons/md';
 import { ideaTags } from 'store/idea';
-import { postKind } from 'utils/constant';
 import PromoteStat from './PromoteStat';
 import ShareCardPopover from './ShareCardPopover';
 
 const timeAgo = new TimeAgo('en-US');
 
-export default function PostCard({ type, post, isWide }) {
+export default function PostCard({ post, isWide }) {
   const { push } = useRouter();
-  const onClick = useCallback(
-    () =>
-      push(
-        type === postKind.initiative
-          ? `/initiative/${post.id}`
-          : `/idea/${post.id}`
-      ),
-    [post.id, push, type]
-  );
+  const onClick = useCallback(() => push(`/idea/${post.id}`), [post.id, push]);
 
   return (
     <Card sx={{ display: 'flex', flex: 1, flexShrink: 0 }}>
@@ -57,7 +48,7 @@ export default function PostCard({ type, post, isWide }) {
           spacing={1}
           sx={{ alignItems: 'flex-start', px: 2, py: 0 }}
         >
-          <ShareCardPopover type={type} postId={post.id} title={post.title} />
+          <ShareCardPopover postId={post.id} title={post.title} />
           {post.link && (
             <IconButton
               component="a"

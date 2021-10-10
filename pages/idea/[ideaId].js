@@ -1,7 +1,6 @@
 import PostPage from 'components/PostPage';
 import { useRouter } from 'next/router';
 import { useIdeaById } from 'store/idea';
-import { postKind } from 'utils/constant';
 
 export default function Initiative() {
   const { query } = useRouter();
@@ -12,5 +11,5 @@ export default function Initiative() {
     return null;
   }
 
-  return <PostPage type={postKind.idea} post={data} />;
+  return <PostPage post={data} />;
 }

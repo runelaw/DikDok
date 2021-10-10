@@ -13,11 +13,11 @@ import TimeAgo from 'javascript-time-ago';
 import Head from 'next/head';
 import { MdThumbUp } from 'react-icons/md';
 import { useUserById } from 'store/auth';
-import { pledgeTags } from 'store/pledge';
+import { ideaTags } from 'store/idea';
 
 const timeAgo = new TimeAgo('en-US');
 
-export default function PostPage({ post, type }) {
+export default function PostPage({ post }) {
   const { data: user } = useUserById(post.uid);
 
   return (
@@ -64,11 +64,10 @@ export default function PostPage({ post, type }) {
               )}
 
               <Stack direction="row" sx={{ mt: 1 }}>
-                {/* TODO: Use common tags between ideas and pledges. */}
                 {post.tags.map((it, index) => (
                   <Chip
                     key={it}
-                    label={pledgeTags[it]}
+                    label={ideaTags[it]}
                     size="small"
                     sx={{ mr: index !== post.tags.length - 1 ? 1 : 0 }}
                   />
@@ -118,7 +117,7 @@ export default function PostPage({ post, type }) {
                 </Box>
               </Typography>
 
-              <PromoteForm type={type} postId={post.id} title={post.title} />
+              <PromoteForm postId={post.id} title={post.title} />
             </Grid>
           </Grid>
         </Paper>

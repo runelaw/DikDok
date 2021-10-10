@@ -18,7 +18,7 @@ export default function TopIdeas() {
       <Grid container spacing={2}>
         {(ideas ?? []).map((it) => (
           <Grid key={it.id} item xs={12} md={6}>
-            <PostCard type="idea" post={it} />
+            <PostCard post={it} />
           </Grid>
         ))}
       </Grid>

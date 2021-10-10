@@ -21,13 +21,8 @@ import {
   WhatsappShareButton,
 } from 'react-share';
 
-export default function ShareCardPopover({
-  type,
-  postId,
-  title,
-  size = 'small',
-}) {
-  const link = `https://www.100bhagya.com/${type}/${postId}`;
+export default function ShareCardPopover({ postId, title, size = 'small' }) {
+  const link = `https://www.100bhagya.com/idea/${postId}`;
 
   return (
     <PopupState variant="popover" popupId="share-card-popover">
