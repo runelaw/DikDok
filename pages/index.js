@@ -1,8 +1,9 @@
-import { Container, Typography } from '@mui/material';
+import { Container, Link, Typography } from '@mui/material';
 import HomeMainSection from 'components/HomeMainSection';
 import Navigation from 'components/Navigation';
 import TopIdeas from 'components/TopIdeas';
 import Head from 'next/head';
+import NLink from 'next/link';
 
 export default function Home() {
   return (
@@ -33,10 +34,12 @@ export default function Home() {
         <Typography
           variant="h6"
           component="p"
-          color="primary"
-          sx={{ mt: 0.25 }}
+          sx={{ mt: 0.25, fontWeight: 400 }}
         >
-          How will we contribute?
+          How will we contribute?{' '}
+          <NLink href="/india-landscape" passHref>
+            <Link>Read more</Link>
+          </NLink>
         </Typography>
 
         <TopIdeas />
