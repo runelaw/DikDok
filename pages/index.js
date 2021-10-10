@@ -37,7 +37,7 @@ export default function Home() {
           sx={{ mt: 0.25, fontWeight: 400 }}
         >
           How will we contribute?{' '}
-          <NLink href="/india-landscape" passHref>
+          <NLink href="/about" passHref>
             <Link>Read more</Link>
           </NLink>
         </Typography>
