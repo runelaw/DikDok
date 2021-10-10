@@ -1,4 +1,5 @@
 import { Stack, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import '@pqina/flip/dist/flip.min.css';
 import { DateTime } from 'luxon';
 import React, { forwardRef, useEffect, useRef } from 'react';
@@ -87,7 +88,7 @@ export default function FlipCounter() {
       <Stack
         direction="row"
         justifyContent="center"
-        sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '3rem' } }}
+        sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}
       >
         <Counter ref={yearRef} name="Year" />
         <Counter ref={monthRef} name="Month" />
@@ -96,7 +97,7 @@ export default function FlipCounter() {
       <Stack
         direction="row"
         justifyContent="center"
-        sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' }, mt: 2 }}
+        sx={{ fontSize: { xs: '2rem', sm: '2rem' }, mt: 2 }}
       >
         <Counter ref={hourRef} name="Hour" />
         <Counter ref={minuteRef} name="Minute" />
@@ -108,11 +109,25 @@ export default function FlipCounter() {
 
 const Counter = forwardRef(function Counter({ name }, ref) {
   return (
-    <div ref={ref} className="tick">
+    <Box
+      ref={ref}
+      className="tick"
+      sx={{
+        '& .tick-flip-panel': {
+          bgcolor: 'grey.100',
+          color: 'grey.900',
+        },
+
+        '& .tick-flip-panel-back:after': {
+          backgroundImage:
+            '-webkit-linear-gradient(top, rgba(0,0,0,.2) 1px, rgba(0,0,0,.1) 0,transparent 30%)',
+        },
+      }}
+    >
       <div data-repeat="true" aria-hidden="true">
         <span data-view="flip">{name}</span>
       </div>
-    </div>
+    </Box>
   );
 });
 
