@@ -32,6 +32,11 @@ export default function PromoteForm({ postId, title }) {
           You cannot promote if you are not signed in.
         </Typography>
         <SignInWithGoogle />
+
+        <Typography textAlign="center" color="textSecondary" sx={{ mt: 3 }}>
+          Share Now
+        </Typography>
+        <ShareCardPopover postId={postId} title={title} size="normal" />
       </Stack>
     );
   }
