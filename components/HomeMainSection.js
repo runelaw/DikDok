@@ -19,7 +19,7 @@ export default function HomeMainSection() {
           zIndex: -100,
           transform: 'translate(-50%, -50%)',
           '& img': {
-            '-webkit-filter':
+            WebkitFilter:
               'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
             filter:
               'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
