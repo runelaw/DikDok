@@ -82,7 +82,7 @@ export default function HomeMainSection() {
         </Typography>
 
         <Stack alignItems="center" sx={{ mt: 8 }}>
-          <Link href="/make-a-pledge" passHref>
+          <Link href="/share-an-idea" passHref>
             <Button component="a" variant="contained" size="large">
               Make a Pledge Today
             </Button>

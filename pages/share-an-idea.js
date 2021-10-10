@@ -17,8 +17,7 @@ import Link from 'next/link';
 import { useCallback, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { loggedIn, useAuth } from 'store/auth';
-import { useCreateIdea, useMyIdeas } from 'store/idea';
-import { pledgeTags } from 'store/pledge';
+import { ideaTags, useCreateIdea, useMyIdeas } from 'store/idea';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 
@@ -64,7 +63,7 @@ export default function ShareAnIdea() {
   });
 
   const [loading, setLoading] = useState(false);
-  const { data: pledges, refetch } = useMyIdeas();
+  const { data: ideas, refetch } = useMyIdeas();
 
   const createIdea = useCreateIdea();
   const onSubmit = useCallback(
@@ -109,7 +108,7 @@ export default function ShareAnIdea() {
             </Typography>
 
             <UserCard>
-              {pledges?.length > 0 && (
+              {ideas?.length > 0 && (
                 <Link href="/my-ideas" passHref>
                   <Button variant="outlined" component="a">
                     My Ideas
@@ -163,7 +162,7 @@ export default function ShareAnIdea() {
                         {selected.map((value) => (
                           <Chip
                             key={value}
-                            label={pledgeTags[value]}
+                            label={ideaTags[value]}
                             size="small"
                           />
                         ))}
@@ -174,9 +173,9 @@ export default function ShareAnIdea() {
                   helperText={fieldState.error?.message}
                   required
                 >
-                  {Object.keys(pledgeTags).map((key) => (
+                  {Object.keys(ideaTags).map((key) => (
                     <MenuItem key={key} value={key}>
-                      {pledgeTags[key]}
+                      {ideaTags[key]}
                     </MenuItem>
                   ))}
                 </TextField>

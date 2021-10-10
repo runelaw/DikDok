@@ -11,7 +11,7 @@ export default function Ideas() {
   const isLoggedIn = useAuth(
     useCallback((state) => state.isLoggedIn === loggedIn.true, [])
   );
-  const { data: pledges } = useAllIdeas();
+  const { data: ideas } = useAllIdeas();
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function Ideas() {
         </Stack>
 
         <Stack spacing={2} sx={{ mt: 4 }}>
-          {(pledges ?? []).map((it) => (
+          {(ideas ?? []).map((it) => (
             <PostCard key={it.id} post={it} isWide />
           ))}
         </Stack>
