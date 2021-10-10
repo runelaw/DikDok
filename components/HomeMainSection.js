@@ -12,7 +12,7 @@ export default function HomeMainSection() {
       <Box
         sx={{
           position: 'absolute',
-          top: '50%',
+          top: { xs: '30%', sm: '50%' },
           left: '50%',
           width: '90%',
           height: '90%',
@@ -27,19 +27,24 @@ export default function HomeMainSection() {
           },
         }}
       >
-        <Image
-          src={india}
-          alt="India Landscape"
-          layout="fill"
-          objectFit="cover"
-        />
+        <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+          <Image
+            src={india}
+            alt="India Landscape"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
       </Box>
 
       <Container sx={{ pt: 4, pb: 12 }}>
         <Stack
           sx={{
             alignItems: 'center',
-            mt: 20,
+            mt: {
+              xs: 8,
+              md: 20,
+            },
           }}
         >
           <Box
