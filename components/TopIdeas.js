@@ -1,9 +1,9 @@
-import { Stack, Typography, Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import PostCard from 'components/PostCard';
-import { useTopPledges } from 'store/pledge';
+import { useTopIdeas } from 'store/idea';
 
-export default function TopPledges() {
-  const { data: pledges } = useTopPledges();
+export default function TopIdeas() {
+  const { data: ideas } = useTopIdeas();
 
   return (
     <>
@@ -12,13 +12,13 @@ export default function TopPledges() {
         component="div"
         sx={{ mt: { xs: 8, md: 12 }, mb: 3 }}
       >
-        Top Initiatives
+        Top Ideas
       </Typography>
 
       <Grid container spacing={2}>
-        {(pledges ?? []).map((it) => (
+        {(ideas ?? []).map((it) => (
           <Grid key={it.id} item xs={12} md={6}>
-            <PostCard type="initiative" post={it} />
+            <PostCard type="idea" post={it} />
           </Grid>
         ))}
       </Grid>

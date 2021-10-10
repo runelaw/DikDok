@@ -11,7 +11,7 @@ import TimeAgo from 'javascript-time-ago';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { MdOpenInNew } from 'react-icons/md';
-import { pledgeTags } from 'store/pledge';
+import { ideaTags } from 'store/idea';
 import { postKind } from 'utils/constant';
 import PromoteStat from './PromoteStat';
 import ShareCardPopover from './ShareCardPopover';
@@ -98,7 +98,7 @@ export default function PostCard({ type, post, isWide }) {
           {post.tags.map((it, index) => (
             <Chip
               key={it}
-              label={pledgeTags[it]}
+              label={ideaTags[it]}
               size="small"
               sx={{ mr: index !== post.tags.length - 1 ? 1 : 0 }}
             />

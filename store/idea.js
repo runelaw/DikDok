@@ -14,6 +14,7 @@ import {
 } from 'firebase/firestore';
 import { useCallback, useEffect } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
+import { postKind } from 'utils/constant';
 import { useAuth, useInitializeUser, useUpdateUser } from './auth';
 import { firestore } from './firebase';
 
@@ -178,6 +179,20 @@ export function usePromoteIdea() {
       client.invalidateQueries('get-all-ideas');
     },
     [client, updateUser]
+  );
+}
+
+/**
+ * Check if the idea is promoted.
+ */
+export function useCheckIfPromoted(postId, type) {
+  const uid = useAuth(useCallback((state) => state.user?.uid, []));
+  const colName = type === postKind.initiative ? 'pledges' : 'ideas';
+
+  return useQuery(`get-if-promoted-${colName}-${postId}`, () =>
+    getDoc(doc(firestore, colName, postId, 'promoters', uid)).then((result) =>
+      result.exists()
+    )
   );
 }
 

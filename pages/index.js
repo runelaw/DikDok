@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
 import HomeMainSection from 'components/HomeMainSection';
 import Navigation from 'components/Navigation';
-import TopPledges from 'components/TopPledges';
+import TopIdeas from 'components/TopIdeas';
 import Head from 'next/head';
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
           How will we contribute?
         </Typography>
 
-        <TopPledges />
+        <TopIdeas />
       </Container>
     </>
   );
