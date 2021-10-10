@@ -38,29 +38,24 @@ export default function FlipCounter() {
         value: doubleDigit(hours) + ':',
       });
       const minuteTicker = Tick.DOM.create(minuteRef.current, {
-        value: doubleDigit(minutes) + ':',
-      });
-      const secondTicker = Tick.DOM.create(secondRef.current, {
-        value: doubleDigit(Math.floor(seconds)),
+        value: doubleDigit(minutes),
       });
 
       interval = setInterval(() => {
-        const { years, months, days, hours, minutes, seconds } =
-          sauSaal.diffNow([
-            'years',
-            'months',
-            'days',
-            'hours',
-            'minutes',
-            'seconds',
-          ]);
+        const { years, months, days, hours, minutes } = sauSaal.diffNow([
+          'years',
+          'months',
+          'days',
+          'hours',
+          'minutes',
+          'seconds',
+        ]);
 
         yearTicker.value = `${years}Y `;
         monthTicker.value = `${months}M `;
         dayTicker.value = `${days}D`;
         hourTicker.value = doubleDigit(hours) + ':';
-        minuteTicker.value = doubleDigit(minutes) + ':';
-        secondTicker.value = doubleDigit(Math.floor(seconds));
+        minuteTicker.value = doubleDigit(minutes);
       }, 1000);
     });
 
@@ -69,7 +64,6 @@ export default function FlipCounter() {
     const day = dayRef.current;
     const hour = hourRef.current;
     const minute = minuteRef.current;
-    const second = secondRef.current;
     return () => {
       import('@pqina/flip').then(({ default: Tick }) => {
         Tick.DOM.destroy(year);
@@ -77,7 +71,6 @@ export default function FlipCounter() {
         Tick.DOM.destroy(day);
         Tick.DOM.destroy(hour);
         Tick.DOM.destroy(minute);
-        Tick.DOM.destroy(second);
       });
       clearInterval(interval);
     };
@@ -101,7 +94,6 @@ export default function FlipCounter() {
       >
         <Counter ref={hourRef} name="Hour" />
         <Counter ref={minuteRef} name="Minute" />
-        <Counter ref={secondRef} name="Second" />
       </Stack>
     </>
   );
