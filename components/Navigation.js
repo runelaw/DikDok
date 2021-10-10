@@ -30,23 +30,12 @@ export default function Navigation({ position = 'sticky' }) {
           </Link>
 
           <Stack direction="row" alignItems="center">
-            <Link href="/initiatives" passHref>
-              <Button
-                component="a"
-                variant="contained"
-                color="inherit"
-                sx={{ mr: 2, display: { xs: 'none', sm: 'flex' } }}
-              >
-                Initiatives
-              </Button>
-            </Link>
-
             <Link href="/ideas" passHref>
               <Button
                 component="a"
                 variant="contained"
                 color="inherit"
-                sx={{ mr: 2, display: { xs: 'none', sm: 'flex' } }}
+                sx={{ mr: 2 }}
               >
                 Ideas
               </Button>
