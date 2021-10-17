@@ -5,9 +5,28 @@ import { MdThumbUp } from 'react-icons/md';
 import Image from 'next/image';
 import hundred from 'assets/100.png';
 import PledgeForm from 'components/PledgeForm';
+import { useAuth } from 'store/auth';
+import { useCallback } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+const schema = z.object({
+  name: z.string().min(1, { message: 'Cannot be empty' }),
+  email: z.string().email(),
+});
 
 export default function MakeAPledge() {
-  const name = 'Sharad Chand';
+  const user = useAuth(useCallback((state) => state.user, []));
+  const form = useForm({
+    defaultValues: {
+      name: user?.name ?? '',
+      email: user?.email ?? '',
+    },
+    resolver: zodResolver(schema),
+  });
+
+  const name = useWatch({ control: form.control, name: 'name' });
 
   return (
     <>
@@ -39,7 +58,7 @@ export default function MakeAPledge() {
               >
                 I,{' '}
                 <Chip
-                  label={name}
+                  label={name || 'Your Name'}
                   size="small"
                   sx={{ fontWeight: 700, fontSize: 'h6.fontSize' }}
                 />
@@ -89,7 +108,7 @@ export default function MakeAPledge() {
                 <MdThumbUp size={20} />{' '}
                 <Box sx={{ ml: 1 }}>{0} pledged until now</Box>
               </Typography>
-              <PledgeForm />
+              <PledgeForm form={form} />
             </Grid>
           </Grid>
         </Paper>
