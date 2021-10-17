@@ -34,8 +34,6 @@ export function useCreateIdea() {
       await addDoc(collection(firestore, 'ideas'), {
         ...state,
         uid: user.uid,
-        // The idea will need to be approved by the admin.
-        isApproved: false,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       });
