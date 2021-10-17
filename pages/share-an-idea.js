@@ -22,7 +22,7 @@ import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 
 const urlRegex =
-  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/;
 
 const schema = z.object({
   title: z
@@ -77,8 +77,7 @@ export default function ShareAnIdea() {
         refetch();
       }
 
-      // TODO: Show that the idea has been created and is awaiting approval.
-      // It will be shown in the 'My Ideas' section of the user profile.
+      // TODO: Show that the idea has been created.
     },
     [createIdea, refetch, reset]
   );
