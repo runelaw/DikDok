@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useInitializeAuthStore } from 'store/auth';
 import { useInitializeFirebase } from 'store/firebase';
 import theme from 'utils/theme';
+import { SnackbarProvider } from 'notistack';
 
 const client = new QueryClient({
   defaultOptions: {
@@ -33,7 +34,9 @@ export default function MyApp({ Component, pageProps }) {
       />
 
       <QueryClientProvider client={client}>
-        <Component {...pageProps} />
+        <SnackbarProvider>
+          <Component {...pageProps} />
+        </SnackbarProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

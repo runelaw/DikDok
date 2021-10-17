@@ -20,6 +20,7 @@ import { loggedIn, useAuth } from 'store/auth';
 import { ideaTags, useCreateIdea, useMyIdeas } from 'store/idea';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
+import { useSnackbar } from 'notistack';
 
 const urlRegex =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/;
@@ -64,6 +65,7 @@ export default function ShareAnIdea() {
 
   const [loading, setLoading] = useState(false);
   const { data: ideas, refetch } = useMyIdeas();
+  const { enqueueSnackbar } = useSnackbar();
 
   const createIdea = useCreateIdea();
   const onSubmit = useCallback(
@@ -72,14 +74,15 @@ export default function ShareAnIdea() {
       try {
         await createIdea(state);
         reset();
+        enqueueSnackbar('Your idea has been published for the world to see.', {
+          variant: 'success',
+        });
       } finally {
         setLoading(false);
         refetch();
       }
-
-      // TODO: Show that the idea has been created.
     },
-    [createIdea, refetch, reset]
+    [createIdea, refetch, reset, enqueueSnackbar]
   );
 
   return (
