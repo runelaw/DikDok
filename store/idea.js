@@ -185,7 +185,7 @@ export function usePromoteIdea() {
 export function useCheckIfPromoted(postId) {
   const uid = useAuth(useCallback((state) => state.user?.uid, []));
   return useQuery(`get-if-promoted-ideas-${postId}`, () =>
-    getDoc(doc(firestore, colName, postId, 'promoters', uid)).then((result) =>
+    getDoc(doc(firestore, 'ideas', postId, 'promoters', uid)).then((result) =>
       result.exists()
     )
   );
