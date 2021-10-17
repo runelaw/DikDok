@@ -6,12 +6,13 @@ import Link from 'next/link';
 import { useCallback } from 'react';
 import { loggedIn, useAuth } from 'store/auth';
 import { useAllIdeas } from 'store/idea';
+import EmptyIdeas from 'components/EmptyIdeas';
 
 export default function Ideas() {
   const isLoggedIn = useAuth(
     useCallback((state) => state.isLoggedIn === loggedIn.true, [])
   );
-  const { data: ideas } = useAllIdeas();
+  const { data: ideas, isLoading } = useAllIdeas();
 
   return (
     <>
@@ -52,6 +53,8 @@ export default function Ideas() {
           {(ideas ?? []).map((it) => (
             <PostCard key={it.id} post={it} isWide />
           ))}
+
+          {!isLoading && (ideas ?? []).length === 0 && <EmptyIdeas />}
         </Stack>
       </Container>
     </>

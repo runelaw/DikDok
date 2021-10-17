@@ -1,9 +1,10 @@
 import { Grid, Typography } from '@mui/material';
 import PostCard from 'components/PostCard';
 import { useTopIdeas } from 'store/idea';
+import EmptyIdeas from 'components/EmptyIdeas';
 
 export default function TopIdeas() {
-  const { data: ideas } = useTopIdeas();
+  const { data: ideas, isLoading } = useTopIdeas();
 
   return (
     <>
@@ -21,6 +22,8 @@ export default function TopIdeas() {
             <PostCard post={it} />
           </Grid>
         ))}
+
+        {!isLoading && (ideas ?? []).length === 0 && <EmptyIdeas />}
       </Grid>
     </>
   );
