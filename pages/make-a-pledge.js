@@ -4,6 +4,7 @@ import { Box, Chip, Container, Grid, Paper, Typography } from '@mui/material';
 import { MdThumbUp } from 'react-icons/md';
 import Image from 'next/image';
 import hundred from 'assets/100.png';
+import PledgeForm from 'components/PledgeForm';
 
 export default function MakeAPledge() {
   const name = 'Sharad Chand';
@@ -82,11 +83,13 @@ export default function MakeAPledge() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  mb: 4,
                 }}
               >
                 <MdThumbUp size={20} />{' '}
                 <Box sx={{ ml: 1 }}>{0} pledged until now</Box>
               </Typography>
+              <PledgeForm />
             </Grid>
           </Grid>
         </Paper>
