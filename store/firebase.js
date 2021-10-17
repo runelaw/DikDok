@@ -17,12 +17,13 @@ export let firestore;
 export let firebaseAuth;
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB0t1O71SFgX58WdxIKDwXdEJMgh-SLbKM',
-  authDomain: 'bhagya-cd492.firebaseapp.com',
-  projectId: 'bhagya-cd492',
-  storageBucket: 'bhagya-cd492.appspot.com',
-  messagingSenderId: '962439063660',
-  appId: '1:962439063660:web:738d3653349f0506759049',
+  apiKey: 'AIzaSyBF1ht1ZYlTx5rdPt8pgfSAACi-JaHG4ic',
+  authDomain: 'bhagya100india.firebaseapp.com',
+  projectId: 'bhagya100india',
+  storageBucket: 'bhagya100india.appspot.com',
+  messagingSenderId: '698433329811',
+  appId: '1:698433329811:web:df735f73e0385b340e4b66',
+  measurementId: 'G-72Z5KTDW5Y',
 };
 
 /**
