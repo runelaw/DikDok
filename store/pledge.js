@@ -10,38 +10,57 @@ import {
   increment,
 } from 'firebase/firestore';
 import { firestore } from 'store/firebase';
+import { useQuery, useQueryClient } from 'react-query';
+
+/**
+ * Gets the pledges count.
+ */
+export function usePledgesCount() {
+  return useQuery('get-pledges-count', () =>
+    getDoc(doc(firestore, 'pledgesCount', 'count')).then(
+      (result) => result.get('count') ?? 0
+    )
+  );
+}
 
 /**
  * Hook to make a pledge.
  */
 export function useMakeAPledge() {
-  return useCallback(async ({ name, email }) => {
-    const pledge = await getDoc(
-      query(collection(firestore, 'pledges'), where('email', '==', email))
-    );
-    if (pledge.exists()) {
-      return;
-    }
+  const queryClient = useQueryClient();
 
-    await setDoc(
-      doc(collection(firestore, 'pledges')),
-      {
-        name,
-        email,
-        createdAt: serverTimestamp(),
-      },
-      {
-        mergeFields: ['name', 'email'],
+  return useCallback(
+    async ({ name, email }) => {
+      const pledge = await getDoc(
+        query(collection(firestore, 'pledges'), where('email', '==', email))
+      );
+      if (pledge.exists()) {
+        return;
       }
-    );
 
-    // Increment the counter.
-    await setDoc(
-      doc(firestore, 'pledgesCount', 'count'),
-      {
-        count: increment(0),
-      },
-      { merge: true }
-    );
-  }, []);
+      await setDoc(
+        doc(collection(firestore, 'pledges')),
+        {
+          name,
+          email,
+          createdAt: serverTimestamp(),
+        },
+        {
+          mergeFields: ['name', 'email'],
+        }
+      );
+
+      // Increment the counter.
+      await setDoc(
+        doc(firestore, 'pledgesCount', 'count'),
+        {
+          count: increment(0),
+        },
+        { merge: true }
+      );
+
+      queryClient.invalidateQueries('get-pledges-count');
+    },
+    [queryClient]
+  );
 }

@@ -8,6 +8,7 @@ import PledgeForm from 'components/PledgeForm';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { usePledgesCount } from 'store/pledge';
 
 const schema = z.object({
   name: z.string().min(1, { message: 'Cannot be empty' }),
@@ -15,6 +16,7 @@ const schema = z.object({
 });
 
 export default function MakeAPledge() {
+  const { data: pledgesCount } = usePledgesCount();
   const form = useForm({
     defaultValues: {
       name: '',
@@ -103,7 +105,7 @@ export default function MakeAPledge() {
                 }}
               >
                 <MdThumbUp size={20} />{' '}
-                <Box sx={{ ml: 1 }}>{0} pledged until now</Box>
+                <Box sx={{ ml: 1 }}>{pledgesCount} pledged until now</Box>
               </Typography>
               <PledgeForm form={form} />
             </Grid>
