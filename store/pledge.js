@@ -1,5 +1,14 @@
 import { useCallback } from 'react';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+  getDoc,
+  query,
+  where,
+  increment,
+} from 'firebase/firestore';
 import { firestore } from 'store/firebase';
 
 /**
@@ -7,8 +16,15 @@ import { firestore } from 'store/firebase';
  */
 export function useMakeAPledge() {
   return useCallback(async ({ name, email }) => {
+    const pledge = await getDoc(
+      query(collection(firestore, 'pledges'), where('email', '==', email))
+    );
+    if (pledge.exists()) {
+      return;
+    }
+
     await setDoc(
-      doc(firestore, 'pledges', email),
+      doc(collection(firestore, 'pledges')),
       {
         name,
         email,
@@ -17,6 +33,15 @@ export function useMakeAPledge() {
       {
         mergeFields: ['name', 'email'],
       }
+    );
+
+    // Increment the counter.
+    await setDoc(
+      doc(firestore, 'pledgesCount', 'count'),
+      {
+        count: increment(0),
+      },
+      { merge: true }
     );
   }, []);
 }
