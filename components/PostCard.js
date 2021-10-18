@@ -48,7 +48,10 @@ export default function PostCard({ post, isWide }) {
           spacing={1}
           sx={{ alignItems: 'flex-start', px: 2, py: 0 }}
         >
-          <ShareCardPopover postId={post.id} title={post.title} />
+          <ShareCardPopover
+            title={post.title}
+            link={`https://www.100bhagya.com/idea/${post.id}`}
+          />
           {post.link && (
             <IconButton
               component="a"

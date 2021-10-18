@@ -1,9 +1,10 @@
 import { LoadingButton } from '@mui/lab';
-import { Stack, TextField } from '@mui/material';
+import { Stack, TextField, Typography } from '@mui/material';
 import { useAsyncFn } from 'react-use';
 import materialRegister from 'utils/materialRegister';
 import { useMakeAPledge } from 'store/pledge';
 import { useSnackbar } from 'notistack';
+import ShareCardPopover from 'components/ShareCardPopover';
 
 export default function PledgeForm({ form }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -36,6 +37,17 @@ export default function PledgeForm({ form }) {
       <LoadingButton type="submit" variant="contained" loading={loading}>
         Pledge Now
       </LoadingButton>
+
+      <Stack alignItems="center">
+        <Typography textAlign="center" color="textSecondary" sx={{ mt: 3 }}>
+          Share Now
+        </Typography>
+        <ShareCardPopover
+          title="Make a Pledge for India100"
+          link="https://www.100bhagya.com/make-a-pledge"
+          size="normal"
+        />
+      </Stack>
     </Stack>
   );
 }

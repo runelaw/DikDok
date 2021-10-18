@@ -36,7 +36,11 @@ export default function PromoteForm({ postId, title }) {
         <Typography textAlign="center" color="textSecondary" sx={{ mt: 3 }}>
           Share Now
         </Typography>
-        <ShareCardPopover postId={postId} title={title} size="normal" />
+        <ShareCardPopover
+          title={title}
+          link={`https://www.100bhagya.com/idea/${postId}`}
+          size="normal"
+        />
       </Stack>
     );
   }
@@ -58,7 +62,11 @@ export default function PromoteForm({ postId, title }) {
         <Typography textAlign="center" color="textSecondary" sx={{ mt: 3 }}>
           Share Now
         </Typography>
-        <ShareCardPopover postId={postId} title={title} size="normal" />
+        <ShareCardPopover
+          title={title}
+          link={`https://www.100bhagya.com/idea/${postId}`}
+          size="normal"
+        />
       </Stack>
     );
   }

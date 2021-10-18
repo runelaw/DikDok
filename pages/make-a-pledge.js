@@ -46,9 +46,7 @@ export default function MakeAPledge() {
                 height={hundred.height / 10}
               />
 
-              <Typography variant="h4">
-                Make a Pledge for #100bhagya India
-              </Typography>
+              <Typography variant="h4">Make a Pledge for India100</Typography>
 
               <Typography
                 variant="h6"
