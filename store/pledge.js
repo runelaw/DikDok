@@ -2,13 +2,13 @@ import { useCallback } from 'react';
 import {
   collection,
   doc,
+  getDoc,
+  getDocs,
+  increment,
+  query,
   serverTimestamp,
   setDoc,
-  getDoc,
-  query,
   where,
-  increment,
-  getDocs,
 } from 'firebase/firestore';
 import { firestore } from 'store/firebase';
 import { useQuery, useQueryClient } from 'react-query';
@@ -55,7 +55,7 @@ export function useMakeAPledge() {
       await setDoc(
         doc(firestore, 'pledgesCount', 'count'),
         {
-          count: increment(0),
+          count: increment(1),
         },
         { merge: true }
       );
