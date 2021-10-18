@@ -8,6 +8,7 @@ import {
   query,
   where,
   increment,
+  getDocs,
 } from 'firebase/firestore';
 import { firestore } from 'store/firebase';
 import { useQuery, useQueryClient } from 'react-query';
@@ -31,10 +32,10 @@ export function useMakeAPledge() {
 
   return useCallback(
     async ({ name, email }) => {
-      const pledge = await getDoc(
+      const pledge = await getDocs(
         query(collection(firestore, 'pledges'), where('email', '==', email))
       );
-      if (pledge.exists()) {
+      if (!pledge.empty) {
         return;
       }
 
