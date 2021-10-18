@@ -9,16 +9,11 @@ export default function PledgeForm({ form }) {
   const { enqueueSnackbar } = useSnackbar();
   const makePledge = useMakeAPledge();
   const [{ loading }, onSubmit] = useAsyncFn(async (state) => {
-    console.log(state);
-
-    try {
-      await makePledge({ name: state.name, email: state.email });
-      enqueueSnackbar('You have pledged to commit to India100', {
-        variant: 'success',
-      });
-    } catch (err) {
-      console.error(err);
-    }
+    await makePledge({ name: state.name, email: state.email });
+    form.reset();
+    enqueueSnackbar('You have pledged to commit to India100.', {
+      variant: 'success',
+    });
   }, []);
 
   return (
