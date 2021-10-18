@@ -105,7 +105,7 @@ export default function MakeAPledge() {
                 }}
               >
                 <MdThumbUp size={20} />{' '}
-                <Box sx={{ ml: 1 }}>{pledgesCount} pledged until now</Box>
+                <Box sx={{ ml: 1 }}>{pledgesCount ?? 0} pledged until now</Box>
               </Typography>
               <PledgeForm form={form} />
             </Grid>
