@@ -52,7 +52,7 @@ export default function MakeAPledge() {
 
               <Typography
                 variant="h6"
-                component="p"
+                component="div"
                 sx={{ mt: 2, mb: 2, fontWeight: 400 }}
               >
                 I,{' '}
