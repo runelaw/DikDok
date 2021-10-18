@@ -2,9 +2,18 @@ import { LoadingButton } from '@mui/lab';
 import { Stack, TextField } from '@mui/material';
 import { useAsyncFn } from 'react-use';
 import materialRegister from 'utils/materialRegister';
+import { useMakeAPledge } from 'store/pledge';
+import { useSnackbar } from 'notistack';
 
 export default function PledgeForm({ form }) {
-  const [{ loading }, onSubmit] = useAsyncFn(async (state) => {}, []);
+  const { enqueueSnackbar } = useSnackbar();
+  const makePledge = useMakeAPledge();
+  const [{ loading }, onSubmit] = useAsyncFn(async (state) => {
+    await makePledge({ name: state.name, email: state.email });
+    enqueueSnackbar('You have pledged to commit to India100', {
+      variant: 'success',
+    });
+  }, []);
 
   return (
     <Stack

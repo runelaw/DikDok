@@ -5,8 +5,6 @@ import { MdThumbUp } from 'react-icons/md';
 import Image from 'next/image';
 import hundred from 'assets/100.png';
 import PledgeForm from 'components/PledgeForm';
-import { useAuth } from 'store/auth';
-import { useCallback } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -17,11 +15,10 @@ const schema = z.object({
 });
 
 export default function MakeAPledge() {
-  const user = useAuth(useCallback((state) => state.user, []));
   const form = useForm({
     defaultValues: {
-      name: user?.name ?? '',
-      email: user?.email ?? '',
+      name: '',
+      email: '',
     },
     resolver: zodResolver(schema),
   });
