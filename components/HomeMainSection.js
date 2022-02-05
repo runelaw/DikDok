@@ -8,16 +8,34 @@ export default function HomeMainSection() {
   const { data: count } = usePledgesCount();
 
   return (
-    <Container sx={{ pt: 20, pb: 24 }}>
+    <Container sx={{ pt: 20, pb: { md: 12 } }}>
       <Typography
         variant="h1"
         component="div"
         textAlign="center"
-        sx={{ mt: -2 }}
+        sx={{
+          mt: -2,
+          fontSize: {
+            xs: '2.5rem',
+            sm: '3rem',
+            md: '5rem',
+          },
+        }}
       >
         Make a Pledge <br />
         for{' '}
-        <Typography variant="h1" component="span" color="primary">
+        <Typography
+          variant="h1"
+          component="span"
+          color="primary"
+          sx={{
+            fontSize: {
+              xs: '2.5rem',
+              sm: '3rem',
+              md: '5rem',
+            },
+          }}
+        >
           #India100
         </Typography>
       </Typography>
