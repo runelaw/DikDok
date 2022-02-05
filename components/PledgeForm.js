@@ -1,12 +1,12 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { Stack, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import materialRegister from 'utils/materialRegister';
-import { useCallback } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMakePledge } from 'store/pledge';
 import { useSnackbar } from 'notistack';
-import { firebaseAuth } from 'store/firebase';
+import { useAsyncFn } from 'react-use';
+import { LoadingButton } from '@mui/lab';
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
@@ -30,7 +30,7 @@ export default function PledgeForm() {
   const { enqueueSnackbar } = useSnackbar();
 
   const makePledge = useMakePledge();
-  const onSubmit = useCallback(
+  const [{ loading }, onSubmit] = useAsyncFn(
     async (state) => {
       try {
         await makePledge(state);
@@ -69,9 +69,9 @@ export default function PledgeForm() {
           helperText={errors.email?.message}
           error={Boolean(errors.email)}
         />
-        <Button variant="contained" type="submit">
+        <LoadingButton variant="contained" type="submit" loading={loading}>
           Pledge to #India100
-        </Button>
+        </LoadingButton>
       </Stack>
     </Stack>
   );
