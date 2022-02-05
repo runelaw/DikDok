@@ -4,6 +4,8 @@ import materialRegister from 'utils/materialRegister';
 import { useCallback } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMakePledge } from 'store/pledge';
+import { useSnackbar } from 'notistack';
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
@@ -15,6 +17,7 @@ export default function PledgeForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       name: '',
@@ -23,9 +26,25 @@ export default function PledgeForm() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = useCallback((state) => {
-    console.log(state);
-  }, []);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const makePledge = useMakePledge();
+  const onSubmit = useCallback(
+    async (state) => {
+      try {
+        await makePledge(state);
+        enqueueSnackbar('You just made a pledge for #India100.', {
+          variant: 'success',
+        });
+        reset();
+      } catch (err) {
+        enqueueSnackbar('Failed to make a pledge.', {
+          variant: 'error',
+        });
+      }
+    },
+    [enqueueSnackbar, makePledge]
+  );
 
   return (
     <Stack
