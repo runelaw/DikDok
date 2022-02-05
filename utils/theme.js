@@ -1,9 +1,13 @@
 import { createTheme, responsiveFontSizes } from '@mui/material';
+import { green } from '@mui/material/colors';
 
 export default responsiveFontSizes(
   createTheme({
+    palette: {
+      primary: green,
+    },
     typography: {
-      fontFamily: '"Lato", "Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Montserrat", "Roboto", "Helvetica", "Arial", sans-serif',
       h1: {
         fontWeight: 700,
       },
@@ -24,7 +28,7 @@ export default responsiveFontSizes(
       },
       fontWeightLight: 300,
       fontWeightRegular: 400,
-      fontWeightMedium: 700,
+      fontWeightMedium: 600,
       fontWeightBold: 700,
     },
     components: {
@@ -37,6 +41,14 @@ export default responsiveFontSizes(
           root: {
             textTransform: 'initial',
           },
+          containedPrimary: {
+            color: 'white',
+          },
+        },
+      },
+      MuiLink: {
+        defaultProps: {
+          underline: 'none',
         },
       },
     },

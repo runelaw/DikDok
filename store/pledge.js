@@ -10,7 +10,7 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore';
-import { firestore } from 'store/firebase';
+import { firebaseAuth, firestore } from 'store/firebase';
 import { useQuery, useQueryClient } from 'react-query';
 
 /**
@@ -27,7 +27,7 @@ export function usePledgesCount() {
 /**
  * Hook to make a pledge.
  */
-export function useMakeAPledge() {
+export function useMakePledge() {
   const queryClient = useQueryClient();
 
   return useCallback(
@@ -39,12 +39,21 @@ export function useMakeAPledge() {
         return;
       }
 
+      const uid = firebaseAuth.currentUser?.uid;
+      if (!uid) {
+        throw new Error('anonymous user is yet to login');
+      }
+
       await setDoc(
         doc(collection(firestore, 'pledges')),
         {
           name,
           email,
           createdAt: serverTimestamp(),
+          // We are storing the anonymous user's uid just in case someone spams the form. And
+          // we can remove spammed entries by looking at the UID. Though this should normally
+          // not be a problem as the app is not popular enough.
+          createdBy: uid,
         },
         {
           mergeFields: ['name', 'email'],
@@ -60,7 +69,7 @@ export function useMakeAPledge() {
         { merge: true }
       );
 
-      queryClient.invalidateQueries('get-pledges-count');
+      await queryClient.invalidateQueries('get-pledges-count');
     },
     [queryClient]
   );

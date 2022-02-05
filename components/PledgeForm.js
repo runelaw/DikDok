@@ -1,52 +1,85 @@
-import { LoadingButton } from '@mui/lab';
-import { Stack, TextField, Typography } from '@mui/material';
-import { useAsyncFn } from 'react-use';
+import { Stack, TextField } from '@mui/material';
+import { useForm } from 'react-hook-form';
 import materialRegister from 'utils/materialRegister';
-import { useMakeAPledge } from 'store/pledge';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMakePledge } from 'store/pledge';
 import { useSnackbar } from 'notistack';
-import ShareCardPopover from 'components/ShareCardPopover';
+import { useAsyncFn } from 'react-use';
+import { LoadingButton } from '@mui/lab';
+import PledgeDocument from 'components/PledgeDocument';
 
-export default function PledgeForm({ form }) {
+const schema = z.object({
+  name: z.string().min(1, 'Required'),
+  email: z.string().email(),
+});
+
+export default function PledgeForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+    },
+    resolver: zodResolver(schema),
+  });
+
   const { enqueueSnackbar } = useSnackbar();
-  const makePledge = useMakeAPledge();
-  const [{ loading }, onSubmit] = useAsyncFn(async (state) => {
-    await makePledge({ name: state.name, email: state.email });
-    form.reset();
-    enqueueSnackbar('You have pledged to commit to India100.', {
-      variant: 'success',
-    });
-  }, []);
+
+  const makePledge = useMakePledge();
+  const [{ loading }, onSubmit] = useAsyncFn(
+    async (state) => {
+      try {
+        await makePledge(state);
+        enqueueSnackbar('You just made a pledge for #India100.', {
+          variant: 'success',
+        });
+        reset();
+      } catch (err) {
+        enqueueSnackbar('Failed to make a pledge.', {
+          variant: 'error',
+        });
+      }
+    },
+    [enqueueSnackbar, makePledge]
+  );
 
   return (
     <Stack
       component="form"
-      spacing={2}
+      alignItems="center"
       sx={{ mt: 4 }}
-      onSubmit={form.handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
     >
-      <TextField
-        label="Name"
-        size="small"
-        {...materialRegister(form.register, 'name')}
-      />
-      <TextField
-        label="Email"
-        size="small"
-        {...materialRegister(form.register, 'email')}
-      />
-      <LoadingButton type="submit" variant="contained" loading={loading}>
-        Pledge Now
-      </LoadingButton>
-
-      <Stack alignItems="center">
-        <Typography textAlign="center" color="textSecondary" sx={{ mt: 3 }}>
-          Share Now
-        </Typography>
-        <ShareCardPopover
-          title="Make a Pledge for India100"
-          link="https://www.100bhagya.com/make-a-pledge"
-          size="normal"
+      <Stack maxWidth={400} width="100%">
+        <TextField
+          placeholder="Your Name"
+          size="small"
+          {...materialRegister(register, 'name')}
+          helperText={errors.name?.message}
+          error={Boolean(errors.name)}
         />
+        <TextField
+          placeholder="Email"
+          size="small"
+          {...materialRegister(register, 'email')}
+          helperText={errors.email?.message}
+          error={Boolean(errors.email)}
+          sx={{ mt: 2 }}
+        />
+        <LoadingButton
+          variant="contained"
+          type="submit"
+          loading={loading}
+          sx={{ mt: 2 }}
+        >
+          Pledge to #India100
+        </LoadingButton>
+        <PledgeDocument />
       </Stack>
     </Stack>
   );
