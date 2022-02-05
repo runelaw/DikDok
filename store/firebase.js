@@ -3,6 +3,7 @@ import {
   browserPopupRedirectResolver,
   indexedDBLocalPersistence,
   initializeAuth,
+  signInAnonymously,
 } from 'firebase/auth';
 import { initializeFirestore } from 'firebase/firestore';
 import { useEffect } from 'react';
@@ -14,7 +15,6 @@ export const useFirebaseInitialized = create(() => ({
 
 export let firebase;
 export let firestore;
-export let firebaseAuth;
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBF1ht1ZYlTx5rdPt8pgfSAACi-JaHG4ic',
@@ -36,33 +36,20 @@ export function useInitializeFirebase() {
       return;
     }
 
-    firebase = initializeApp(firebaseConfig);
-    firestore = initializeFirestore(firebase, {});
-    firebaseAuth = initializeAuth(firebase, {
-      persistence: indexedDBLocalPersistence,
-      popupRedirectResolver: browserPopupRedirectResolver,
-    });
+    (async () => {
+      firebase = initializeApp(firebaseConfig);
+      firestore = initializeFirestore(firebase, {});
 
-    useFirebaseInitialized.setState({
-      isInitialized: true,
-    });
-  });
-}
+      // Sign in anonymously so that we can use it to authorize access to firestore.
+      const firebaseAuth = initializeAuth(firebase, {
+        persistence: indexedDBLocalPersistence,
+        popupRedirectResolver: browserPopupRedirectResolver,
+      });
+      await signInAnonymously(firebaseAuth);
 
-/**
- * Get the current firebase user.
- */
-export function getFirebaseUser() {
-  return new Promise((resolve, reject) => {
-    const unsubscribe = firebaseAuth.onAuthStateChanged(
-      (user) => {
-        resolve(user);
-        unsubscribe();
-      },
-      (error) => {
-        reject(error);
-        unsubscribe();
-      }
-    );
+      useFirebaseInitialized.setState({
+        isInitialized: true,
+      });
+    })();
   });
 }
