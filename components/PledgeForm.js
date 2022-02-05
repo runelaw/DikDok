@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMakePledge } from 'store/pledge';
 import { useSnackbar } from 'notistack';
+import { firebaseAuth } from 'store/firebase';
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),

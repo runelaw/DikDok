@@ -15,6 +15,7 @@ export const useFirebaseInitialized = create(() => ({
 
 export let firebase;
 export let firestore;
+export let firebaseAuth;
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBF1ht1ZYlTx5rdPt8pgfSAACi-JaHG4ic',
@@ -41,7 +42,7 @@ export function useInitializeFirebase() {
       firestore = initializeFirestore(firebase, {});
 
       // Sign in anonymously so that we can use it to authorize access to firestore.
-      const firebaseAuth = initializeAuth(firebase, {
+      firebaseAuth = initializeAuth(firebase, {
         persistence: indexedDBLocalPersistence,
         popupRedirectResolver: browserPopupRedirectResolver,
       });
