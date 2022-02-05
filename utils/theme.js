@@ -41,6 +41,9 @@ export default responsiveFontSizes(
           root: {
             textTransform: 'initial',
           },
+          containedPrimary: {
+            color: 'white',
+          },
         },
       },
       MuiLink: {
