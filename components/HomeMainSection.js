@@ -1,10 +1,6 @@
-import { Button, Container, Stack, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import hundred from 'assets/100.png';
-import india from 'assets/india.png';
-import FlipCounter from 'components/FlipCounter';
-import Image from 'next/image';
-import Link from 'next/link';
+import TimeCounter from 'components/TimeCounter';
 
 export default function HomeMainSection() {
   return (
@@ -34,7 +30,7 @@ export default function HomeMainSection() {
       </Typography>
 
       <Box sx={{ mt: 4 }}>
-        <FlipCounter />
+        <TimeCounter />
         <Typography color="textSecondary" sx={{ mt: 1, textAlign: 'center' }}>
           Time is running out!
         </Typography>
