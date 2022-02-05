@@ -1,5 +1,5 @@
 import { AppBar, Button, Container, Toolbar } from '@mui/material';
-import logo from 'assets/logo.png';
+import logo from 'assets/logo-english.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -12,13 +12,18 @@ export default function Navigation({ position = 'sticky' }) {
             <Button
               component="a"
               color="inherit"
-              sx={{ p: 0, py: 0.5, overflow: 'hidden' }}
+              sx={{
+                p: 0,
+                py: 0.5,
+                overflow: 'hidden',
+                height: 64,
+              }}
             >
               <Image
                 src={logo}
                 alt="Logo"
-                width={logo.width / 30}
-                height={logo.height / 30}
+                width={logo.width / 25}
+                height={logo.height / 25}
               />
             </Button>
           </Link>
