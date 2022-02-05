@@ -1,10 +1,11 @@
 import { Container, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import TimeCounter from 'components/TimeCounter';
+import PledgeForm from 'components/PledgeForm';
 
 export default function HomeMainSection() {
   return (
-    <Container sx={{ pt: 40, pb: 24 }}>
+    <Container sx={{ pt: 24, pb: 24 }}>
       <Typography
         variant="h1"
         component="div"
@@ -28,6 +29,8 @@ export default function HomeMainSection() {
         meaningful impact, but not long <br />
         enough to wait and watch.
       </Typography>
+
+      <PledgeForm />
 
       <Box sx={{ mt: 4 }}>
         <TimeCounter />
