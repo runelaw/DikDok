@@ -7,6 +7,7 @@ import { useMakePledge } from 'store/pledge';
 import { useSnackbar } from 'notistack';
 import { useAsyncFn } from 'react-use';
 import { LoadingButton } from '@mui/lab';
+import PledgeDocument from 'components/PledgeDocument';
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
@@ -54,7 +55,7 @@ export default function PledgeForm() {
       sx={{ mt: 4 }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Stack spacing={2} maxWidth={400} width="100%">
+      <Stack maxWidth={400} width="100%">
         <TextField
           placeholder="Your Name"
           size="small"
@@ -68,10 +69,17 @@ export default function PledgeForm() {
           {...materialRegister(register, 'email')}
           helperText={errors.email?.message}
           error={Boolean(errors.email)}
+          sx={{ mt: 2 }}
         />
-        <LoadingButton variant="contained" type="submit" loading={loading}>
+        <LoadingButton
+          variant="contained"
+          type="submit"
+          loading={loading}
+          sx={{ mt: 2 }}
+        >
           Pledge to #India100
         </LoadingButton>
+        <PledgeDocument />
       </Stack>
     </Stack>
   );
