@@ -5,6 +5,8 @@ import {
   DialogContent,
   DialogTitle,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { useBoolean } from 'react-use';
 import { useCallback } from 'react';
@@ -18,12 +20,15 @@ export default function PledgeDocument() {
 
   const { data: count } = usePledgesCount();
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <>
       <Button sx={{ p: 0, mt: 1 }} onClick={onOpen}>
         Read the Pledge Document
       </Button>
-      <Dialog open={isOpen} fullWidth>
+      <Dialog open={isOpen} fullWidth fullScreen={isSmallScreen}>
         <DialogTitle>Pledge for #India100</DialogTitle>
         <DialogContent>
           <Typography>
