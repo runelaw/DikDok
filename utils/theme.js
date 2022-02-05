@@ -43,6 +43,11 @@ export default responsiveFontSizes(
           },
         },
       },
+      MuiLink: {
+        defaultProps: {
+          underline: 'none',
+        },
+      },
     },
   })
 );
