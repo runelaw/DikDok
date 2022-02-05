@@ -9,6 +9,7 @@ import {
 import { useBoolean } from 'react-use';
 import { useCallback } from 'react';
 import { usePledgesCount } from 'store/pledge';
+import ShareButtons from 'components/ShareButtons';
 
 export default function PledgeDocument() {
   const [isOpen, toggleOpen] = useBoolean(false);
@@ -60,6 +61,7 @@ export default function PledgeDocument() {
           >
             {count ?? 0} pledges made till now
           </Typography>
+          <ShareButtons />
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Close</Button>
