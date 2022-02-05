@@ -1,7 +1,6 @@
 import { Container, Link, Typography } from '@mui/material';
 import HomeMainSection from 'components/HomeMainSection';
 import Navigation from 'components/Navigation';
-import TopIdeas from 'components/TopIdeas';
 import Head from 'next/head';
 import NLink from 'next/link';
 
@@ -41,8 +40,6 @@ export default function Home() {
             <Link>Read more</Link>
           </NLink>
         </Typography>
-
-        <TopIdeas />
       </Container>
     </>
   );
