@@ -1,11 +1,14 @@
-import { Container, Typography } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import TimeCounter from 'components/TimeCounter';
 import PledgeForm from 'components/PledgeForm';
+import { usePledgesCount } from 'store/pledge';
 
 export default function HomeMainSection() {
+  const { data: count } = usePledgesCount();
+
   return (
-    <Container sx={{ pt: 24, pb: 24 }}>
+    <Container sx={{ pt: 20, pb: 24 }}>
       <Typography
         variant="h1"
         component="div"
@@ -38,6 +41,23 @@ export default function HomeMainSection() {
           Time is running out!
         </Typography>
       </Box>
+
+      <Stack alignItems="center" sx={{ mt: 4 }}>
+        <Typography
+          variant="h6"
+          color="primary"
+          textAlign="center"
+          sx={{
+            fontWeight: 'normal',
+            bgcolor: 'primary.50',
+            py: 2,
+            px: 4,
+            borderRadius: 2,
+          }}
+        >
+          {count ?? 0} pledges made till now
+        </Typography>
+      </Stack>
     </Container>
   );
 }
