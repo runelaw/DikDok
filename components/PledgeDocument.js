@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useBoolean } from 'react-use';
+import { useAsyncFn, useBoolean } from 'react-use';
 import { useCallback, useState } from 'react';
 import { useMakePledge, usePledgesCount } from 'store/pledge';
 import ShareButtons from 'components/ShareButtons';
@@ -19,6 +19,7 @@ import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSnackbar } from 'notistack';
+import { LoadingButton } from '@mui/lab';
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
@@ -46,7 +47,7 @@ export default function PledgeDocument() {
   const makePledge = useMakePledge();
 
   const { enqueueSnackbar } = useSnackbar();
-  const onSubmit = useCallback(
+  const [{ loading }, onSubmit] = useAsyncFn(
     async (state) => {
       try {
         await makePledge({ name: state.name });
@@ -120,15 +121,16 @@ export default function PledgeDocument() {
             )}
 
             {!pledgedBy && (
-              <Button
+              <LoadingButton
                 variant="contained"
                 size="large"
                 fullWidth
                 sx={{ mt: 4 }}
                 onClick={handleSubmit(onSubmit)}
+                loading={loading}
               >
                 Pledge for a Better India
-              </Button>
+              </LoadingButton>
             )}
 
             {pledgedBy && (
