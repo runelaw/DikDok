@@ -20,6 +20,8 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSnackbar } from 'notistack';
 import { LoadingButton } from '@mui/lab';
+import Image from 'next/image';
+import orange from 'assets/orange.png';
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
@@ -76,7 +78,24 @@ export default function PledgeDocument() {
           </Container>
         </DialogTitle>
         <DialogContent>
-          <Container sx={{ mt: 4 }} maxWidth="sm">
+          <Box
+            sx={{
+              position: 'fixed',
+              top: '0%',
+              right: -150,
+              transform: 'translate(0, 0)',
+            }}
+          >
+            <Image
+              src={orange}
+              alt="Green"
+              layout="fixed"
+              width={orange.width / 1.5}
+              height={orange.height / 1.5}
+            />
+          </Box>
+
+          <Container sx={{ mt: 4, position: 'relative' }} maxWidth="sm">
             {!pledgedBy && (
               <>
                 <Typography sx={{ fontSize: { xs: '1rem', md: '1.3rem' } }}>
