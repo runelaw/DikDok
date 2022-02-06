@@ -3,12 +3,9 @@ import {
   collection,
   doc,
   getDoc,
-  getDocs,
   increment,
-  query,
   serverTimestamp,
   setDoc,
-  where,
 } from 'firebase/firestore';
 import { firebaseAuth, firestore } from 'store/firebase';
 import { useQuery, useQueryClient } from 'react-query';
@@ -31,14 +28,7 @@ export function useMakePledge() {
   const queryClient = useQueryClient();
 
   return useCallback(
-    async ({ name, email }) => {
-      const pledge = await getDocs(
-        query(collection(firestore, 'pledges'), where('email', '==', email))
-      );
-      if (!pledge.empty) {
-        return;
-      }
-
+    async ({ name }) => {
       const uid = firebaseAuth.currentUser?.uid;
       if (!uid) {
         throw new Error('anonymous user is yet to login');
@@ -48,7 +38,6 @@ export function useMakePledge() {
         doc(collection(firestore, 'pledges')),
         {
           name,
-          email,
           createdAt: serverTimestamp(),
           // We are storing the anonymous user's uid just in case someone spams the form. And
           // we can remove spammed entries by looking at the UID. Though this should normally
@@ -56,7 +45,7 @@ export function useMakePledge() {
           createdBy: uid,
         },
         {
-          mergeFields: ['name', 'email'],
+          mergeFields: ['name'],
         }
       );
 

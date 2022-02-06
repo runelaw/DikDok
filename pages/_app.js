@@ -24,12 +24,6 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <GlobalStyles
-        styles={`
-        body {
-          background-color: ${grey[50]};      
-        }`}
-      />
 
       <QueryClientProvider client={client}>
         <SnackbarProvider>

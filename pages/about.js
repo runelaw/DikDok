@@ -1,9 +1,9 @@
 import { Container, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import indiaLandscape from 'assets/india-landscape.png';
 import Navigation from 'components/Navigation';
 import Head from 'next/head';
 import Image from 'next/image';
+import green from 'assets/green.png';
 
 export default function About() {
   return (
@@ -16,7 +16,6 @@ export default function About() {
 
       <Box
         sx={{
-          bgcolor: 'rgba(0, 0, 0, .2)',
           width: '100%',
           height: '100vh',
         }}
@@ -24,18 +23,18 @@ export default function About() {
         <Box
           sx={{
             position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100vh',
+            top: '50%',
+            right: -100,
             zIndex: -100,
+            transform: 'translate(0, -50%)',
           }}
         >
           <Image
-            src={indiaLandscape}
-            alt="India Landscape"
-            layout="fill"
-            objectFit="cover"
+            src={green}
+            alt="Green"
+            layout="fixed"
+            width={green.width / 1.5}
+            height={green.height / 1.5}
           />
         </Box>
         <Container
@@ -43,11 +42,13 @@ export default function About() {
             pt: 16,
             pb: 8,
             width: '100%',
-            color: 'white',
           }}
         >
           <Typography variant="h4">
-            Saubhagya, India 100 / Preamble and Vision
+            Saubhagya, India 100 /{' '}
+            <Box component="span" sx={{ color: 'primary.main' }}>
+              Preamble and Vision
+            </Box>
           </Typography>
           <Typography
             variant="h6"
@@ -75,7 +76,10 @@ export default function About() {
           </Typography>
 
           <Typography variant="h4" sx={{ mt: 4 }}>
-            Launching Saubhagya, India!
+            <Box component="span" sx={{ color: 'primary.main' }}>
+              Launching
+            </Box>{' '}
+            Saubhagya, India!
           </Typography>
           <Typography
             variant="h6"
@@ -107,7 +111,10 @@ export default function About() {
           </Typography>
 
           <Typography variant="h4" sx={{ mt: 4 }}>
-            Why Saubhagya! Why Now!
+            <Box component="span" sx={{ color: 'primary.main' }}>
+              Why Saubhagya!
+            </Box>{' '}
+            Why Now!
           </Typography>
           <Typography
             variant="h6"
