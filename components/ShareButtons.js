@@ -20,7 +20,8 @@ import {
 } from 'react-share';
 
 export default function ShareButtons() {
-  const title = 'Make a Pledge for #India100';
+  const title =
+    '\nI made a pledge for India’s #100bhagya!\nLet’s work together and make the next 25 years to India’s 100 count.';
   const link = 'https://100bhagya.com/';
 
   return (

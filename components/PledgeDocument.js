@@ -65,19 +65,21 @@ export default function PledgeDocument() {
   return (
     <>
       <Button variant="contained" size="large" sx={{ mt: 2 }} onClick={onOpen}>
-        Pledge for India's #100bhagya
+        Pledge for India&apos;s #100bhagya
       </Button>
       <Dialog open={isOpen} fullScreen>
         <DialogTitle>
-          <Container>
-            <Typography variant="h4">Pledge for #India100</Typography>
+          <Container maxWidth="sm">
+            <Typography variant="h6" textAlign="center">
+              Pledge for #India100
+            </Typography>
           </Container>
         </DialogTitle>
         <DialogContent>
-          <Container sx={{ mt: 4 }}>
+          <Container sx={{ mt: 4 }} maxWidth="sm">
             {!pledgedBy && (
               <>
-                <Typography sx={{ fontSize: { xs: '1.1rem', md: '1.5rem' } }}>
+                <Typography sx={{ fontSize: { xs: '1rem', md: '1.3rem' } }}>
                   I,{' '}
                   {pledgedBy ? (
                     <Box component="span" sx={{ fontWeight: 'medium' }}>
@@ -85,32 +87,36 @@ export default function PledgeDocument() {
                     </Box>
                   ) : (
                     <TextField
+                      variant="standard"
                       size="small"
                       placeholder="Your name"
                       {...materialRegister(register, 'name')}
+                      sx={{
+                        border: '0',
+                      }}
                     />
                   )}
                   , hereby swear to work towards nation-building for the next 25
                   years by committing myself to the cause of India100.
                 </Typography>
                 <Typography
-                  sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+                  sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
                 >
                   I swear to spread the message among my communities about what
                   India100 stands for, and also endeavor involving my
                   communities towards the vision of India100.
                 </Typography>
                 <Typography
-                  sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+                  sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
                 >
                   I swear to uphold this pledge and dedicate myself towards
-                  creatign Saubhagya (fortune) at a local, state and national
+                  creating Saubhagya (fortune) at a local, state and national
                   level.
                 </Typography>
                 <Typography
-                  sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+                  sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
                 >
-                  I swear to get involved in activies which will feed towards
+                  I swear to get involved in activities which will feed towards
                   the objective of transforming India in the next 25 years, and
                   creating a unified force which dedicatedly works towards a
                   prosperous, sustainable, inclusive, just and progressive India
@@ -139,7 +145,7 @@ export default function PledgeDocument() {
                   textAlign="center"
                   sx={{
                     mt: 4,
-                    fontSize: { xs: '1.1rem', md: '1.5rem' },
+                    fontSize: { xs: '1rem', md: '1.3rem' },
                     fontWeight: 'medium',
                   }}
                 >
@@ -155,7 +161,7 @@ export default function PledgeDocument() {
                   size="large"
                   sx={{ mt: 2 }}
                 >
-                  Want to know more?
+                  Subscribe for further updates
                 </Button>
               </Stack>
             )}
