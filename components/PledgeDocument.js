@@ -74,7 +74,7 @@ export default function PledgeDocument() {
         </DialogTitle>
         <DialogContent>
           <Container sx={{ mt: 4 }}>
-            <Typography sx={{ fontSize: '1.5rem' }}>
+            <Typography sx={{ fontSize: { xs: '1.1rem', md: '1.5rem' } }}>
               I,{' '}
               {pledgedBy ? (
                 <Box component="span" sx={{ fontWeight: 'medium' }}>
@@ -90,16 +90,22 @@ export default function PledgeDocument() {
               , hereby swear to work towards nation-building for the next 25
               years by committing myself to the cause of India100.
             </Typography>
-            <Typography sx={{ mt: 1, fontSize: '1.5rem' }}>
+            <Typography
+              sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+            >
               I swear to spread the message among my communities about what
               India100 stands for, and also endeavor involving my communities
               towards the vision of India100.
             </Typography>
-            <Typography sx={{ mt: 1, fontSize: '1.5rem' }}>
+            <Typography
+              sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+            >
               I swear to uphold this pledge and dedicate myself towards creatign
               Saubhagya (fortune) at a local, state and national level.
             </Typography>
-            <Typography sx={{ mt: 1, fontSize: '1.5rem' }}>
+            <Typography
+              sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+            >
               I swear to get involved in activies which will feed towards the
               objective of transforming India in the next 25 years, and creating
               a unified force which dedicatedly works towards a prosperous,
@@ -123,7 +129,11 @@ export default function PledgeDocument() {
               <Stack alignItems="center">
                 <Typography
                   textAlign="center"
-                  sx={{ mt: 4, fontSize: '1.5rem', fontWeight: 'medium' }}
+                  sx={{
+                    mt: 4,
+                    fontSize: { xs: '1.1rem', md: '1.5rem' },
+                    fontWeight: 'medium',
+                  }}
                 >
                   You just pledged for a Better India!
                 </Typography>
