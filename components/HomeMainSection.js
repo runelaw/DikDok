@@ -93,7 +93,7 @@ export default function HomeMainSection() {
         enough to wait and watch.
       </Typography>
 
-      <Stack alignItems="center">
+      <Stack alignItems="center" sx={{ mt: 2 }}>
         <PledgeDocument />
       </Stack>
 

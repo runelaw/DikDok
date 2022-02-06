@@ -66,7 +66,7 @@ export default function PledgeDocument() {
 
   return (
     <>
-      <Button variant="contained" size="large" sx={{ mt: 2 }} onClick={onOpen}>
+      <Button variant="contained" size="large" onClick={onOpen}>
         Pledge for India&apos;s #100bhagya
       </Button>
       <Dialog open={isOpen} fullScreen>
@@ -173,7 +173,7 @@ export default function PledgeDocument() {
 
                 <Button
                   component="a"
-                  href="https://typeform.com"
+                  href="https://etddlueinfg.typeform.com/to/TDbt3Kr1"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="contained"

@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import green from 'assets/green.png';
 import orange from 'assets/orange.png';
+import PledgeDocument from 'components/PledgeDocument';
 
 export default function About() {
   return (
@@ -159,10 +160,15 @@ export default function About() {
             justifyContent="center"
             sx={{ mt: 4 }}
           >
-            <Button variant="contained" size="large">
-              Take a Pledge
-            </Button>
-            <Button variant="contained" size="large">
+            <PledgeDocument />
+            <Button
+              component="a"
+              href="https://etddlueinfg.typeform.com/to/TDbt3Kr1"
+              variant="contained"
+              target="_blank"
+              rel="noopener noreferrer"
+              size="large"
+            >
               Become a part
             </Button>
           </Stack>
