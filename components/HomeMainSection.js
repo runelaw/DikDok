@@ -1,8 +1,8 @@
 import { Container, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import TimeCounter from 'components/TimeCounter';
-import PledgeForm from 'components/PledgeForm';
 import { usePledgesCount } from 'store/pledge';
+import { LoadingButton } from '@mui/lab';
 
 export default function HomeMainSection() {
   const { data: count } = usePledgesCount();
@@ -51,7 +51,11 @@ export default function HomeMainSection() {
         enough to wait and watch.
       </Typography>
 
-      <PledgeForm />
+      <Stack alignItems="center">
+        <LoadingButton variant="contained" size="large" sx={{ mt: 2 }}>
+          Pledge to #India100
+        </LoadingButton>
+      </Stack>
 
       <Box sx={{ mt: 4 }}>
         <TimeCounter />
