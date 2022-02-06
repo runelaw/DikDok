@@ -74,44 +74,50 @@ export default function PledgeDocument() {
         </DialogTitle>
         <DialogContent>
           <Container sx={{ mt: 4 }}>
-            <Typography sx={{ fontSize: { xs: '1.1rem', md: '1.5rem' } }}>
-              I,{' '}
-              {pledgedBy ? (
-                <Box component="span" sx={{ fontWeight: 'medium' }}>
-                  {pledgedBy}
-                </Box>
-              ) : (
-                <TextField
-                  size="small"
-                  placeholder="Your name"
-                  {...materialRegister(register, 'name')}
-                />
-              )}
-              , hereby swear to work towards nation-building for the next 25
-              years by committing myself to the cause of India100.
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
-            >
-              I swear to spread the message among my communities about what
-              India100 stands for, and also endeavor involving my communities
-              towards the vision of India100.
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
-            >
-              I swear to uphold this pledge and dedicate myself towards creatign
-              Saubhagya (fortune) at a local, state and national level.
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
-            >
-              I swear to get involved in activies which will feed towards the
-              objective of transforming India in the next 25 years, and creating
-              a unified force which dedicatedly works towards a prosperous,
-              sustainable, inclusive, just and progressive India by 2047, when
-              we complete 100 years of a journey as an independent republic.
-            </Typography>
+            {!pledgedBy && (
+              <>
+                <Typography sx={{ fontSize: { xs: '1.1rem', md: '1.5rem' } }}>
+                  I,{' '}
+                  {pledgedBy ? (
+                    <Box component="span" sx={{ fontWeight: 'medium' }}>
+                      {pledgedBy}
+                    </Box>
+                  ) : (
+                    <TextField
+                      size="small"
+                      placeholder="Your name"
+                      {...materialRegister(register, 'name')}
+                    />
+                  )}
+                  , hereby swear to work towards nation-building for the next 25
+                  years by committing myself to the cause of India100.
+                </Typography>
+                <Typography
+                  sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+                >
+                  I swear to spread the message among my communities about what
+                  India100 stands for, and also endeavor involving my
+                  communities towards the vision of India100.
+                </Typography>
+                <Typography
+                  sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+                >
+                  I swear to uphold this pledge and dedicate myself towards
+                  creatign Saubhagya (fortune) at a local, state and national
+                  level.
+                </Typography>
+                <Typography
+                  sx={{ mt: 1, fontSize: { xs: '1.1rem', md: '1.5rem' } }}
+                >
+                  I swear to get involved in activies which will feed towards
+                  the objective of transforming India in the next 25 years, and
+                  creating a unified force which dedicatedly works towards a
+                  prosperous, sustainable, inclusive, just and progressive India
+                  by 2047, when we complete 100 years of a journey as an
+                  independent republic.
+                </Typography>
+              </>
+            )}
 
             {!pledgedBy && (
               <Button
@@ -165,7 +171,7 @@ export default function PledgeDocument() {
             >
               {count ?? 0} pledges and counting...
             </Typography>
-            <ShareButtons />
+            {pledgedBy && <ShareButtons />}
           </Container>
         </DialogContent>
         <DialogActions>
