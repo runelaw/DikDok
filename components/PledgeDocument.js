@@ -160,7 +160,7 @@ export default function PledgeDocument() {
 
                 <Button
                   component="a"
-                  href="https://form.typeform.com/to/TDbt3Kr1"
+                  href="https://tally.so/r/mDyQX3"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="contained"
