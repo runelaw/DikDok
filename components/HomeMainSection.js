@@ -1,6 +1,5 @@
 import { Container, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import TimeCounter from 'components/TimeCounter';
 import { usePledgesCount } from 'store/pledge';
 import { LoadingButton } from '@mui/lab';
 import Image from 'next/image';
@@ -107,14 +106,7 @@ export default function HomeMainSection() {
         </LoadingButton>
       </Stack>
 
-      <Box sx={{ mt: 4 }}>
-        <TimeCounter />
-        <Typography color="textSecondary" sx={{ mt: 1, textAlign: 'center' }}>
-          Time is running out!
-        </Typography>
-      </Box>
-
-      <Stack alignItems="center" sx={{ mt: 4, pb: 2 }}>
+      <Stack alignItems="center" sx={{ mt: 4, pb: 6 }}>
         <Typography
           variant="h6"
           color="primary"
@@ -122,7 +114,7 @@ export default function HomeMainSection() {
           sx={{
             fontWeight: 'normal',
             bgcolor: 'primary.50',
-            py: 2,
+            py: 1,
             px: 4,
             borderRadius: 2,
           }}
