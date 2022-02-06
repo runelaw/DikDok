@@ -65,7 +65,7 @@ export default function PledgeDocument() {
   return (
     <>
       <Button variant="contained" size="large" sx={{ mt: 2 }} onClick={onOpen}>
-        Pledge to #India100
+        Pledge for India's #100bhagya
       </Button>
       <Dialog open={isOpen} fullScreen>
         <DialogTitle>

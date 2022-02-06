@@ -2,6 +2,7 @@ import { Container, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { usePledgesCount } from 'store/pledge';
 import Image from 'next/image';
+import india from 'assets/india.png';
 import skipping from 'assets/skipping.png';
 import PledgeDocument from 'components/PledgeDocument';
 
@@ -12,38 +13,30 @@ export default function HomeMainSection() {
     <Container sx={{ position: 'relative', pt: 20, pb: { md: 12 } }}>
       <Box
         sx={{
-          borderRadius: '100%',
-          overflow: 'hidden',
           position: 'absolute',
-          left: 0,
-          top: 0,
-          zIndex: -1,
-          transform: 'translate(-50%, -20%)',
-          display: {
-            xs: 'none',
-            md: 'block',
+          top: { xs: '30%', sm: '50%' },
+          left: '50%',
+          width: '90%',
+          height: '90%',
+          zIndex: -100,
+          transform: 'translate(-50%, -50%)',
+          '& img': {
+            WebkitFilter:
+              'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
+            filter:
+              'contrast(0) sepia(0) hue-rotate(180deg) saturate(0%) brightness(170%)',
+            opacity: 1,
           },
         }}
       >
-        <Image src={skipping} />
-      </Box>
-
-      <Box
-        sx={{
-          overflow: 'hidden',
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          zIndex: -1,
-          width: '100%',
-          height: '100%',
-          display: {
-            xs: 'block',
-            md: 'none',
-          },
-        }}
-      >
-        <Image src={skipping} layout="fixed" />
+        <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+          <Image
+            src={india}
+            alt="India Landscape"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
       </Box>
 
       <Typography
@@ -69,16 +62,16 @@ export default function HomeMainSection() {
         <Typography
           variant="h1"
           component="span"
-          color="primary"
           sx={{
             fontSize: {
               xs: '2.5rem',
               sm: '3rem',
               md: '5rem',
             },
+            color: '#FF7722',
           }}
         >
-          #India100
+          #100bhagya
         </Typography>
       </Typography>
       <Typography

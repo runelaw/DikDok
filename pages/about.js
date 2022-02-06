@@ -1,9 +1,10 @@
-import { Container, Typography } from '@mui/material';
+import { Button, Container, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Navigation from 'components/Navigation';
 import Head from 'next/head';
 import Image from 'next/image';
 import green from 'assets/green.png';
+import orange from 'assets/orange.png';
 
 export default function About() {
   return (
@@ -23,10 +24,27 @@ export default function About() {
         <Box
           sx={{
             position: 'fixed',
-            top: '50%',
-            right: -100,
+            top: '0%',
+            right: -150,
             zIndex: -100,
-            transform: 'translate(0, -50%)',
+            transform: 'translate(0, 0)',
+          }}
+        >
+          <Image
+            src={orange}
+            alt="Green"
+            layout="fixed"
+            width={orange.width / 1.5}
+            height={orange.height / 1.5}
+          />
+        </Box>
+        <Box
+          sx={{
+            position: 'fixed',
+            top: '50%',
+            right: -150,
+            zIndex: -100,
+            transform: 'translate(0, 0%)',
           }}
         >
           <Image
@@ -45,7 +63,7 @@ export default function About() {
           }}
         >
           <Typography variant="h4">
-            Saubhagya, India 100 /{' '}
+            100bhagya, Saubhagya /{' '}
             <Box component="span" sx={{ color: 'primary.main' }}>
               Preamble and Vision
             </Box>
@@ -64,7 +82,7 @@ export default function About() {
           </Typography>
 
           <Typography
-            variant="h5"
+            variant="h6"
             component="p"
             sx={{
               fontWeight: 400,
@@ -79,7 +97,7 @@ export default function About() {
             <Box component="span" sx={{ color: 'primary.main' }}>
               Launching
             </Box>{' '}
-            Saubhagya, India!
+            100bhagya, India!
           </Typography>
           <Typography
             variant="h6"
@@ -89,10 +107,10 @@ export default function About() {
               mt: 2,
             }}
           >
-            Saubhagya, India 100 is a unifying movement to integrate all people
-            and ideas working towards India100 in the next 25 years. The vision
-            is a 100 Crore people unified and working together for building a
-            conscious, sustainable and prosperous nation.
+            100bhagya, India 100 is a unifying movement to integrate all people
+            and ideas working towards India&apos;s betterment in the next 25
+            years. The vision is a 100 Crore people unified and working together
+            for building a conscious, sustainable and prosperous nation.
           </Typography>
 
           <Typography
@@ -112,7 +130,7 @@ export default function About() {
 
           <Typography variant="h4" sx={{ mt: 4 }}>
             <Box component="span" sx={{ color: 'primary.main' }}>
-              Why Saubhagya!
+              Why 100bhagya!
             </Box>{' '}
             Why Now!
           </Typography>
@@ -134,6 +152,20 @@ export default function About() {
             responsibility and Saubhagya(fortune) to participate and contribute
             to the Saubhagya, India100 movement.
           </Typography>
+
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="center"
+            sx={{ mt: 4 }}
+          >
+            <Button variant="contained" size="large">
+              Take a Pledge
+            </Button>
+            <Button variant="contained" size="large">
+              Become a part
+            </Button>
+          </Stack>
         </Container>
       </Box>
     </>
