@@ -12,13 +12,36 @@ import { useBoolean } from 'react-use';
 import { useCallback } from 'react';
 import { usePledgesCount } from 'store/pledge';
 import ShareButtons from 'components/ShareButtons';
+import { useForm } from 'react-hook-form';
+import materialRegister from 'utils/materialRegister';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const schema = z.object({
+  name: z.string().min(1, 'Required'),
+});
 
 export default function PledgeDocument() {
   const [isOpen, toggleOpen] = useBoolean(false);
+
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: {
+      name: '',
+    },
+    resolver: zodResolver(schema),
+  });
+
   const onOpen = useCallback(() => toggleOpen(true), [toggleOpen]);
-  const onClose = useCallback(() => toggleOpen(false), [toggleOpen]);
+  const onClose = useCallback(() => {
+    toggleOpen(false);
+    reset();
+  }, [toggleOpen]);
 
   const { data: count } = usePledgesCount();
+
+  const onSubmit = useCallback((state) => {
+    console.log(state);
+  }, []);
 
   return (
     <>
@@ -32,11 +55,16 @@ export default function PledgeDocument() {
           </Container>
         </DialogTitle>
         <DialogContent>
-          <Container>
+          <Container sx={{ mt: 4 }}>
             <Typography sx={{ fontSize: '1.5rem' }}>
-              I, <TextField size="small" placeholder="Your name" />, hereby
-              swear to work towards nation-building for the next 25 years by
-              committing myself to the cause of India100.
+              I,{' '}
+              <TextField
+                size="small"
+                placeholder="Your name"
+                {...materialRegister(register, 'name')}
+              />
+              , hereby swear to work towards nation-building for the next 25
+              years by committing myself to the cause of India100.
             </Typography>
             <Typography sx={{ mt: 1, fontSize: '1.5rem' }}>
               I swear to spread the message among my communities about what
@@ -55,7 +83,13 @@ export default function PledgeDocument() {
               we complete 100 years of a journey as an independent republic.
             </Typography>
 
-            <Button variant="contained" size="large" fullWidth sx={{ mt: 4 }}>
+            <Button
+              variant="contained"
+              size="large"
+              fullWidth
+              sx={{ mt: 4 }}
+              onClick={handleSubmit(onSubmit)}
+            >
               Pledge for a Better India
             </Button>
 
@@ -76,7 +110,7 @@ export default function PledgeDocument() {
           </Container>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={onClose}>
+          <Button variant="outlined" color="error" onClick={onClose}>
             Close
           </Button>
         </DialogActions>
