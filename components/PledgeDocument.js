@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useBoolean } from 'react-use';
+import { useAsyncFn, useBoolean } from 'react-use';
 import { useCallback, useState } from 'react';
 import { useMakePledge, usePledgesCount } from 'store/pledge';
 import ShareButtons from 'components/ShareButtons';
@@ -19,6 +19,9 @@ import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSnackbar } from 'notistack';
+import { LoadingButton } from '@mui/lab';
+import Image from 'next/image';
+import orange from 'assets/orange.png';
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
@@ -46,7 +49,7 @@ export default function PledgeDocument() {
   const makePledge = useMakePledge();
 
   const { enqueueSnackbar } = useSnackbar();
-  const onSubmit = useCallback(
+  const [{ loading }, onSubmit] = useAsyncFn(
     async (state) => {
       try {
         await makePledge({ name: state.name });
@@ -63,81 +66,121 @@ export default function PledgeDocument() {
 
   return (
     <>
-      <Button variant="contained" size="large" sx={{ mt: 2 }} onClick={onOpen}>
-        Pledge to #India100
+      <Button variant="contained" size="large" onClick={onOpen}>
+        Pledge for India&apos;s #100bhagya
       </Button>
       <Dialog open={isOpen} fullScreen>
         <DialogTitle>
-          <Container>
-            <Typography variant="h4">Pledge for #India100</Typography>
+          <Container maxWidth="sm">
+            <Typography variant="h6" textAlign="center">
+              Pledge for #India100
+            </Typography>
           </Container>
         </DialogTitle>
         <DialogContent>
-          <Container sx={{ mt: 4 }}>
-            <Typography sx={{ fontSize: '1.5rem' }}>
-              I,{' '}
-              {pledgedBy ? (
-                <Box component="span" sx={{ fontWeight: 'medium' }}>
-                  {pledgedBy}
-                </Box>
-              ) : (
-                <TextField
-                  size="small"
-                  placeholder="Your name"
-                  {...materialRegister(register, 'name')}
-                />
-              )}
-              , hereby swear to work towards nation-building for the next 25
-              years by committing myself to the cause of India100.
-            </Typography>
-            <Typography sx={{ mt: 1, fontSize: '1.5rem' }}>
-              I swear to spread the message among my communities about what
-              India100 stands for, and also endeavor involving my communities
-              towards the vision of India100.
-            </Typography>
-            <Typography sx={{ mt: 1, fontSize: '1.5rem' }}>
-              I swear to uphold this pledge and dedicate myself towards creatign
-              Saubhagya (fortune) at a local, state and national level.
-            </Typography>
-            <Typography sx={{ mt: 1, fontSize: '1.5rem' }}>
-              I swear to get involved in activies which will feed towards the
-              objective of transforming India in the next 25 years, and creating
-              a unified force which dedicatedly works towards a prosperous,
-              sustainable, inclusive, just and progressive India by 2047, when
-              we complete 100 years of a journey as an independent republic.
-            </Typography>
+          <Box
+            sx={{
+              position: 'fixed',
+              top: '0%',
+              right: -150,
+              transform: 'translate(0, 0)',
+            }}
+          >
+            <Image
+              src={orange}
+              alt="Green"
+              layout="fixed"
+              width={orange.width / 1.5}
+              height={orange.height / 1.5}
+            />
+          </Box>
+
+          <Container sx={{ mt: 4, position: 'relative' }} maxWidth="sm">
+            {!pledgedBy && (
+              <>
+                <Typography sx={{ fontSize: { xs: '1rem', md: '1.3rem' } }}>
+                  I,{' '}
+                  {pledgedBy ? (
+                    <Box component="span" sx={{ fontWeight: 'medium' }}>
+                      {pledgedBy}
+                    </Box>
+                  ) : (
+                    <TextField
+                      variant="standard"
+                      size="small"
+                      placeholder="Your name"
+                      {...materialRegister(register, 'name')}
+                      sx={{
+                        border: '0',
+                      }}
+                    />
+                  )}
+                  , hereby swear to work towards nation-building for the next 25
+                  years by committing myself to the cause of India100.
+                </Typography>
+                <Typography
+                  sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
+                >
+                  I swear to spread the message among my communities about what
+                  India100 stands for, and also endeavor involving my
+                  communities towards the vision of India100.
+                </Typography>
+                <Typography
+                  sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
+                >
+                  I swear to uphold this pledge and dedicate myself towards
+                  creating Saubhagya (fortune) at a local, state and national
+                  level.
+                </Typography>
+                <Typography
+                  sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
+                >
+                  I swear to get involved in activities which will feed towards
+                  the objective of transforming India in the next 25 years, and
+                  creating a unified force which dedicatedly works towards a
+                  prosperous, sustainable, inclusive, just and progressive India
+                  by 2047, when we complete 100 years of a journey as an
+                  independent republic.
+                </Typography>
+              </>
+            )}
 
             {!pledgedBy && (
-              <Button
+              <LoadingButton
                 variant="contained"
                 size="large"
                 fullWidth
                 sx={{ mt: 4 }}
                 onClick={handleSubmit(onSubmit)}
+                loading={loading}
               >
                 Pledge for a Better India
-              </Button>
+              </LoadingButton>
             )}
 
             {pledgedBy && (
               <Stack alignItems="center">
                 <Typography
                   textAlign="center"
-                  sx={{ mt: 4, fontSize: '1.5rem', fontWeight: 'medium' }}
+                  sx={{
+                    mt: 4,
+                    fontSize: { xs: '1rem', md: '1.3rem' },
+                    fontWeight: 'medium',
+                  }}
                 >
                   You just pledged for a Better India!
                 </Typography>
 
                 <Button
                   component="a"
-                  href="https://typeform.com"
+                  href="https://form.typeform.com/to/TDbt3Kr1"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="contained"
                   size="large"
                   sx={{ mt: 2 }}
                 >
-                  Want to know more?
+                  Subscribe for further updates
                 </Button>
               </Stack>
             )}
@@ -155,7 +198,7 @@ export default function PledgeDocument() {
             >
               {count ?? 0} pledges and counting...
             </Typography>
-            <ShareButtons />
+            {pledgedBy && <ShareButtons />}
           </Container>
         </DialogContent>
         <DialogActions>

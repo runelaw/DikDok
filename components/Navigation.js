@@ -31,10 +31,11 @@ export default function Navigation({ position = 'sticky' }) {
           <Link href="/about" passHref>
             <Button
               component="a"
+              variant="contained"
               color="inherit"
               sx={{ mr: 2, display: { xs: 'none', sm: 'block' } }}
             >
-              About Us
+              About
             </Button>
           </Link>
         </Toolbar>
