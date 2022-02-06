@@ -115,28 +115,15 @@ export default function PledgeDocument() {
                       }}
                     />
                   )}
-                  , hereby swear to work towards nation-building for the next 25
-                  years by committing myself to the cause of India100.
+                  , promise to contribute towards nation building in the next 25
+                  years and create 100bhagya (saubhagya-fortune) at local, state
+                  and nation level.
                 </Typography>
                 <Typography
                   sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
                 >
-                  I swear to spread the message among my communities about what
-                  India100 stands for, and also endeavor involving my
-                  communities towards the vision of India100.
-                </Typography>
-                <Typography
-                  sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
-                >
-                  I swear to uphold this pledge and dedicate myself towards
-                  creating Saubhagya (fortune) at a local, state and national
-                  level.
-                </Typography>
-                <Typography
-                  sx={{ mt: 1, fontSize: { xs: '1rem', md: '1.3rem' } }}
-                >
-                  I swear to get involved in activities which will feed towards
-                  the objective of transforming India in the next 25 years, and
+                  I will get involved in activities which will feed towards the
+                  objective of transforming India in the next 25 years, and
                   creating a unified force which dedicatedly works towards a
                   prosperous, sustainable, inclusive, just and progressive India
                   by 2047, when we complete 100 years of a journey as an
