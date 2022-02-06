@@ -1,27 +1,31 @@
 import {
+  Box,
   Button,
   Container,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Stack,
   TextField,
   Typography,
 } from '@mui/material';
 import { useBoolean } from 'react-use';
-import { useCallback } from 'react';
-import { usePledgesCount } from 'store/pledge';
+import { useCallback, useState } from 'react';
+import { useMakePledge, usePledgesCount } from 'store/pledge';
 import ShareButtons from 'components/ShareButtons';
 import { useForm } from 'react-hook-form';
 import materialRegister from 'utils/materialRegister';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSnackbar } from 'notistack';
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
 });
 
 export default function PledgeDocument() {
+  const [pledgedBy, setPledgedBy] = useState('');
   const [isOpen, toggleOpen] = useBoolean(false);
 
   const { register, handleSubmit, reset } = useForm({
@@ -34,14 +38,28 @@ export default function PledgeDocument() {
   const onOpen = useCallback(() => toggleOpen(true), [toggleOpen]);
   const onClose = useCallback(() => {
     toggleOpen(false);
+    setPledgedBy('');
     reset();
-  }, [toggleOpen]);
+  }, [reset, toggleOpen]);
 
   const { data: count } = usePledgesCount();
+  const makePledge = useMakePledge();
 
-  const onSubmit = useCallback((state) => {
-    console.log(state);
-  }, []);
+  const { enqueueSnackbar } = useSnackbar();
+  const onSubmit = useCallback(
+    async (state) => {
+      try {
+        await makePledge({ name: state.name });
+        setPledgedBy(state.name);
+        reset();
+      } catch (err) {
+        enqueueSnackbar('Failed to make a pledge. Try again.', {
+          variant: 'error',
+        });
+      }
+    },
+    [enqueueSnackbar, makePledge, reset]
+  );
 
   return (
     <>
@@ -58,11 +76,17 @@ export default function PledgeDocument() {
           <Container sx={{ mt: 4 }}>
             <Typography sx={{ fontSize: '1.5rem' }}>
               I,{' '}
-              <TextField
-                size="small"
-                placeholder="Your name"
-                {...materialRegister(register, 'name')}
-              />
+              {pledgedBy ? (
+                <Box component="span" sx={{ fontWeight: 'medium' }}>
+                  {pledgedBy}
+                </Box>
+              ) : (
+                <TextField
+                  size="small"
+                  placeholder="Your name"
+                  {...materialRegister(register, 'name')}
+                />
+              )}
               , hereby swear to work towards nation-building for the next 25
               years by committing myself to the cause of India100.
             </Typography>
@@ -83,15 +107,40 @@ export default function PledgeDocument() {
               we complete 100 years of a journey as an independent republic.
             </Typography>
 
-            <Button
-              variant="contained"
-              size="large"
-              fullWidth
-              sx={{ mt: 4 }}
-              onClick={handleSubmit(onSubmit)}
-            >
-              Pledge for a Better India
-            </Button>
+            {!pledgedBy && (
+              <Button
+                variant="contained"
+                size="large"
+                fullWidth
+                sx={{ mt: 4 }}
+                onClick={handleSubmit(onSubmit)}
+              >
+                Pledge for a Better India
+              </Button>
+            )}
+
+            {pledgedBy && (
+              <Stack alignItems="center">
+                <Typography
+                  textAlign="center"
+                  sx={{ mt: 4, fontSize: '1.5rem', fontWeight: 'medium' }}
+                >
+                  You just pledged for a Better India!
+                </Typography>
+
+                <Button
+                  component="a"
+                  href="https://typeform.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="contained"
+                  size="large"
+                  sx={{ mt: 2 }}
+                >
+                  Want to know more?
+                </Button>
+              </Stack>
+            )}
 
             <Typography
               color="primary"
