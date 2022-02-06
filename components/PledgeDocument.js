@@ -173,7 +173,7 @@ export default function PledgeDocument() {
 
                 <Button
                   component="a"
-                  href="https://etddlueinfg.typeform.com/to/TDbt3Kr1"
+                  href="https://form.typeform.com/to/TDbt3Kr1"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="contained"
