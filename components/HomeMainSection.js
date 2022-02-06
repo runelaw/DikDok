@@ -1,9 +1,9 @@
 import { Container, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { usePledgesCount } from 'store/pledge';
-import { LoadingButton } from '@mui/lab';
 import Image from 'next/image';
 import skipping from 'assets/skipping.png';
+import PledgeDocument from 'components/PledgeDocument';
 
 export default function HomeMainSection() {
   const { data: count } = usePledgesCount();
@@ -101,9 +101,7 @@ export default function HomeMainSection() {
       </Typography>
 
       <Stack alignItems="center">
-        <LoadingButton variant="contained" size="large" sx={{ mt: 2 }}>
-          Pledge to #India100
-        </LoadingButton>
+        <PledgeDocument />
       </Stack>
 
       <Stack alignItems="center" sx={{ mt: 4, pb: 6 }}>
