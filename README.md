@@ -1,3 +1,10 @@
+First Commit for the DikDok app.
+
+-->Intialized a monorepo using Turborepo.
+-->Created the folders for backend and frontend in the apps directory.
+--> Intialized the Nextjs/React with Tailwind app for the frontend and Express for the backend.
+--> Intialized and configured typescript, eslint & prettier.
+
 # Turborepo starter
 
 This is an official npm starter turborepo.
