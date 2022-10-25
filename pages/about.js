@@ -10,7 +10,7 @@ import PledgeDocument from 'components/PledgeDocument';
 export default function About() {
   return (
     <>
-      <Navigation position="fixed" />
+      <Navigation />
 
       <Head>
         <title>100bhagya - Make a Pledge for #India100</title>
