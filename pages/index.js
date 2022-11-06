@@ -3,6 +3,8 @@ import Navigation from 'components/Navigation';
 import Head from 'next/head';
 import WhatIs100bhagya from 'components/WhatIs100bhagya';
 import Help from 'components/Help';
+import Footer from 'components/Footer';
+import Slider from 'components/Slider';
 
 export default function Home() {
   return (
@@ -14,8 +16,10 @@ export default function Home() {
       </Head>
 
       <HomeMainSection />
+      <Slider />
       <Help />
       <WhatIs100bhagya />
+      <Footer />
     </>
   );
 }

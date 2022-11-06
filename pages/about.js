@@ -20,6 +20,7 @@ export default function About() {
         sx={{
           width: '100%',
           height: '100vh',
+          zIndex: -100,
         }}
       >
         <Box

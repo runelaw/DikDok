@@ -13,6 +13,7 @@ const client = new QueryClient({
     queries: {
       // Do not automatically keep on refetching the same data.
       staleTime: Infinity,
+      refetchOnWindowFocus: false,
     },
   },
 });

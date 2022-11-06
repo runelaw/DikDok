@@ -11,11 +11,11 @@ export default function HomeMainSection() {
   const { data: count } = usePledgesCount();
 
   return (
-    <div className="md:bg-[url('../assets/bg-image-blur.png')] bg-cover -z-50">
+    <div className="md:bg-[url('../assets/bg-image-blur.png')] bg-no-repeat md:bg-cover md:bg-top bg-center bg-contain md:h-[700px]">
       <Container sx={{ position: 'relative', pt: 20, pb: { md: 12 } }}>
         <Box
           sx={{
-            position: 'absolute',
+            position: 'relative',
             top: { xs: '30%', sm: '50%' },
             left: '50%',
             width: '90%',
@@ -31,14 +31,14 @@ export default function HomeMainSection() {
             },
           }}
         >
-          <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+          {/* <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
             <Image
               src={india}
               alt="India Landscape"
               layout="fill"
               objectFit="contain"
             />
-          </Box>
+          </Box> */}
         </Box>
 
         <Typography
@@ -88,6 +88,7 @@ export default function HomeMainSection() {
               ' 0px -1px 0 white,' +
               ' 0px 1px 0 white,' +
               ' 1px 0px 0 white',
+            color: 'black',
           }}
         >
           25 years is long enough to create a <br />
