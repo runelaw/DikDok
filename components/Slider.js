@@ -11,6 +11,10 @@ import slider2 from 'assets/slider2.jpeg';
 import slider3 from 'assets/slider3.jpeg';
 
 const Slider = () => {
+  const openInNewTab = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="md:hidden sm:block px-3 ">
       <a

@@ -14,7 +14,7 @@ export default function WhatIs100bhagya() {
               component="div"
               sx={{
                 mt: 8,
-                mb: 1,
+                mb: 4,
                 fontWeight: 'medium',
                 fontSize: {
                   xs: '1.5rem',
