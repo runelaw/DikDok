@@ -97,7 +97,7 @@ export default function HomeMainSection() {
         </Typography>
 
         <Stack alignItems="center" sx={{ mt: 2 }}>
-          <PledgeDocument />
+          <PledgeDocument but={2} />
         </Stack>
 
         <Stack alignItems="center" sx={{ mt: 4, pb: 6 }}>

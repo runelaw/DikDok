@@ -73,7 +73,7 @@ const Help = () => {
                   .typeString('140 Crore people')
                   .pauseFor(500)
                   .deleteAll()
-                  .typeString('The youngest population in the world')
+                  .typeString('An active young population')
                   .pauseFor(500)
                   .deleteAll()
                   .typeString('25 Years to make a difference!')
