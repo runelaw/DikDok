@@ -44,90 +44,92 @@ import 'swiper/css/navigation';
 
 const Twitter = () => {
   return (
-    <Swiper
-      spaceBetween={100}
-      centeredSlides={true}
-      autoplay={{
-        delay: 4500,
-        disableOnInteraction: false,
-      }}
-      // pagination={{
-      //   clickable: true,
-      // }}
-      navigation={false}
-      modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper"
-    >
-      <SwiperSlide>
-        <blockquote className="twitter-tweet">
-          <p lang="en" dir="ltr">
-            Encourage all friends and family to support great work by ATMA
-            (incubator for education NGOs), as
-            <a href="https://twitter.com/india100bhagya?ref_src=twsrc%5Etfw">
-              @india100bhagya
+    <div className="h-9/12">
+      <Swiper
+        spaceBetween={100}
+        centeredSlides={true}
+        autoplay={{
+          delay: 4500,
+          disableOnInteraction: false,
+        }}
+        // pagination={{
+        //   clickable: true,
+        // }}
+        navigation={false}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <blockquote className="twitter-tweet">
+            <p lang="en" dir="ltr">
+              Encourage all friends and family to support great work by ATMA
+              (incubator for education NGOs), as
+              <a href="https://twitter.com/india100bhagya?ref_src=twsrc%5Etfw">
+                @india100bhagya
+              </a>
+              helps them raise funds for their work to *build NGOs building a
+              bright future of our country this Diwali* 🇮🇳✨
+              <a href="https://t.co/U4hSU3p1jm">https://t.co/U4hSU3p1jm</a>
+              <a href="https://twitter.com/nitish_mehta?ref_src=twsrc%5Etfw">
+                @nitish_mehta
+              </a>
+              <a href="https://twitter.com/tprateekrao?ref_src=twsrc%5Etfw">
+                @tprateekrao
+              </a>
+            </p>
+            &mdash; Anirudh Verma (@aniruddha_verma)
+            <a href="https://twitter.com/aniruddha_verma/status/1582381664537546752?ref_src=twsrc%5Etfw">
+              October 18, 2022
             </a>
-            helps them raise funds for their work to *build NGOs building a
-            bright future of our country this Diwali* 🇮🇳✨
-            <a href="https://t.co/U4hSU3p1jm">https://t.co/U4hSU3p1jm</a>
-            <a href="https://twitter.com/nitish_mehta?ref_src=twsrc%5Etfw">
-              @nitish_mehta
+          </blockquote>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charSet="utf-8"
+          ></script>
+        </SwiperSlide>
+        <SwiperSlide>
+          <blockquote className="twitter-tweet">
+            <p lang="en" dir="ltr">
+              <a href="https://twitter.com/hashtag/IndiaAt75?src=hash&amp;ref_src=twsrc%5Etfw">
+                #IndiaAt75
+              </a>
+              is special
+              <br />
+              With an average of ~28 years, the next 25 years will coincide with
+              the most active years of our lives. We will all play a role in
+              shaping
+              <a href="https://twitter.com/hashtag/India100?src=hash&amp;ref_src=twsrc%5Etfw">
+                #India100
+              </a>{' '}
+              !!
+              <br />
+              <br />
+              How will we make the most of this opportunity?
+              <br />
+              <a href="https://twitter.com/hashtag/100bhagya?src=hash&amp;ref_src=twsrc%5Etfw">
+                #100bhagya
+              </a>
+              <a href="https://twitter.com/india100bhagya?ref_src=twsrc%5Etfw">
+                @india100bhagya
+              </a>
+            </p>
+            &mdash; Anirudh Verma (@aniruddha_verma)
+            <a href="https://twitter.com/aniruddha_verma/status/1559842923461505024?ref_src=twsrc%5Etfw">
+              August 17, 2022
             </a>
-            <a href="https://twitter.com/tprateekrao?ref_src=twsrc%5Etfw">
-              @tprateekrao
-            </a>
-          </p>
-          &mdash; Anirudh Verma (@aniruddha_verma)
-          <a href="https://twitter.com/aniruddha_verma/status/1582381664537546752?ref_src=twsrc%5Etfw">
-            October 18, 2022
-          </a>
-        </blockquote>
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charSet="utf-8"
-        ></script>
-      </SwiperSlide>
-      <SwiperSlide>
-        <blockquote className="twitter-tweet">
-          <p lang="en" dir="ltr">
-            <a href="https://twitter.com/hashtag/IndiaAt75?src=hash&amp;ref_src=twsrc%5Etfw">
-              #IndiaAt75
-            </a>
-            is special
-            <br />
-            With an average of ~28 years, the next 25 years will coincide with
-            the most active years of our lives. We will all play a role in
-            shaping
-            <a href="https://twitter.com/hashtag/India100?src=hash&amp;ref_src=twsrc%5Etfw">
-              #India100
-            </a>{' '}
-            !!
-            <br />
-            <br />
-            How will we make the most of this opportunity?
-            <br />
-            <a href="https://twitter.com/hashtag/100bhagya?src=hash&amp;ref_src=twsrc%5Etfw">
-              #100bhagya
-            </a>
-            <a href="https://twitter.com/india100bhagya?ref_src=twsrc%5Etfw">
-              @india100bhagya
-            </a>
-          </p>
-          &mdash; Anirudh Verma (@aniruddha_verma)
-          <a href="https://twitter.com/aniruddha_verma/status/1559842923461505024?ref_src=twsrc%5Etfw">
-            August 17, 2022
-          </a>
-        </blockquote>
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charSet="utf-8"
-        ></script>
-      </SwiperSlide>
-      {/* <SwiperSlide>
+          </blockquote>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charSet="utf-8"
+          ></script>
+        </SwiperSlide>
+        {/* <SwiperSlide>
           
         </SwiperSlide> */}
-    </Swiper>
+      </Swiper>
+    </div>
   );
 };
 

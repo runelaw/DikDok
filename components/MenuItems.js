@@ -22,6 +22,11 @@ const MenuItems = ({ showMenu, active }) => {
           Home
         </Link>
       </li>
+      <li>
+        <Link href="/goodsearch" passHref>
+          Good Search
+        </Link>
+      </li>
     </ul>
   );
 };

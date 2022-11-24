@@ -9,17 +9,16 @@ import Slider from 'components/Slider';
 export default function Home() {
   return (
     <>
-      <Navigation />
-
       <Head>
         <title>100bhagya - Make a Pledge for #India100</title>
       </Head>
-
-      <HomeMainSection />
-      <Slider />
-      <Help />
-      <WhatIs100bhagya />
-      <Footer />
+      <div className="md:bg-desk">
+        <Navigation />
+        <HomeMainSection />
+        <Help />
+        <WhatIs100bhagya />
+        <Footer />
+      </div>
     </>
   );
 }

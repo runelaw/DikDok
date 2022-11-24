@@ -1,18 +1,66 @@
 import { Container, Stack, Typography } from '@mui/material';
-
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Box } from '@mui/system';
 import { usePledgesCount } from 'store/pledge';
 import Image from 'next/image';
-import india from 'assets/india.png';
-import skipping from 'assets/skipping.png';
+import { images } from '../constants';
 import PledgeDocument from 'components/PledgeDocument';
+import SlideUp from './SlideUp';
 
 export default function HomeMainSection() {
   const { data: count } = usePledgesCount();
 
+  const openInNewTab = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <div className="md:bg-[url('../assets/bg-image-blur.png')] bg-no-repeat md:bg-cover md:bg-top bg-center bg-contain md:h-[700px]">
-      <Container sx={{ position: 'relative', pt: 20, pb: { md: 12 } }}>
+    <>
+      <div className="flex justify-center items-center w-full md:h-full bg-desk">
+        <div className="flex md:flex-row flex-col justify-between items-center w-11/12">
+          <div className="flex flex-col justify-start mt-32 md:mt-60 md:mb-44 mb-16">
+            <div className="flex flex-col justify-start relative text-center md:text-left font-martel lg:text-7xl md:text-5xl text-[44px] md:font-bold font-extrabold">
+              Make a pledge for India&apos;s{' '}
+              <div className="relative overflow-visible flex justify-center md:justify-start">
+                <div className=" text-oranges absolute inline-block z-10 md:mt-5 mt-2">
+                  #100bhagya
+                </div>
+                <div className="absolute inline-block top-7 md:left-0 md:top-12 -z-5">
+                  <Image
+                    src={images.green}
+                    alt="green"
+                    width={images.green.width}
+                    height={images.green.height}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mt-36 font-gbasic text-xl text-center md:text-left md:text-3xl md:w-[750px] font-normal">
+              25 years is long enough to make a meaningful impact but not long
+              enough to wait and watch
+            </div>
+            <div className=" flex flex-row md:justify-start justify-around mt-12">
+              <PledgeDocument but={1} />
+              <div className="flex flex-row md:ml-10 font-inter text-base px-6 md:px-10 py-3 rounded-sm border border-solid border-black hover:cursor-pointer">
+                Discover
+                <ArrowRightAltIcon />
+              </div>
+            </div>
+          </div>
+          <div className="mt-32 hidden md:block">
+            <Image src={images.india} alt="India" />
+          </div>
+          {/* <div className="md:hidden">
+            <Image src={images.kids} alt="kids" />
+          </div> */}
+        </div>
+      </div>
+    </>
+  );
+}
+
+{
+  /* <Container sx={{ position: 'relative', pt: 20, pb: { md: 12 } }}>
         <Box
           sx={{
             position: 'relative',
@@ -30,16 +78,20 @@ export default function HomeMainSection() {
               opacity: 1,
             },
           }}
-        >
-          {/* <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+        > */
+}
+{
+  /* <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
             <Image
               src={india}
               alt="India Landscape"
               layout="fill"
               objectFit="contain"
             />
-          </Box> */}
-        </Box>
+          </Box> */
+}
+{
+  /* </Box>
 
         <Typography
           variant="h1"
@@ -97,7 +149,7 @@ export default function HomeMainSection() {
         </Typography>
 
         <Stack alignItems="center" sx={{ mt: 2 }}>
-          <PledgeDocument but={2} />
+          
         </Stack>
 
         <Stack alignItems="center" sx={{ mt: 4, pb: 6 }}>
@@ -116,7 +168,8 @@ export default function HomeMainSection() {
             {count ?? 0} pledges made till now
           </Typography>
         </Stack>
-      </Container>
-    </div>
-  );
+      </Container> */
+}
+{
+  /* <PledgeDocument but={2} /> */
 }
